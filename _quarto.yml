@@ -21,12 +21,15 @@ website:
             text: Fourier Series Representations
           - href: pages/random/Vectors-in-alternate-basis.qmd
             text: Vectors in Alternate Basis
+      - section: "Reinforcement Learning"
+        contents:
+          - href: pages/RL/immediate-rl-intro.qmd
+            text: Introduction to Immediate Reinforcement Learning
       - section: "Statistics"
         contents:
           - href: pages/Stats/Probability-Basics.qmd
             text: Basic Concepts of Probability
             
-
 format:
   html:
     smooth-scroll: true
