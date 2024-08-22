@@ -11,14 +11,14 @@
     ]
   },
   {
-    "objectID": "pages/random/Fourier.html",
-    "href": "pages/random/Fourier.html",
-    "title": "Learning",
+    "objectID": "pages/RL/immediate-rl-intro.html",
+    "href": "pages/RL/immediate-rl-intro.html",
+    "title": "Introduction to Immediate Reinforcement Learning",
     "section": "",
-    "text": "Some handwritten notes on Fourier Series Representations\n\n\n\n\nReuseCC BY-NC-SA 4.0",
+    "text": "ReuseThis work is dedicated to the Public Domain",
     "crumbs": [
-      "Random Math",
-      "Fourier Series Representations"
+      "Reinforcement Learning",
+      "Introduction to Immediate Reinforcement Learning"
     ]
   },
   {
@@ -30,6 +30,17 @@
     "crumbs": [
       "Random Math",
       "Vectors in Alternate Basis"
+    ]
+  },
+  {
+    "objectID": "pages/random/Fourier.html",
+    "href": "pages/random/Fourier.html",
+    "title": "Learning",
+    "section": "",
+    "text": "Some handwritten notes on Fourier Series Representations\n\n\n\n\nReuseCC BY-NC-SA 4.0",
+    "crumbs": [
+      "Random Math",
+      "Fourier Series Representations"
     ]
   },
   {
