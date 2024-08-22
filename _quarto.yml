@@ -32,4 +32,4 @@ format:
     toc: true
 
 execute: 
-  freeze: true
+  freeze: auto
