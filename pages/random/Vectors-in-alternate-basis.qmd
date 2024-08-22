@@ -6,9 +6,10 @@ format:
         number_sections: true
         smooth-scroll: true
         code-fold: true
+license: "CC BY-NC-SA"
 ---
 
 <!-- ![](Vectors-expressed-in-alt-basis.pdf){width=100% height=1000} -->
 
 
-![1](note-images/8-Vectors-expressed-in-alt-basis.png)
+![](note-images/8-Vectors-expressed-in-alt-basis.png)

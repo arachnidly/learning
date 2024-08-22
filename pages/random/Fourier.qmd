@@ -7,6 +7,7 @@ format:
         number_sections: true
         smooth-scroll: true
         code-fold: true
+license: "CC BY-NC-SA"
 ---
 
 Some handwritten notes on Fourier Series Representations

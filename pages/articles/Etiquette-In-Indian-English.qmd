@@ -7,6 +7,7 @@ format:
     html:
         toc: false
 title-block-banner: false
+license: "CC BY-NC-SA"
 ---
 
 **Introduction**

@@ -5,6 +5,8 @@ format:
         toc: true
         toc-depth: 2
         html-math-method: katex
+license:
+  text: "This work is dedicated to the Public Domain"
 ---
 
 ## Experiment and Outcome
