@@ -2,6 +2,7 @@
 title: "The Misunderstood Concept of Etiquette in Indian English"
 author: "Ara C"
 date: "2024-08-04"
+date-modified: "2024-08-22"
 categories: [article, indian-culture, language, communication]
 format:
     html:
@@ -9,8 +10,6 @@ format:
 title-block-banner: false
 license: "CC BY-NC-SA"
 ---
-
-**Introduction**
 
 Etiquette, a concept deeply embedded in the norms of polite behaviour and social conduct, generally assumes very peculiar manifestations when it gets adapted to the setting of different cultures. The way Indians have interpreted etiquette in the English language sometimes differs from traditional Western understanding. This article will draw on the specifics of this change, helping to illustrate how Indian English etiquette in and of itself is a reflection of both cultural diversity and historical influence.
 

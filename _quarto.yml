@@ -3,18 +3,15 @@ project:
   output-dir: _site
 
 website:
-  title: Learning
+  title: Arachnidly
   sidebar:
     collapse-level: 2
+    collapsible: true
     style: "docked"
     search: true
     contents:
       - href: index.qmd
         text: Home
-      - section: "Articles"
-        contents:
-          - href: pages/articles/Etiquette-In-Indian-English.qmd
-            text: The Misunderstood Concept of Etiquette in Indian English
       - section: "Random Math"
         contents:
           - href: pages/random/Fourier.qmd
@@ -29,6 +26,9 @@ website:
         contents:
           - href: pages/Stats/Probability-Basics.qmd
             text: Basic Concepts of Probability
+      - href: originals/index.qmd
+        text: Original Works
+  open-graph: true
             
 format:
   html:
