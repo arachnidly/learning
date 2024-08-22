@@ -1,0 +1,14 @@
+---
+format:
+      html:
+        toc: true
+        toc_depth: 2
+        number_sections: true
+        smooth-scroll: true
+        code-fold: true
+---
+
+<!-- ![](Vectors-expressed-in-alt-basis.pdf){width=100% height=1000} -->
+
+
+![1](note-images/8-Vectors-expressed-in-alt-basis.png)

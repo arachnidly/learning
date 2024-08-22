@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: Learning
+  sidebar:
+    collapse-level: 2
+    style: "docked"
+    search: true
+    contents:
+      - href: index.qmd
+        text: Home
+      - section: "Random Math"
+        contents:
+          - href: pages/random/Fourier.qmd
+            text: Fourier Series Representations
+          - href: pages/random/Vectors-in-alternate-basis.qmd
+            text: Vectors in Alternate Basis
+      - section: "Statistics"
+        contents:
+          - href: pages/Stats/Probability-Basics.qmd
+            text: Basic Concepts of Probability
+            
+
+format:
+  html:
+    smooth-scroll: true
+    theme:
+      light: flatly
+      dark: darkly
+    toc: true
+
+execute: 
+  freeze: true
