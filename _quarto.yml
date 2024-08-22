@@ -11,6 +11,10 @@ website:
     contents:
       - href: index.qmd
         text: Home
+      - section: "Articles"
+        contents:
+          - href: pages/articles/Etiquette-In-Indian-English.qmd
+            text: The Misunderstood Concept of Etiquette in Indian English
       - section: "Random Math"
         contents:
           - href: pages/random/Fourier.qmd
