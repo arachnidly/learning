@@ -1,6 +1,6 @@
 ---
 title: "The Misunderstood Concept of Etiquette in Indian English"
-author: "Aradhana Chatterjee"
+author: "Ara C"
 date: "2024-08-04"
 categories: [article, indian-culture, language, communication]
 format:
