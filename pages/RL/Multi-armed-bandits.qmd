@@ -9,6 +9,7 @@ format:
       # center: true
       # scrollable: true
 html-math-method: mathjax
+license: "CC BY-NC-SA"
 ---
 
 ## A $k$-armed Bandit Problem
