@@ -20,8 +20,8 @@ website:
             text: Vectors in Alternate Basis
       - section: "Reinforcement Learning"
         contents:
-          - href: pages/RL/immediate-rl-intro.qmd
-            text: Introduction to Immediate Reinforcement Learning
+          - href: pages/RL/Multi-armed-bandits.qmd
+            text: Multi-armed Bandits
       - section: "Statistics"
         contents:
           - href: pages/Stats/Probability-Basics.qmd
