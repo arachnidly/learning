@@ -1,0 +1,258 @@
+---
+title: "Multi-armed Bandits"
+format:
+    revealjs:
+      chalkboard: true
+      incremental: true
+      slideNumber: true
+      smaller: true
+      # center: true
+      # scrollable: true
+html-math-method: mathjax
+---
+
+## A $k$-armed Bandit Problem
+
+::: {.fragment}
+You are faced repeatedly with a choice among $k$ different actions.
+:::
+::: {.fragment}
+After each choice, you receive a numerical reward chosen from a stationary probability distribution that depends on the action you selected.
+:::
+::: {.fragment}
+Your objective is to maximize the expected total reward over some time period, for example, over $1000$ action selections, or *time steps*.
+:::
+
+## Value of an Action
+
+::: {.fragment}
+The set of all actions is denoted by $\mathcal{A}$, $\left| \mathcal{A} \right| = k$.
+:::
+::: {.fragment}
+Each of the $k$ actions has an expected reward given the action is selected - the *value* of the action.
+:::
+::: {.fragment}
+The action selected on time step $t$ is $A_t$.
+:::
+::: {.fragment}
+The corresponding reward is $R_t$.
+:::
+::: {.fragment}
+The value of an arbitrary action $a$, denoted $q_*(a)$, is the expected reward given that $a$ is selected:
+:::
+::: {.fragment}
+$$ q_*(a) = \mathbb{E}[R_t | A_t = a] $$
+:::
+
+## The Problem
+
+::: {.fragment}
+The value of an action is unknown and must be estimated.
+:::
+::: {.fragment}
+We denote the estimated value of action $a$ at time step $t$ as $Q_t(a)$.
+:::
+::: {.fragment}
+We would like $Q_t(a)$ to be close to $q_*(a)$.
+:::
+::: {.fragment}
+Should we select the action with the highest estimated value or should we explore other actions? This is the exploration-exploitation dilemma/trade-off.
+:::
+
+## Possible solutions
+- Asymptotic correctness
+
+::: {.fragment}
+$$Q_t(a) \rightarrow q_*(a) \text{ as } t \rightarrow \infty$$
+:::
+
+- Regret optimality
+
+::: {.fragment}
+$$\lim_{t \rightarrow \infty} \frac{1}{t} \sum_{i=1}^{t} (q_*(a^*) - q_*(A_t)) = 0$$
+:::
+
+- PAC (Probably Approximately Correct) optimality
+
+::: {.fragment}
+$$P(q_*(A_t) \geq q_*(a^*) - \epsilon) \geq (1-\delta)$$
+:::
+
+## Action-value Methods {.smaller}
+
+::: {.fragment}
+The true value of an action is the mean reward when that action is selected. One natural way to estimate this is by averaging the rewards actually received:
+:::
+::: {.fragment}
+  $$ Q_t(a) = \frac{\text{sum of rewards when } a \text{ taken prior to } t}{\text{number of times } a \text{ taken prior to } t} = \frac{\sum\limits_{i=1}^{t-1}R_{i}\cdot\mathbb{1}_{A_{i}=a}}{\sum\limits_{i=1}^{t-1}\mathbb{1}_{A_{i}=a}} $$
+:::
+::: {.fragment}
+  where $\mathbb{1}_{\text{predicate}}$ denotes the random variable that is $1$ if the predicate is true and $0$ otherwise.
+:::
+::: {.fragment}
+If the denominator is $0$, we define $Q_t(a)$ to be some default value, such as $0$.
+:::
+::: {.fragment}
+By the law of large numbers, as $\sum\limits_{i=1}^{t-1}\mathbb{1}_{A_{i}=a} \rightarrow \infty$, $Q_t(a) \rightarrow q_*(a)$.
+:::
+::: {.fragment}
+This is known as the *sample-average* method for estimating action values because each estimate is an average of the sample of relevant rewards.
+:::
+
+##
+
+::: {.fragment}
+The simplest action selection rule is to select one of the actions with the highest estimated value, that is, one of the greedy actions. If there is more than one greedy action,  then a selection is made among them in some arbitrary way, perhaps randomly. We write this greedy action selection method as
+:::
+::: {.fragment}
+$$ A_t 	\doteq \text{argmax}_a Q_t(a) $$
+:::
+::: {.fragment}
+Greedy action selection always exploits current knowledge to maximize immediate reward; it spends no time at all sampling apparently inferior actions to see if they might really be better.
+:::
+
+## $\epsilon$-Greedy Methods
+
+::: {.fragment}
+A simple alternative to allow for some exploration is to behave greedily most of the time, but every once in a while, say with small probability $\epsilon$, instead select randomly from among all the $k = \left| \mathcal{A} \right|$ actions with equal probability, independently of the action-value estimates.
+:::
+::: {.fragment}
+We call methods using this near-greedy action selection rule $\epsilon$-greedy methods.
+:::
+::: {.fragment}
+The $\epsilon$-greedy action selection method is defined as follows:
+
+  - With probability $1-\epsilon$, select $A_t = \text{argmax}_a Q_t(a)$ (*greedy* action)
+
+  - With probability $\epsilon$, select $A_t$ randomly from $\mathcal{A}$
+:::
+::: {.fragment}
+$\implies P(A_t = a) = 1 - \epsilon + \frac{\epsilon}{k}\ $
+:::
+
+## Softmax Action Selection
+
+::: {.fragment}
+The softmax action selection rule is a "soft" version of the greedy action selection rule.
+:::
+::: {.fragment}
+In $\epsilon$-greedy methods, the greedy action gets the most probability mass, and all the other actions have an equal probability of being selected in the exploration phase.
+:::
+::: {.fragment}
+If some actions are worse than others, should try to reduce the probability of selecting them during exploration.
+:::
+::: {.fragment}
+The softmax action selection method can be denoted as
+:::
+::: {.fragment}
+  $$ P(A_t = a) = \frac{e^{Q_t(a)/\tau}}{\sum_{b=1}^{k}e^{Q_t(b)/\tau}} $$
+:::
+::: {.fragment}
+  where $\tau$ is the *temperature* parameter that controls the level of exploration. It can be "cooled" over time to reduce exploration.
+:::
+
+## Incremental Implementation
+
+::: {.fragment}
+The action-value methods discussed so far all estimate action values as sample averages of observed rewards.
+:::
+::: {.fragment}
+To simplify notation, we focus on a single action. Let $R_i$ now denote the reward received after the $i$th selection *of this action*, and let $Q_n$ denote the estimate of its action value after it has been selected $n-1$ times, which we can now write simply as
+:::
+::: {.fragment}
+$$ Q_{n} \doteq \frac{R_{1} + R_{2} + \ldots + R_{n-1}}{n-1} $$
+:::
+::: {.fragment}
+The obvious implementation would be to maintain a record of all the rewards and then perform this computation whenever the estimated value was needed. However, if all the rewards are stored, as more rewards are seen, the memory and computational requirements would keep increasing.
+:::
+
+## {.smaller}
+
+::: {.fragment}
+These averages can be computed in a computationally efficient manner, in particular, with constant memory and constant per-time-step computation. Given $Q_{n}$ and the $n$th reward, $R_{n}$, the new average of all $n$ rewards can be computed by
+:::
+::: {.fragment}
+$\begin{aligned}
+Q_{n+1} & =\frac{1}{n} \ \sum\limits_{i=1}^{n} R_{i}\\
+ & =\frac{1}{n} \ \left( R_{n} +\sum\limits_{i=1}^{n-1} R_{i}\right)\\
+ & =\frac{1}{n} \ \left( R_{n} +( n-1)\frac{1}{n-1} \ \sum\limits _{i=1}^{n-1} R_{i}\right)\\
+ & =\frac{1}{n} \ ( R_{n} +( n-1) Q_{n})\\
+ & =\frac{1}{n} \ ( R_{n} +nQ_{n} -Q_{n})\\
+ & =Q_{n} +\frac{1}{n}[ R_{n} -Q_{n}]
+\end{aligned}$
+:::
+::: {.fragment}  
+  which holds even for $n=1$, obtaining $Q_{2} = R_{1}$ for arbitrary $Q_{1}$.
+:::
+
+##
+
+::: {.fragment}
+This update rule has the form of a stochastic averaging equation. The general form of such an equation is
+:::
+::: {.fragment}
+$$ NewEstimate \leftarrow OldEstimate + StepSize \left[ Target - OldEstimate \right] $$
+:::
+::: {.fragment}
+The expression $[Target - OldEstimate]$ is an error in the estimate. It is reduced by taking a step toward the "Target".
+:::
+::: {.fragment}
+The step-size parameter $(StepSize)$ used in the incremental implementation changes from time step to time step.
+:::
+::: {.fragment}
+In processing the $n$th reward for an action, the step-size parameter is $\frac{1}{n} \\$. It is often denoted by $\alpha$ or, more generally, by $\alpha_{t}(a)$.
+:::
+
+## Nonstationary Problems
+
+::: {.fragment}
+The methods discussed so far are appropriate for stationary bandit problems, where the reward probabilities do not change over time.
+:::
+::: {.fragment}
+In nonstationary cases, it makes sense to give more weight to recent rewards than to long-past rewards.
+:::
+::: {.fragment}
+One way to do this is to use a constant step-size parameter. The incremental update rule for updating an average $Q_{n}$ of the $n-1$ past rewards is modified to be
+:::
+::: {.fragment}
+$$ Q_{n+1} = Q_{n} + \alpha \left[ R_{n} - Q_{n} \right] $$
+:::
+::: {.fragment}
+  where the step-size parameter $\alpha \in (0, 1]$ is constant.
+:::
+
+##
+
+::: {.fragment}
+This results in $Q_{n+1}$ being a weighted average of past rewards and the initial estimate $Q_{1}$:
+:::
+::: {.fragment}
+$\begin{array}{ r c l }
+Q_{n+1} & = & Q_{n} +\alpha [R_{n} -Q_{n} ]\\
+ & = & \alpha R_{n} +(1-\alpha )Q_{n}\\
+ & = & \alpha R_{n} +(1-\alpha )[\alpha R_{n-1} +(1-\alpha )Q_{n-1} ]\\
+ & = & \alpha R_{n} +(1-\alpha )\alpha R_{n-1} +(1-\alpha )^{2} Q_{n-1}\\
+ & = & \alpha R_{n} +(1-\alpha )\alpha R_{n-1} +(1-\alpha )^{2} \alpha R_{n-2} +\\
+ &  & \dotsc +(1-\alpha )^{n-1} \alpha R_{1} +(1-\alpha )^{n} Q_{1}\\
+ & = & \ (1-\alpha )^{n} Q_{1} +\sum\limits _{i=1}^{n} \alpha (1-\alpha )^{n-i} R_{i}
+\end{array}$
+:::
+
+##
+::: {.fragment}
+We call this a weighted average because the sum of the weights is $(1-\alpha )^{n} +\sum\limits _{i=1}^{n} \alpha (1-\alpha )^{n-i} = 1$.
+:::
+::: {.fragment}
+Note that the weight $\alpha (1-\alpha )^{n-i}$, given to the reward $R_{i}$, depends on how many rewards ago, $n-i$, it was observed.
+:::
+::: {.fragment}
+The quantity $1-\alpha$ is less than $1$, so the weight given to $R_i$ decreases as the number of intervening rewards increases.
+:::
+::: {.fragment}
+In fact, the weight decays exponentially according to the exponent on $1-\alpha$. If $1-\alpha = 0$, then all the weight goes on the very last reward, $R_n$, because of the convention that $0^0 = 1$.
+:::
+::: {.fragment}
+Accordingly, this is sometimes called an *exponential recency-weighted average*.
+:::
+
+## Upper-Confidence-Bound (UCB) Action Selection
