@@ -4,8 +4,9 @@ format:
   html: 
     toc: true
     toc_depth: 2
-    number_sections: true
     smooth-scroll: true
+    number-sections: true
+
 ---
 
 ## A $k$-armed Bandit Problem
@@ -148,15 +149,9 @@ where $\mu^* = \underset{1\leq i \leq K}{\max} \mu_i$ and $\mathbb{E}[\cdot]$ de
 |             Play arm $j$ that maximizes $\bar{x}_j + \sqrt{\frac{2\ln n}{n_j}}$,
 where $\bar{x}_j$ is the average reward obtained from arm $j$, $n_j$ is the number of times arm $j$ has been played so far, and $n$ is the overall number of plays so far.
 
-::: {#thm-UCB1-Regret-Bound}
-
-## UCB1 Regret Bound
-
-For all $K > 1$, if policy UCB1 is run on $K$ arms having arbitrary reward distributions $P_1,\dots,P_{K}$ with support in $[0, 1]$, then its expected regret after any number of plays $n$ is at most
+**Theorem**: For all $K > 1$, if policy UCB1 is run on $K$ arms having arbitrary reward distributions $P_1,\dots,P_{K}$ with support in $[0, 1]$, then its expected regret after any number of plays $n$ is at most
 $$ \left[8 \sum\limits_{i:\mu_i < \mu^*} \left( \frac{\ln n}{\Delta_{i}} \right) \right] + \left(1+ \frac{\pi^2}{3}  \right) \left(\sum\limits_{j=1}^{K} \Delta_{j} \right)$$
 where $\mu_1,\dots,\mu_K$ are the expected values of $P_1,\dots,P_{K}$.
-
-:::
 
 Matching the notation of the theorem from the original paper to the notation used here, we get:
 
@@ -173,17 +168,12 @@ We also define the r.v.'s $I_1, I_2, \ldots$ such that $I_t denotes the arm play
 For each $1\leq i \leq K$, and $n \geq 1$, define
 $$\bar{X}_{i,n} = \frac{1}{n} \sum\limits_{t=1}^{n} X_{i,t} $$
 
-::: {#lem-Chernoff-Hoeffding-Bound}
-
-## Chernoff-Hoeffding Bound
+### Chernoff-Hoeffding Bound {#sec-Chernoff-Hoeffding-Bound}
 Let $X_1, X_2, \ldots, X_n$ be random variables with common range $[0, 1]$ and such that $\mathbb{E}[X_t|X_1, X_2, \ldots, X_{t-1}] = \mu$. Let $S_n = \frac{X_1 + X_2 + \ldots + X_n}{n}$. Then, for all $\epsilon > 0$,
 
 $$ P(S_n \geq \mu + \epsilon) \leq e^{-2\epsilon^{2}n} \text{ and } P(S_n \leq \mu - \epsilon) \leq e^{-2\epsilon^{2}n} $$ 
-:::
 
-::: {.proof}
-
-## UCB1 Regret Bound
+### Proof of UCB1 Theorem
 
 Let $c_{t,s} = \sqrt{\frac{2\ln t}{s}}$. For any arm $i$, we upper bound $T_{i}(n)$ on any sequence of plays. More precisely, for each $t \geq 1$ we bound the indicator function of $I_t=i$ as follows. Let $\mathscr{l}$ be an arbitrary positive integer. Note: $\displaystyle \{I_{t} =i\} =1$ if arm $i$ is played at time $t$ and $0$ otherwise.
 
@@ -202,7 +192,7 @@ Now observe that $\bar{X}_{s}^{*} + c_{t,s} \leq \bar{X}_{i, s_{i}} + c_{t,s_i}$
 2. $\overline{X}_{i,s_{i}} \geqslant \mu _{i} +c_{t,s_{i}}$
 3. $\mu ^{*} < \mu _{i} +2c_{t,s_{i}}$
 
-We bound the probability of the first two events using the Chernoff-Hoeffding bound as shown in @lem-Chernoff-Hoeffding-Bound.
+We bound the probability of the first two events using the Chernoff-Hoeffding bound as shown in @sec-Chernoff-Hoeffding-Bound.
 
 $P(\overline{X}_{s}^{*} +c_{t,s} \leqslant \ \mu ^{*} -c_{t,s}) \leq e^{-2c_{t,s}^{2}s} = e^{-4\ln t} = t^{-4}$
 
@@ -225,4 +215,71 @@ for $s_i \geq \frac{8\ln n}{\Delta_i^2}$. So we get
 
 which concludes the proof.
 
-:::
+## PAC Bounds for Multi-armed Bandits
+
+### Markov's Inequality {#sec-Markov-Inequality}
+Let $X$ be a non-negative random variable. Then, for any $a > 0$,
+$$ P(X \geq a) \leq \frac{\mathbb{E}[X]}{a} $$
+
+### Union Bound {#sec-Union-Bound}
+Let $A_1, A_2, \ldots, A_n$ be events. Then,
+$$ P(A_1 \cup A_2 \cup \ldots \cup A_n) \leq P(A_1) + P(A_2) + \ldots + P(A_n) $$
+$$ \equiv P\left( \bigcup_{i=1}^{n} A_i \right) \leq \sum_{i=1}^{n} P(A_i) $$
+
+
+### Naive Algorithm
+
+| **Input**: $\epsilon > 0, \delta >0$
+| **Output**: An arm
+| **foreach** Arm $a \in \mathcal{A}$ **do**
+|         Sample it $\mathscr{l} = \frac{2}{\epsilon^2} \ln (\frac{2k}{\delta})$ times;
+|         Let $\hat{p}_a$ be the average reward of arm $a$;
+| **end**
+| Output $a' = \underset{a \in \mathcal{A}}{\arg\max} \{ \hat{p}_a \}$;
+
+**Theorem**: The algorithm Naive($\epsilon, \delta$) is an ($\epsilon, \delta$)-PAC algorithm with arm sample complexity $O((\frac{k}{\epsilon^2}) \log (\frac{k}{\delta}))$.
+
+### Proof
+
+Let $a'$ be an arm s.t. $q_*(a')<q_*(a^*)-\epsilon$
+
+$P(Q(a')>Q(a^*)) \leq P(Q(a')>q_*(a')+ \frac{\epsilon} {2} \text{ or } Q(a^*)<q_*(a^*)- \frac{\epsilon} {2})$
+
+\begin{aligned}
+P(Q(a')>Q(a^*)) &\leq P(Q(a')>q_*(a')+ \frac{\epsilon}{2} \text{ or } Q(a^*)<q_*(a^*)- \frac{\epsilon}{2}) \\
+&\leq P(Q(a')>q_*(a')+ \frac{\epsilon}{2}) + P(Q(a^*)<q_*(a^*)- \frac{\epsilon}{2}) \\
+&\leq 2\exp(-2\left( \frac{\epsilon}{2} \right)^2 \mathscr{l})
+\end{aligned}
+
+Substituting $\mathscr{l} = \frac{2}{\epsilon^2} \ln (\frac{2k}{\delta})$,
+
+$$P(Q(a')>Q(a^*)) \leq 2\exp(-2\left( \frac{\epsilon}{2} \right)^2 \frac{2}{\epsilon^2} \ln (\frac{2k}{\delta}))$$
+$$\implies P(Q(a')>Q(a^*)) \leq 2\exp(- \frac{2}{2} \ln (\frac{2k}{\delta}))$$
+$$\implies P(Q(a')>Q(a^*)) \leq 2\exp(\ln(\frac{2k}{\delta})^{-1})$$
+$$\implies P(Q(a')>Q(a^*)) \leq \frac{\delta}{k}$$
+
+Summing over all $a'$, we have that
+$$\text{probability of failure} \leq (k-1)(\frac{\delta}{k}) < \delta$$.
+
+### Median Elimination Algorithm
+
+| **Input**: $\epsilon > 0, \delta >0$
+| **Output**: An arm
+| Set $S_1=A, \epsilon_1=\frac{\epsilon}{4}, \delta_1=\frac{\delta}{2}, \mathscr{l} = 1$. **repeat**
+|         Sample every arm $a \in S_{\mathscr{l}}$ for $\frac{1}{(\epsilon_{\mathscr{l}}/2)^2} \cdot \log \left( \frac{3}{\delta _{\mathscr{l}}} \right)$ times, and let $\hat{p}_a^{\mathscr{l}}$ denote its empirical value;
+|         Find the median of $\hat{p}_a^{\mathscr{l}}$, denoted by $m_{\mathscr{l}}$;
+|         $S_{\mathscr{l}+1} = S_{\mathscr{l}} \backslash \{ a : \hat{p}_a^{\mathscr{l}} < m_{\mathscr{l}} \}$;
+|         $\epsilon_{\mathscr{l}+1} = \frac{3}{4} \epsilon_{\mathscr{l}}$; $\delta_{\mathscr{l}+1} = \frac{\delta_{\mathscr{l}}}{2}$; $\mathscr{l} = \mathscr{l} + 1$;
+| **until** $\left|S_{\mathscr{l}}\right| = 1$;
+
+
+**Theorem**: The Median Elimination ($\epsilon, \delta$) algorithm is an ($\epsilon, \delta$)-PAC algorithm and its sample complexity is
+
+$$ O \left( \frac{k}{\epsilon^2} \log \left(\frac{1}{\delta} \right) \right) $$
+
+First we show that in the $\mathscr{l}$-th phase the expected reward of the best arm in $S_{\mathscr{l}}$ drops by at most $\epsilon_{\mathscr{l}}$.
+
+**Lemma**: For the Median Elimination ($\epsilon, \delta$) algorithm we have that for every phase $\mathscr{l}$:
+$$ P \left[ \underset{j \in S_{\mathscr{l}}}{\max} p_{j} \leq \underset{i \in S_{\mathscr{l}+1}}{\max} p_{i} + \epsilon_{\mathscr{l}} \right] \geq 1 - \delta_{\mathscr{l}} $$
+
+### Proof
