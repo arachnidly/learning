@@ -232,7 +232,7 @@ window.Quarto = {
   <li><a href="#nonstationary-problems" id="toc-nonstationary-problems" class="nav-link" data-scroll-target="#nonstationary-problems">Nonstationary Problems</a></li>
   <li><a href="#upper-confidence-bound-ucb-action-selection" id="toc-upper-confidence-bound-ucb-action-selection" class="nav-link" data-scroll-target="#upper-confidence-bound-ucb-action-selection">Upper-Confidence-Bound (UCB) Action Selection</a>
   <ul class="collapse">
-  <li><a href="#ub1-algorithm" id="toc-ub1-algorithm" class="nav-link" data-scroll-target="#ub1-algorithm">UB1 Algorithm</a></li>
+  <li><a href="#ucb1-algorithm" id="toc-ucb1-algorithm" class="nav-link" data-scroll-target="#ucb1-algorithm">UCB1 Algorithm</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -335,8 +335,8 @@ Q_{n+1} &amp; = &amp; Q_{n} +\alpha [R_{n} -Q_{n} ]\\
 <h2 class="anchored" data-anchor-id="upper-confidence-bound-ucb-action-selection">Upper-Confidence-Bound (UCB) Action Selection</h2>
 <p>In its most basic formulation, a <span class="math inline">\(K\)</span>-armed bandit problem is defined by random variables <span class="math inline">\(X_{i,n}\)</span> for <span class="math inline">\(1 \leq i \leq K\)</span> and <span class="math inline">\(n \geq 1\)</span>, where <span class="math inline">\(i\)</span> is the index of a gambling machine (i.e., the “arm” of the bandit). Successive plays of arm <span class="math inline">\(i\)</span> yield rewards <span class="math inline">\(X_{i,1}, X_{i,2}, \ldots\)</span> that are independent and identically distributed (i.i.d.) random variables to an unknown law with unknown expectation <span class="math inline">\(\mu_i\)</span>. Independence also holds for rewards across different arms; i.e., <span class="math inline">\(X_{i,s}\)</span> and <span class="math inline">\(X_{j,t}\)</span> are independendent (and usually not identically distributed) for each <span class="math inline">\(1 \leq i &lt; j \leq K\)</span> and each <span class="math inline">\(s, t \geq 1\)</span>.</p>
 <p>A <em>policy</em>, or <em>allocation strategy</em>, <span class="math inline">\(A\)</span> is an algorithm that chooses the next arm to play based on the sequence of past plays and obtained rewards. Let <span class="math inline">\(T_{i}(n)\)</span> be the random variable which represents the number of times arm <span class="math inline">\(i\)</span> has been played by <span class="math inline">\(A\)</span> during the first <span class="math inline">\(n\)</span> plays. Then the <em>regret</em> of <span class="math inline">\(A\)</span> after <span class="math inline">\(n\)</span> plays is defined by <span class="math display">\[\mu^* n - \mu_{j} \sum\limits_{i=1}^{K} \mathbb{E}[T_{j}(n)]\]</span> where <span class="math inline">\(\mu^* = \underset{1\leq i \leq K}{\max} \mu_i\)</span> and <span class="math inline">\(\mathbb{E}[\cdot]\)</span> denotes the expectation. Thus the regret is the expected loss due to the fact that the policy does not always play the best arm.</p>
-<section id="ub1-algorithm" class="level3">
-<h3 class="anchored" data-anchor-id="ub1-algorithm">UB1 Algorithm</h3>
+<section id="ucb1-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="ucb1-algorithm">UCB1 Algorithm</h3>
 <div class="line-block"><strong>Deterministic policy</strong>: UCB1.<br>
 <strong>Initialization</strong>: Play each arm once.<br>
 <strong>Loop</strong>:<br>
