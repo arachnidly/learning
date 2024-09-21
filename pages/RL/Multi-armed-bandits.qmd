@@ -140,7 +140,7 @@ A *policy*, or *allocation strategy*, $A$ is an algorithm that chooses the next 
 $$\mu^* n - \mu_{j} \sum\limits_{i=1}^{K} \mathbb{E}[T_{j}(n)]$$
 where $\mu^* = \underset{1\leq i \leq K}{\max} \mu_i$ and $\mathbb{E}[\cdot]$ denotes the expectation. Thus the regret is the expected loss due to the fact that the policy does not always play the best arm.
 
-### UB1 Algorithm
+### UCB1 Algorithm
 
 | **Deterministic policy**: UCB1.
 | **Initialization**: Play each arm once.
