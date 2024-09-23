@@ -41,5 +41,7 @@ format:
       dark: darkly
     toc: true
 
+html-math-method: mathjax
+
 execute: 
   freeze: auto
