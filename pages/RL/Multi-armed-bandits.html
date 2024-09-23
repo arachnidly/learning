@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Multi-armed Bandits – Arachnidly</title>
+<title>Multi-armed Bandits – Learning :)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,9 +100,9 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Multi-armed Bandits – Arachnidly">
+<meta property="og:title" content="Multi-armed Bandits – Learning :)">
 <meta property="og:description" content="">
-<meta property="og:site_name" content="Arachnidly">
+<meta property="og:site_name" content="Learning :)">
 </head>
 
 <body class="nav-sidebar docked">
@@ -129,9 +129,14 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">Arachnidly</a> 
+      <a href="../../">Learning :)</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -233,17 +238,24 @@ window.Quarto = {
   <li><a href="#upper-confidence-bound-ucb-action-selection" id="toc-upper-confidence-bound-ucb-action-selection" class="nav-link" data-scroll-target="#upper-confidence-bound-ucb-action-selection"><span class="header-section-number">10</span> Upper-Confidence-Bound (UCB) Action Selection</a>
   <ul class="collapse">
   <li><a href="#ucb1-algorithm" id="toc-ucb1-algorithm" class="nav-link" data-scroll-target="#ucb1-algorithm"><span class="header-section-number">10.1</span> UCB1 Algorithm</a></li>
-  <li><a href="#sec-Chernoff-Hoeffding-Bound" id="toc-sec-Chernoff-Hoeffding-Bound" class="nav-link" data-scroll-target="#sec-Chernoff-Hoeffding-Bound"><span class="header-section-number">10.2</span> Chernoff-Hoeffding Bound</a></li>
-  <li><a href="#proof-of-ucb1-theorem" id="toc-proof-of-ucb1-theorem" class="nav-link" data-scroll-target="#proof-of-ucb1-theorem"><span class="header-section-number">10.3</span> Proof of UCB1 Theorem</a></li>
+  <li><a href="#sec-UCB1-Theorem" id="toc-sec-UCB1-Theorem" class="nav-link" data-scroll-target="#sec-UCB1-Theorem"><span class="header-section-number">10.2</span> Theorem</a></li>
+  <li><a href="#sec-Chernoff-Hoeffding-Bound" id="toc-sec-Chernoff-Hoeffding-Bound" class="nav-link" data-scroll-target="#sec-Chernoff-Hoeffding-Bound"><span class="header-section-number">10.3</span> Chernoff-Hoeffding Bound</a></li>
+  <li><a href="#proof-of-ucb1-theorem" id="toc-proof-of-ucb1-theorem" class="nav-link" data-scroll-target="#proof-of-ucb1-theorem"><span class="header-section-number">10.4</span> Proof of UCB1 Theorem</a></li>
   </ul></li>
   <li><a href="#pac-bounds-for-multi-armed-bandits" id="toc-pac-bounds-for-multi-armed-bandits" class="nav-link" data-scroll-target="#pac-bounds-for-multi-armed-bandits"><span class="header-section-number">11</span> PAC Bounds for Multi-armed Bandits</a>
   <ul class="collapse">
   <li><a href="#sec-Markov-Inequality" id="toc-sec-Markov-Inequality" class="nav-link" data-scroll-target="#sec-Markov-Inequality"><span class="header-section-number">11.1</span> Markov’s Inequality</a></li>
   <li><a href="#sec-Union-Bound" id="toc-sec-Union-Bound" class="nav-link" data-scroll-target="#sec-Union-Bound"><span class="header-section-number">11.2</span> Union Bound</a></li>
   <li><a href="#naive-algorithm" id="toc-naive-algorithm" class="nav-link" data-scroll-target="#naive-algorithm"><span class="header-section-number">11.3</span> Naive Algorithm</a></li>
-  <li><a href="#proof" id="toc-proof" class="nav-link" data-scroll-target="#proof"><span class="header-section-number">11.4</span> Proof</a></li>
-  <li><a href="#median-elimination-algorithm" id="toc-median-elimination-algorithm" class="nav-link" data-scroll-target="#median-elimination-algorithm"><span class="header-section-number">11.5</span> Median Elimination Algorithm</a></li>
-  <li><a href="#proof-1" id="toc-proof-1" class="nav-link" data-scroll-target="#proof-1"><span class="header-section-number">11.6</span> Proof</a></li>
+  <li><a href="#sec-Naive-Theorem" id="toc-sec-Naive-Theorem" class="nav-link" data-scroll-target="#sec-Naive-Theorem"><span class="header-section-number">11.4</span> Theorem</a></li>
+  <li><a href="#proof" id="toc-proof" class="nav-link" data-scroll-target="#proof"><span class="header-section-number">11.5</span> Proof</a></li>
+  <li><a href="#median-elimination-algorithm" id="toc-median-elimination-algorithm" class="nav-link" data-scroll-target="#median-elimination-algorithm"><span class="header-section-number">11.6</span> Median Elimination Algorithm</a></li>
+  <li><a href="#sec-Median-Elimination-Theorem" id="toc-sec-Median-Elimination-Theorem" class="nav-link" data-scroll-target="#sec-Median-Elimination-Theorem"><span class="header-section-number">11.7</span> Theorem</a></li>
+  <li><a href="#sec-lemma-1-Median-Elimination" id="toc-sec-lemma-1-Median-Elimination" class="nav-link" data-scroll-target="#sec-lemma-1-Median-Elimination"><span class="header-section-number">11.8</span> Lemma 1</a></li>
+  <li><a href="#sec-lemma-1-proof" id="toc-sec-lemma-1-proof" class="nav-link" data-scroll-target="#sec-lemma-1-proof"><span class="header-section-number">11.9</span> Proof</a></li>
+  <li><a href="#sec-lemma-2-Median-Elimination" id="toc-sec-lemma-2-Median-Elimination" class="nav-link" data-scroll-target="#sec-lemma-2-Median-Elimination"><span class="header-section-number">11.10</span> Lemma 2</a></li>
+  <li><a href="#sec-lemma-2-proof" id="toc-sec-lemma-2-proof" class="nav-link" data-scroll-target="#sec-lemma-2-proof"><span class="header-section-number">11.11</span> Proof</a></li>
+  <li><a href="#sec-Median-Elimination-Theorem-proof" id="toc-sec-Median-Elimination-Theorem-proof" class="nav-link" data-scroll-target="#sec-Median-Elimination-Theorem-proof"><span class="header-section-number">11.12</span> Proof of Median Elimation Theorem</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -270,6 +282,22 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Slides
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Slides for this content are available here: <a href="../../pages/RL/MABs-and-UCB1-revealjs.html">Multi-armed Bandits and Upper Confidence Bounds</a> and <a href="../../pages/RL/PAC-bounds-for-MABs-revealjs.html">PAC bounds for Multi-Armed Bandits</a>.</p>
+</div>
+</div>
+</div>
 <section id="a-k-armed-bandit-problem" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="a-k-armed-bandit-problem"><span class="header-section-number">1</span> A <span class="math inline">\(k\)</span>-armed Bandit Problem</h2>
 <p>You are faced repeatedly with a choice among <span class="math inline">\(k\)</span> different actions. After each choice, you receive a numerical reward chosen from a stationary probability distribution that depends on the action you selected. Your objective is to maximize the expected total reward over some time period, for example, over <span class="math inline">\(1000\)</span> action selections, or <em>time steps</em>.</p>
@@ -344,7 +372,7 @@ Q_{n+1} &amp; = &amp; Q_{n} +\alpha [R_{n} -Q_{n} ]\\
 </section>
 <section id="upper-confidence-bound-ucb-action-selection" class="level2" data-number="10">
 <h2 data-number="10" class="anchored" data-anchor-id="upper-confidence-bound-ucb-action-selection"><span class="header-section-number">10</span> Upper-Confidence-Bound (UCB) Action Selection</h2>
-<p>In its most basic formulation, a <span class="math inline">\(K\)</span>-armed bandit problem is defined by random variables <span class="math inline">\(X_{i,n}\)</span> for <span class="math inline">\(1 \leq i \leq K\)</span> and <span class="math inline">\(n \geq 1\)</span>, where <span class="math inline">\(i\)</span> is the index of a gambling machine (i.e., the “arm” of the bandit). Successive plays of arm <span class="math inline">\(i\)</span> yield rewards <span class="math inline">\(X_{i,1}, X_{i,2}, \ldots\)</span> that are independent and identically distributed (i.i.d.) random variables to an unknown law with unknown expectation <span class="math inline">\(\mu_i\)</span>. Independence also holds for rewards across different arms; i.e., <span class="math inline">\(X_{i,s}\)</span> and <span class="math inline">\(X_{j,t}\)</span> are independendent (and usually not identically distributed) for each <span class="math inline">\(1 \leq i &lt; j \leq K\)</span> and each <span class="math inline">\(s, t \geq 1\)</span>.</p>
+<p>In its most basic formulation, a <span class="math inline">\(K\)</span>-armed bandit problem is defined by random variables <span class="math inline">\(X_{i,n}\)</span> for <span class="math inline">\(1 \leq i \leq K\)</span> and <span class="math inline">\(n \geq 1\)</span>, where <span class="math inline">\(i\)</span> is the index of a gambling machine (i.e., the “arm” of the bandit). Successive plays of arm <span class="math inline">\(i\)</span> yield rewards <span class="math inline">\(X_{i,1}, X_{i,2}, \ldots\)</span> that are independent and identically distributed (i.i.d.) random variables to an unknown law with unknown expectation <span class="math inline">\(\mu_i\)</span>. Independence also holds for rewards across different arms; i.e., <span class="math inline">\(X_{i,s}\)</span> and <span class="math inline">\(X_{j,t}\)</span> are independent (and usually not identically distributed) for each <span class="math inline">\(1 \leq i &lt; j \leq K\)</span> and each <span class="math inline">\(s, t \geq 1\)</span>.</p>
 <p>A <em>policy</em>, or <em>allocation strategy</em>, <span class="math inline">\(A\)</span> is an algorithm that chooses the next arm to play based on the sequence of past plays and obtained rewards. Let <span class="math inline">\(T_{i}(n)\)</span> be the random variable which represents the number of times arm <span class="math inline">\(i\)</span> has been played by <span class="math inline">\(A\)</span> during the first <span class="math inline">\(n\)</span> plays. Then the <em>regret</em> of <span class="math inline">\(A\)</span> after <span class="math inline">\(n\)</span> plays is defined by <span class="math display">\[\mu^* n - \mu_{j} \sum\limits_{i=1}^{K} \mathbb{E}[T_{j}(n)]\]</span> where <span class="math inline">\(\mu^* = \underset{1\leq i \leq K}{\max} \mu_i\)</span> and <span class="math inline">\(\mathbb{E}[\cdot]\)</span> denotes the expectation. Thus the regret is the expected loss due to the fact that the policy does not always play the best arm.</p>
 <section id="ucb1-algorithm" class="level3" data-number="10.1">
 <h3 data-number="10.1" class="anchored" data-anchor-id="ucb1-algorithm"><span class="header-section-number">10.1</span> UCB1 Algorithm</h3>
@@ -353,8 +381,11 @@ Q_{n+1} &amp; = &amp; Q_{n} +\alpha [R_{n} -Q_{n} ]\\
 <strong>Loop</strong>:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Play arm <span class="math inline">\(j\)</span> that maximizes <span class="math inline">\(\bar{x}_j + \sqrt{\frac{2\ln n}{n_j}}\)</span>,</div>
 <p>where <span class="math inline">\(\bar{x}_j\)</span> is the average reward obtained from arm <span class="math inline">\(j\)</span>, <span class="math inline">\(n_j\)</span> is the number of times arm <span class="math inline">\(j\)</span> has been played so far, and <span class="math inline">\(n\)</span> is the overall number of plays so far.</p>
-<p><strong>Theorem</strong>: For all <span class="math inline">\(K &gt; 1\)</span>, if policy UCB1 is run on <span class="math inline">\(K\)</span> arms having arbitrary reward distributions <span class="math inline">\(P_1,\dots,P_{K}\)</span> with support in <span class="math inline">\([0, 1]\)</span>, then its expected regret after any number of plays <span class="math inline">\(n\)</span> is at most <span class="math display">\[ \left[8 \sum\limits_{i:\mu_i &lt; \mu^*} \left( \frac{\ln n}{\Delta_{i}} \right) \right] + \left(1+ \frac{\pi^2}{3}  \right) \left(\sum\limits_{j=1}^{K} \Delta_{j} \right)\]</span> where <span class="math inline">\(\mu_1,\dots,\mu_K\)</span> are the expected values of <span class="math inline">\(P_1,\dots,P_{K}\)</span>.</p>
-<p>Matching the notation of the theorem from the original paper to the notation used here, we get:</p>
+</section>
+<section id="sec-UCB1-Theorem" class="level3" data-number="10.2">
+<h3 data-number="10.2" class="anchored" data-anchor-id="sec-UCB1-Theorem"><span class="header-section-number">10.2</span> Theorem</h3>
+<p>For all <span class="math inline">\(K &gt; 1\)</span>, if policy UCB1 is run on <span class="math inline">\(K\)</span> arms having arbitrary reward distributions <span class="math inline">\(P_1,\dots,P_{K}\)</span> with support in <span class="math inline">\([0, 1]\)</span>, then its expected regret after any number of plays <span class="math inline">\(n\)</span> is at most <span class="math display">\[ \left[8 \sum\limits_{i:\mu_i &lt; \mu^*} \left( \frac{\ln n}{\Delta_{i}} \right) \right] + \left(1+ \frac{\pi^2}{3}  \right) \left(\sum\limits_{j=1}^{K} \Delta_{j} \right)\]</span> where <span class="math inline">\(\mu_1,\dots,\mu_K\)</span> are the expected values of <span class="math inline">\(P_1,\dots,P_{K}\)</span>.</p>
+<p>Matching the notation of the theorem from the original paper to our notation, we get:</p>
 <ul>
 <li><span class="math inline">\(\bar{x}_j = Q(j)\)</span></li>
 <li><span class="math inline">\(\mu_i = \mathbb{E}[X_{i,n}] = q_*(i)\)</span></li>
@@ -365,13 +396,13 @@ Q_{n+1} &amp; = &amp; Q_{n} +\alpha [R_{n} -Q_{n} ]\\
 <p>To prove the theorem, we need to show that, for any suboptimal arm <span class="math inline">\(j\)</span>, <span class="math display">\[\mathbb{E}[T_{j}(n)] \leq \frac{8 \ln n}{\Delta_{j}^2}+c\]</span></p>
 <p>We also define the r.v.’s <span class="math inline">\(I_1, I_2, \ldots\)</span> such that $I_t denotes the arm played at time <span class="math inline">\(t\)</span>. Also, <span class="math inline">\(\sum_{i=1}^{K} T_{i}(n) = n\)</span>. For each <span class="math inline">\(1\leq i \leq K\)</span>, and <span class="math inline">\(n \geq 1\)</span>, define <span class="math display">\[\bar{X}_{i,n} = \frac{1}{n} \sum\limits_{t=1}^{n} X_{i,t} \]</span></p>
 </section>
-<section id="sec-Chernoff-Hoeffding-Bound" class="level3" data-number="10.2">
-<h3 data-number="10.2" class="anchored" data-anchor-id="sec-Chernoff-Hoeffding-Bound"><span class="header-section-number">10.2</span> Chernoff-Hoeffding Bound</h3>
+<section id="sec-Chernoff-Hoeffding-Bound" class="level3" data-number="10.3">
+<h3 data-number="10.3" class="anchored" data-anchor-id="sec-Chernoff-Hoeffding-Bound"><span class="header-section-number">10.3</span> Chernoff-Hoeffding Bound</h3>
 <p>Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be random variables with common range <span class="math inline">\([0, 1]\)</span> and such that <span class="math inline">\(\mathbb{E}[X_t|X_1, X_2, \ldots, X_{t-1}] = \mu\)</span>. Let <span class="math inline">\(S_n = \frac{X_1 + X_2 + \ldots + X_n}{n}\)</span>. Then, for all <span class="math inline">\(\epsilon &gt; 0\)</span>,</p>
 <p><span class="math display">\[ P(S_n \geq \mu + \epsilon) \leq e^{-2\epsilon^{2}n} \text{ and } P(S_n \leq \mu - \epsilon) \leq e^{-2\epsilon^{2}n} \]</span></p>
 </section>
-<section id="proof-of-ucb1-theorem" class="level3" data-number="10.3">
-<h3 data-number="10.3" class="anchored" data-anchor-id="proof-of-ucb1-theorem"><span class="header-section-number">10.3</span> Proof of UCB1 Theorem</h3>
+<section id="proof-of-ucb1-theorem" class="level3" data-number="10.4">
+<h3 data-number="10.4" class="anchored" data-anchor-id="proof-of-ucb1-theorem"><span class="header-section-number">10.4</span> Proof of UCB1 Theorem</h3>
 <p>Let <span class="math inline">\(c_{t,s} = \sqrt{\frac{2\ln t}{s}}\)</span>. For any arm <span class="math inline">\(i\)</span>, we upper bound <span class="math inline">\(T_{i}(n)\)</span> on any sequence of plays. More precisely, for each <span class="math inline">\(t \geq 1\)</span> we bound the indicator function of <span class="math inline">\(I_t=i\)</span> as follows. Let <span class="math inline">\(\mathscr{l}\)</span> be an arbitrary positive integer. Note: <span class="math inline">\(\displaystyle \{I_{t} =i\} =1\)</span> if arm <span class="math inline">\(i\)</span> is played at time <span class="math inline">\(t\)</span> and <span class="math inline">\(0\)</span> otherwise.</p>
 <span class="math display">\[\begin{aligned}
 T_i(n) &amp;= 1 + \sum\limits_{t=K+1}^{n} \{I_{t} =i\} \\
@@ -387,7 +418,7 @@ T_i(n) &amp;= 1 + \sum\limits_{t=K+1}^{n} \{I_{t} =i\} \\
 <li><span class="math inline">\(\overline{X}_{i,s_{i}} \geqslant \mu _{i} +c_{t,s_{i}}\)</span></li>
 <li><span class="math inline">\(\mu ^{*} &lt; \mu _{i} +2c_{t,s_{i}}\)</span></li>
 </ol>
-<p>We bound the probability of the first two events using the Chernoff-Hoeffding bound as shown in <a href="#sec-Chernoff-Hoeffding-Bound" class="quarto-xref">Section&nbsp;10.2</a>.</p>
+<p>We bound the probability of the first two events using the Chernoff-Hoeffding bound as shown in <a href="#sec-Chernoff-Hoeffding-Bound" class="quarto-xref">Section&nbsp;10.3</a>.</p>
 <p><span class="math inline">\(P(\overline{X}_{s}^{*} +c_{t,s} \leqslant \ \mu ^{*} -c_{t,s}) \leq e^{-2c_{t,s}^{2}s} = e^{-4\ln t} = t^{-4}\)</span></p>
 <p><span class="math inline">\(P(\overline{X}_{i,s_{i}} \geqslant \mu _{i} +c_{t,s_{i}}) \leq e^{-2c_{t,s_{i}}^{2}s_{i}} = e^{-4\ln t} = t^{-4}\)</span></p>
 <p>For <span class="math inline">\(\mathscr{l} =\left\lceil \frac{8\ \ln n}{\Delta _{i}^{2}}\right\rceil\)</span>, the third event is impossible. In fact</p>
@@ -423,10 +454,13 @@ T_i(n) &amp;= 1 + \sum\limits_{t=K+1}^{n} \{I_{t} =i\} \\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let <span class="math inline">\(\hat{p}_a\)</span> be the average reward of arm <span class="math inline">\(a\)</span>;<br>
 <strong>end</strong><br>
 Output <span class="math inline">\(a' = \underset{a \in \mathcal{A}}{\arg\max} \{ \hat{p}_a \}\)</span>;</div>
-<p><strong>Theorem</strong>: The algorithm Naive(<span class="math inline">\(\epsilon, \delta\)</span>) is an (<span class="math inline">\(\epsilon, \delta\)</span>)-PAC algorithm with arm sample complexity <span class="math inline">\(O((\frac{k}{\epsilon^2}) \log (\frac{k}{\delta}))\)</span>.</p>
 </section>
-<section id="proof" class="level3" data-number="11.4">
-<h3 data-number="11.4" class="anchored" data-anchor-id="proof"><span class="header-section-number">11.4</span> Proof</h3>
+<section id="sec-Naive-Theorem" class="level3" data-number="11.4">
+<h3 data-number="11.4" class="anchored" data-anchor-id="sec-Naive-Theorem"><span class="header-section-number">11.4</span> Theorem</h3>
+<p>The algorithm Naive(<span class="math inline">\(\epsilon, \delta\)</span>) is an (<span class="math inline">\(\epsilon, \delta\)</span>)-PAC algorithm with arm sample complexity <span class="math inline">\(O((\frac{k}{\epsilon^2}) \log (\frac{k}{\delta}))\)</span>.</p>
+</section>
+<section id="proof" class="level3" data-number="11.5">
+<h3 data-number="11.5" class="anchored" data-anchor-id="proof"><span class="header-section-number">11.5</span> Proof</h3>
 <p>Let <span class="math inline">\(a'\)</span> be an arm s.t. <span class="math inline">\(q_*(a')&lt;q_*(a^*)-\epsilon\)</span></p>
 <p><span class="math inline">\(P(Q(a')&gt;Q(a^*)) \leq P(Q(a')&gt;q_*(a')+ \frac{\epsilon} {2} \text{ or } Q(a^*)&lt;q_*(a^*)- \frac{\epsilon} {2})\)</span></p>
 <span class="math display">\[\begin{aligned}
@@ -436,25 +470,71 @@ P(Q(a')&gt;Q(a^*)) &amp;\leq P(Q(a')&gt;q_*(a')+ \frac{\epsilon}{2} \text{ or } 
 \end{aligned}\]</span>
 <p>Substituting <span class="math inline">\(\mathscr{l} = \frac{2}{\epsilon^2} \ln (\frac{2k}{\delta})\)</span>,</p>
 <p><span class="math display">\[P(Q(a')&gt;Q(a^*)) \leq 2\exp(-2\left( \frac{\epsilon}{2} \right)^2 \frac{2}{\epsilon^2} \ln (\frac{2k}{\delta}))\]</span> <span class="math display">\[\implies P(Q(a')&gt;Q(a^*)) \leq 2\exp(- \frac{2}{2} \ln (\frac{2k}{\delta}))\]</span> <span class="math display">\[\implies P(Q(a')&gt;Q(a^*)) \leq 2\exp(\ln(\frac{2k}{\delta})^{-1})\]</span> <span class="math display">\[\implies P(Q(a')&gt;Q(a^*)) \leq \frac{\delta}{k}\]</span></p>
-<p>Summing over all <span class="math inline">\(a'\)</span>, we have that <span class="math display">\[\text{probability of failure} \leq (k-1)(\frac{\delta}{k}) &lt; \delta\]</span>.</p>
+<p>Summing over all <span class="math inline">\(a'\)</span>, we have that <span class="math display">\[\text{probability of failure} \leq (k-1)(\frac{\delta}{k}) &lt; \delta\]</span></p>
 </section>
-<section id="median-elimination-algorithm" class="level3" data-number="11.5">
-<h3 data-number="11.5" class="anchored" data-anchor-id="median-elimination-algorithm"><span class="header-section-number">11.5</span> Median Elimination Algorithm</h3>
+<section id="median-elimination-algorithm" class="level3" data-number="11.6">
+<h3 data-number="11.6" class="anchored" data-anchor-id="median-elimination-algorithm"><span class="header-section-number">11.6</span> Median Elimination Algorithm</h3>
 <div class="line-block"><strong>Input</strong>: <span class="math inline">\(\epsilon &gt; 0, \delta &gt;0\)</span><br>
 <strong>Output</strong>: An arm<br>
 Set <span class="math inline">\(S_1=A, \epsilon_1=\frac{\epsilon}{4}, \delta_1=\frac{\delta}{2}, \mathscr{l} = 1\)</span>. <strong>repeat</strong><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sample every arm <span class="math inline">\(a \in S_{\mathscr{l}}\)</span> for <span class="math inline">\(\frac{1}{(\epsilon_{\mathscr{l}}/2)^2} \cdot \log \left( \frac{3}{\delta _{\mathscr{l}}} \right)\)</span> times, and let <span class="math inline">\(\hat{p}_a^{\mathscr{l}}\)</span> denote its empirical value;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sample every arm <span class="math inline">\(a \in S_{\mathscr{l}}\)</span> for <span class="math inline">\(\frac{1}{(\epsilon_{\mathscr{l}})^2/2} \cdot \log \left( \frac{3}{\delta _{\mathscr{l}}} \right)\)</span> times, and let <span class="math inline">\(\hat{p}_a^{\mathscr{l}}\)</span> denote its empirical value;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Find the median of <span class="math inline">\(\hat{p}_a^{\mathscr{l}}\)</span>, denoted by <span class="math inline">\(m_{\mathscr{l}}\)</span>;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="math inline">\(S_{\mathscr{l}+1} = S_{\mathscr{l}} \backslash \{ a : \hat{p}_a^{\mathscr{l}} &lt; m_{\mathscr{l}} \}\)</span>;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="math inline">\(\epsilon_{\mathscr{l}+1} = \frac{3}{4} \epsilon_{\mathscr{l}}\)</span>; <span class="math inline">\(\delta_{\mathscr{l}+1} = \frac{\delta_{\mathscr{l}}}{2}\)</span>; <span class="math inline">\(\mathscr{l} = \mathscr{l} + 1\)</span>;<br>
 <strong>until</strong> <span class="math inline">\(\left|S_{\mathscr{l}}\right| = 1\)</span>;</div>
-<p><strong>Theorem</strong>: The Median Elimination (<span class="math inline">\(\epsilon, \delta\)</span>) algorithm is an (<span class="math inline">\(\epsilon, \delta\)</span>)-PAC algorithm and its sample complexity is</p>
+<p>Matching the notation used in the paper to our notation: <span class="math inline">\(\hat{p}_a^{\mathscr{l}} = Q_{\mathscr{l}}(a)\)</span></p>
+</section>
+<section id="sec-Median-Elimination-Theorem" class="level3" data-number="11.7">
+<h3 data-number="11.7" class="anchored" data-anchor-id="sec-Median-Elimination-Theorem"><span class="header-section-number">11.7</span> Theorem</h3>
+<p>The Median Elimination (<span class="math inline">\(\epsilon, \delta\)</span>) algorithm is an (<span class="math inline">\(\epsilon, \delta\)</span>)-PAC algorithm and its sample complexity is</p>
 <p><span class="math display">\[ O \left( \frac{k}{\epsilon^2} \log \left(\frac{1}{\delta} \right) \right) \]</span></p>
 <p>First we show that in the <span class="math inline">\(\mathscr{l}\)</span>-th phase the expected reward of the best arm in <span class="math inline">\(S_{\mathscr{l}}\)</span> drops by at most <span class="math inline">\(\epsilon_{\mathscr{l}}\)</span>.</p>
-<p><strong>Lemma</strong>: For the Median Elimination (<span class="math inline">\(\epsilon, \delta\)</span>) algorithm we have that for every phase <span class="math inline">\(\mathscr{l}\)</span>: <span class="math display">\[ P \left[ \underset{j \in S_{\mathscr{l}}}{\max} p_{j} \leq \underset{i \in S_{\mathscr{l}+1}}{\max} p_{i} + \epsilon_{\mathscr{l}} \right] \geq 1 - \delta_{\mathscr{l}} \]</span></p>
 </section>
-<section id="proof-1" class="level3" data-number="11.6">
-<h3 data-number="11.6" class="anchored" data-anchor-id="proof-1"><span class="header-section-number">11.6</span> Proof</h3>
+<section id="sec-lemma-1-Median-Elimination" class="level3" data-number="11.8">
+<h3 data-number="11.8" class="anchored" data-anchor-id="sec-lemma-1-Median-Elimination"><span class="header-section-number">11.8</span> Lemma 1</h3>
+<p>For the Median Elimination (<span class="math inline">\(\epsilon, \delta\)</span>) algorithm we have that for every phase <span class="math inline">\(\mathscr{l}\)</span>: <span class="math display">\[ P \left[ \underset{j \in S_{\mathscr{l}}}{\max} p_{j} \leq \underset{i \in S_{\mathscr{l}+1}}{\max} p_{i} + \epsilon_{\mathscr{l}} \right] \geq 1 - \delta_{\mathscr{l}} \]</span></p>
+<p><span class="math display">\[ \equiv P \left[ \underset{j \in S_{\mathscr{l}}}{\max} q_{*}(j) \leq \underset{i \in S_{\mathscr{l}+1}}{\max} q_{*}(i) + \epsilon_{\mathscr{l}} \right] \geq 1 - \delta_{\mathscr{l}} \]</span></p>
+</section>
+<section id="sec-lemma-1-proof" class="level3" data-number="11.9">
+<h3 data-number="11.9" class="anchored" data-anchor-id="sec-lemma-1-proof"><span class="header-section-number">11.9</span> Proof</h3>
+<p>Without loss of generality consider <span class="math inline">\(\mathscr{l}=1\)</span>. We bound the failure probability by looking at the event <span class="math inline">\(E_1\)</span>,</p>
+<p><span class="math display">\[ E_1 = \left\{ \hat{p}_1 &lt; p_1 - \frac{\epsilon_1}{2} \right\} \equiv E_1 = \left\{ Q(a_{\mathscr{l}}^*) &lt; q_*(a_{\mathscr{l}}^*)- \frac{\epsilon_1}{2} \right\} \]</span></p>
+<p>which is the case that the empirical estimate of the best arm is pessimistic. Since we sample sufficiently, we have that</p>
+<p><span class="math display">\[ P[E_1] = P\left[Q(a_{\mathscr{l}}^*) &lt; q_*(a_{\mathscr{l}}^*)- \frac{\epsilon_1}{2}\right]\]</span></p>
+<p>Applying the Chernoff-Hoeffding bound (<a href="#sec-Chernoff-Hoeffding-Bound" class="quarto-xref">Section&nbsp;10.3</a>), we have that</p>
+<p><span class="math display">\[ P[E_1] \leq \exp \left(-2 \left( \frac{\epsilon_1}{2} \right)^2 \frac{1}{(\epsilon_{1})^2/2} \cdot \log \left( \frac{3}{\delta _{1}} \right) \right) \]</span></p>
+<p><span class="math display">\[ \implies P[E_1] \leq \frac{\delta_1}{3} \]</span></p>
+<p>In case <span class="math inline">\(E_1\)</span> does not happen, we calculate the probability that an arm <span class="math inline">\(j\)</span> which is not an <span class="math inline">\(\epsilon_1\)</span>-optimal arm is empirically better than the best arm.</p>
+<p><span class="math display">\[ P \left[ Q_{\mathscr{l}}(j) \geq Q_{\mathscr{l}}(a_{\mathscr{l}}^*) | Q_{\mathscr{l}}(a_{\mathscr{l}}^*) \geq q_{*}(a_{\mathscr{l}}^*) - \frac{\epsilon_1}{2} \right] \leq \frac{\delta_1}{3}\]</span></p>
+<p>Let #bad be the number of arms that are not <span class="math inline">\(\epsilon_1\)</span>-optimal but are empirically better than the best arm. We have that</p>
+<p><span class="math display">\[ \mathbb{E} \left[ \# bad \middle| Q_{\mathscr{l}}(a_{\mathscr{l}}^*) \geq q_{*}(a_{\mathscr{l}}^*) - \frac{\epsilon_1}{2} \right] \leq |S_\mathscr{l}| \frac{ \delta_{1}} {3} \]</span></p>
+<p>Next we apply Markov’s inequality (<a href="#sec-Markov-Inequality" class="quarto-xref">Section&nbsp;11.1</a>) to obtain</p>
+<p><span class="math display">\[ P \left [ \# bad \geq \frac{|S_\mathscr{l}|}{2} \middle| Q_{\mathscr{l}}(a_{\mathscr{l}}^*) \geq q_{*}(a_{\mathscr{l}}^*) - \frac{\epsilon_1}{2} \right] \leq \frac{|S_\mathscr{l}|\frac{\delta_1}{3}}{\frac{|S_\mathscr{l}|}{2}} = \frac{2\delta_{1}}{3} \]</span></p>
+<p>Using the union bound (<a href="#sec-Union-Bound" class="quarto-xref">Section&nbsp;11.2</a>) gives us that the probability of failure is bounded by <span class="math inline">\(\delta_1\)</span>.</p>
+</section>
+<section id="sec-lemma-2-Median-Elimination" class="level3" data-number="11.10">
+<h3 data-number="11.10" class="anchored" data-anchor-id="sec-lemma-2-Median-Elimination"><span class="header-section-number">11.10</span> Lemma 2</h3>
+<p>The sample complexity of the Median Elimination <span class="math inline">\((\epsilon, \delta)\)</span> is <span class="math inline">\(O \left( \frac{n}{\epsilon^2} \log \left(\frac{1}{\delta} \right) \right)\)</span>.</p>
+</section>
+<section id="sec-lemma-2-proof" class="level3" data-number="11.11">
+<h3 data-number="11.11" class="anchored" data-anchor-id="sec-lemma-2-proof"><span class="header-section-number">11.11</span> Proof</h3>
+<p>The number of arm samples in the <span class="math inline">\(\mathscr{l}\)</span>-th round is <span class="math inline">\(4n_{\mathscr{l}} log  (\frac{3}{\delta_{\mathscr{l}}} ) / \epsilon_{\mathscr{l}}^2\)</span>. By definition we have that</p>
+<ol type="1">
+<li><span class="math inline">\(\delta_{1} = \frac{\delta}{2}\)</span> ; <span class="math inline">\(\frac{\delta_{\mathscr{l}-1}}{2}= \frac{\delta}{2^{\mathscr{l}}}\)</span></li>
+<li><span class="math inline">\(n_1 = n\)</span> ; <span class="math inline">\(n_{\mathscr{l}} = n_{\mathscr{l}-1}/2 = n/2^{\mathscr{l}-1}\)</span></li>
+<li><span class="math inline">\(\epsilon_{1} = \frac{\epsilon}{4}\)</span> ; <span class="math inline">\(\epsilon_{\mathscr{l}} = \frac{3}{4} \epsilon_{\mathscr{l}-1} = ( \frac{3}{4} )^{\mathscr{l}-1} \epsilon / 4\)</span></li>
+</ol>
+<p>Therefore we have</p>
+<span class="math display">\[\begin{aligned}
+\sum\limits_{\mathscr{l} =1}^{\log_2 n} \frac{n_{\mathscr{l} } \log  (3 / \delta_{\mathscr{l} } )} {(\epsilon_{\mathscr{l} }/2)^2} &amp;= 4 \sum\limits_{\mathscr{l} =1}^{\log_2 n} \frac{n/2^{\mathscr{l} -1} \log (2^{\mathscr{l} }3/ \delta)}{((\frac{3}{4})^{\mathscr{l} -1} \epsilon /4)^2} \\
+&amp;= 64 \sum\limits_{\mathscr{l} =1}^{\log_2 n} n(\frac{8}{9})^{\mathscr{l} -1} (\frac{\log(1/\delta)}{\epsilon^2} + \frac{\log (3)}{\epsilon^2} + \frac{\mathscr{l} \log (2)}{\epsilon^2}) \\
+&amp;\leq 64 \frac{n \log(1/\delta)}{\epsilon^2} \sum\limits_{\mathscr{l} =1}^{\infty} (\frac{8}{9})^{\mathscr{l} -1} (\mathscr{l}C' + C) = O \left( \frac{n \log (1/\delta)}{\epsilon^2} \right)
+\end{aligned}\]</span>
+<p>Now the <a href="#sec-Median-Elimination-Theorem" class="quarto-xref">Section&nbsp;11.7</a> can be proved.</p>
+</section>
+<section id="sec-Median-Elimination-Theorem-proof" class="level3" data-number="11.12">
+<h3 data-number="11.12" class="anchored" data-anchor-id="sec-Median-Elimination-Theorem-proof"><span class="header-section-number">11.12</span> Proof of Median Elimation Theorem</h3>
+<p>From <a href="#sec-lemma-2-Median-Elimination" class="quarto-xref">Section&nbsp;11.10</a> we have that the sample complexity is bounded by <span class="math inline">\(O \left( n \log (1/\delta) / \epsilon^2 \right)\)</span>. By <a href="#sec-lemma-1-Median-Elimination" class="quarto-xref">Section&nbsp;11.8</a> we have that the algorithm fails with probability _{i} in each round so that over all rounds the probability of failure is bounded by <span class="math inline">\(\sum_{i=1}^{\log_2 n} \delta_{i} \leq \delta\)</span>. In each round we reduce the optimal reward of the surviving arms by at most <span class="math inline">\(\epsilon_{i}\)</span> so that the total error is bounded by <span class="math inline">\(\sum_{i=1}^{\log_2 n} \epsilon_{i} \leq \epsilon\)</span>.</p>
 
 
 </section>

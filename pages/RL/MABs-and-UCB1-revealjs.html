@@ -10,7 +10,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>Arachnidly – Multi-armed Bandits</title>
+  <title>Learning :) – Multi-armed Bandits and Upper Confidence Bounds</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -322,15 +322,15 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Multi-armed Bandits – Arachnidly">
-<meta property="og:site_name" content="Arachnidly">
+<meta property="og:title" content="Multi-armed Bandits and Upper Confidence Bounds – Learning :)">
+<meta property="og:site_name" content="Learning :)">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Multi-armed Bandits</h1>
+  <h1 class="title">Multi-armed Bandits and Upper Confidence Bounds</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -551,7 +551,7 @@ Q_{n+1} &amp; =\frac{1}{n} \ \sum\limits_{i=1}^{n} R_{i}\\
 <section id="section-3" class="slide level2">
 <h2></h2>
 <div class="fragment">
-<p>This results in <span class="math inline">\(Q_{n+1}\)</span> being a weighted average of past rewards and the initial estimate <span class="math inline">\(Q_{1}\)</span>:</p>
+<p>This results in <span class="math inline">\(Q_{n+1}\)</span> being a weighted average of past rewards and the initial estimate <span class="math inline">\(Q_{1}\)</span></p>
 </div>
 <div class="fragment">
 <p><span class="math inline">\(\begin{array}{ r c l }
@@ -585,12 +585,133 @@ Q_{n+1} &amp; = &amp; Q_{n} +\alpha [R_{n} -Q_{n} ]\\
 </section>
 <section id="upper-confidence-bound-ucb-action-selection" class="slide level2">
 <h2>Upper-Confidence-Bound (UCB) Action Selection</h2>
+<ul>
+<li class="fragment">Simply put, a <span class="math inline">\(K\)</span>-armed bandit problem is defined by random variables <span class="math inline">\(X_{i,n}\)</span> for <span class="math inline">\(1 \leq i \leq K\)</span> and <span class="math inline">\(n \geq 1\)</span>, where <span class="math inline">\(i\)</span> is the index of a gambling machine (i.e., the “arm” of the bandit).</li>
+<li class="fragment">Successive plays of arm <span class="math inline">\(i\)</span> yield rewards <span class="math inline">\(X_{i,1}, X_{i,2}, \ldots\)</span> that are independent and identically distributed (i.i.d.) random variables to an unknown law with unknown expectation <span class="math inline">\(\mu_i\)</span>.</li>
+<li class="fragment">Independence also holds for rewards across different arms; i.e., <span class="math inline">\(X_{i,s}\)</span> and <span class="math inline">\(X_{j,t}\)</span> are independent (and usually not identically distributed) for each <span class="math inline">\(1 \leq i &lt; j \leq K\)</span> and each <span class="math inline">\(s, t \geq 1\)</span>.</li>
+</ul>
+</section>
+<section id="regret" class="slide level2">
+<h2>Regret</h2>
+<ul>
+<li class="fragment">A <em>policy</em>, or <em>allocation strategy</em>, <span class="math inline">\(A\)</span> is an algorithm that chooses the next arm to play based on the sequence of past plays and obtained rewards.</li>
+<li class="fragment">Let <span class="math inline">\(T_{i}(n)\)</span> be the random variable which represents the number of times arm <span class="math inline">\(i\)</span> has been played by <span class="math inline">\(A\)</span> during the first <span class="math inline">\(n\)</span> plays.</li>
+<li class="fragment">Then the <em>regret</em> of <span class="math inline">\(A\)</span> after <span class="math inline">\(n\)</span> plays is defined by <span class="math display">\[\mu^* n - \mu_{j} \sum\limits_{i=1}^{K} \mathbb{E}[T_{j}(n)]\]</span> where <span class="math inline">\(\mu^* = \underset{1\leq i \leq K}{\max} \mu_i\)</span> and <span class="math inline">\(\mathbb{E}[\cdot]\)</span> denotes the expectation.</li>
+<li class="fragment">Thus the regret is the expected loss due to the fact that the policy does not always play the best arm.</li>
+</ul>
+</section>
+<section id="ucb1-algorithm" class="slide level2">
+<h2>UCB1 Algorithm</h2>
 <div class="fragment">
+<div class="line-block"><strong>Deterministic policy</strong>: UCB1.<br>
+<strong>Initialization</strong>: Play each arm once.<br>
+<strong>Loop</strong>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Play arm <span class="math inline">\(j\)</span> that maximizes <span class="math inline">\(\bar{x}_j + \sqrt{\frac{2\ln n}{n_j}}\)</span>,</div>
+<p>where <span class="math inline">\(\bar{x}_j\)</span> is the average reward obtained from arm <span class="math inline">\(j\)</span>, <span class="math inline">\(n_j\)</span> is the number of times arm <span class="math inline">\(j\)</span> has been played so far, and <span class="math inline">\(n\)</span> is the overall number of plays so far.</p>
+</div>
+<div class="fragment">
+<p><strong>Theorem</strong>: For all <span class="math inline">\(K &gt; 1\)</span>, if policy UCB1 is run on <span class="math inline">\(K\)</span> arms having arbitrary reward distributions <span class="math inline">\(P_1,\dots,P_{K}\)</span> with support in <span class="math inline">\([0, 1]\)</span>, then its expected regret after any number of plays <span class="math inline">\(n\)</span> is at most <span class="math display">\[ \left[8 \sum\limits_{i:\mu_i &lt; \mu^*} \left( \frac{\ln n}{\Delta_{i}} \right) \right] + \left(1+ \frac{\pi^2}{3}  \right) \left(\sum\limits_{j=1}^{K} \Delta_{j} \right)\]</span> where <span class="math inline">\(\mu_1,\dots,\mu_K\)</span> are the expected values of <span class="math inline">\(P_1,\dots,P_{K}\)</span>.</p>
+</div>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<div class="fragment">
+<ul>
+<li class="fragment">Matching the notation of the theorem from the original paper to our notation, we get:
+<ul>
+<li class="fragment"><span class="math inline">\(\bar{x}_j = Q(j)\)</span></li>
+<li class="fragment"><span class="math inline">\(\mu_i = \mathbb{E}[X_{i,n}] = q_*(i)\)</span></li>
+<li class="fragment"><span class="math inline">\(\mu^* = q_*(a^*)\)</span></li>
+<li class="fragment"><span class="math inline">\(\Delta_{i} = \mu^* - \mu_i = q_*(a^*) - q_*(i)\)</span></li>
+<li class="fragment"><span class="math inline">\(\text{Regret}_{n}=\sum\limits_{i} \mathbb{E}[T_{i}(n)] \Delta_{i}\)</span></li>
+</ul></li>
+</ul>
+</div>
+<ul>
+<li class="fragment">To prove the theorem, we need to show that, for any suboptimal arm <span class="math inline">\(j\)</span>,</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[\mathbb{E}[T_{j}(n)] \leq \frac{8 \ln n}{\Delta_{j}^2}+c\]</span></p>
+</div>
+<ul>
+<li class="fragment">We also define the r.v.’s <span class="math inline">\(I_1, I_2, \ldots\)</span> such that $I_t denotes the arm played at time <span class="math inline">\(t\)</span>. Also, <span class="math inline">\(\sum_{i=1}^{K} T_{i}(n) = n\)</span>. For each <span class="math inline">\(1\leq i \leq K\)</span>, and <span class="math inline">\(n \geq 1\)</span>, define</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[\bar{X}_{i,n} = \frac{1}{n} \sum\limits_{t=1}^{n} X_{i,t} \]</span></p>
+</div>
+</section>
+<section id="sec-Chernoff-Hoeffding-Bound" class="slide level2">
+<h2>Chernoff-Hoeffding Bound</h2>
+<div class="fragment">
+<p>Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be random variables with common range <span class="math inline">\([0, 1]\)</span> and such that <span class="math inline">\(\mathbb{E}[X_t|X_1, X_2, \ldots, X_{t-1}] = \mu\)</span>. Let <span class="math inline">\(S_n = \frac{X_1 + X_2 + \ldots + X_n}{n}\)</span>. Then, for all <span class="math inline">\(\epsilon &gt; 0\)</span>,</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[ P(S_n \geq \mu + \epsilon) \leq e^{-2\epsilon^{2}n} \text{ and } P(S_n \leq \mu - \epsilon) \leq e^{-2\epsilon^{2}n} \]</span></p>
+</div>
+</section>
+<section id="proof-of-ucb1-theorem" class="slide level2">
+<h2>Proof of UCB1 Theorem</h2>
+<ul>
+<li class="fragment">Let <span class="math inline">\(c_{t,s} = \sqrt{\frac{2\ln t}{s}}\)</span>.</li>
+<li class="fragment">For any arm <span class="math inline">\(i\)</span>, we upper bound <span class="math inline">\(T_{i}(n)\)</span> on any sequence of plays.</li>
+<li class="fragment">More precisely, for each <span class="math inline">\(t \geq 1\)</span> we bound the indicator function of <span class="math inline">\(I_t=i\)</span> as follows.</li>
+</ul>
+<div class="fragment">
+<p>Let <span class="math inline">\(\mathscr{l}\)</span> be an arbitrary positive integer. Note: <span class="math inline">\(\displaystyle \{I_{t} =i\} =1\)</span> if arm <span class="math inline">\(i\)</span> is played at time <span class="math inline">\(t\)</span> and <span class="math inline">\(0\)</span> otherwise.</p>
+</div>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<div class="fragment">
+<span class="math display">\[\begin{aligned}
+T_i(n) &amp;= 1 + \sum\limits_{t=K+1}^{n} \{I_{t} =i\} \\
+&amp;\leq \mathscr{l} + \sum\limits_{t=K+1}^{n} \{I_{t} =i, T_{i}(t-1) \geq \mathscr{l} \} \\
+&amp;\leq \mathscr{l} + \sum\limits_{t=K+1}^{n} \{\bar{X}_{T^{*}(t-1)}^{*} + c_{t-1,T^{*}(t-1)} \leq \bar{X}_{i,T_{i}(t-1)} + c_{t-1,T_{i}(t-1)}, T_{i}(t-1) \geq \mathscr{l} \}  \\
+&amp;\leq \mathscr{l} + \sum\limits_{t=K+1}^{n} \{ \underset{0&lt;s&lt;t}{\min} \bar{X}_{s}^{*} + c_{t-1,s} \leq \underset{\mathscr{l}\ \leq s_i &lt; t}{\max} \bar{X}_{i,s_i} + c_{t-1,s_i} \} \\
+
+&amp;\leq \mathscr{l} + \sum\limits_{t=1}^{\infty} \sum\limits_{s=1}^{t-1} \sum\limits_{s_{i}=\mathscr{l}}^{t-1} \{ \bar{X}_{s}^{*} + c_{t,s} \leq \bar{X}_{i, s_{i}} + c_{t,s_i} \}
+\end{aligned}\]</span>
+</div>
+<ul>
+<li class="fragment">Now observe that <span class="math inline">\(\bar{X}_{s}^{*} + c_{t,s} \leq \bar{X}_{i, s_{i}} + c_{t,s_i}\)</span> implies that at least one of the following must hold
+<ul>
+<li class="fragment"><span class="math inline">\(\overline{X}_{s}^{*} +c_{t,s} \leqslant \ \mu ^{*} -c_{t,s}\)</span></li>
+<li class="fragment"><span class="math inline">\(\overline{X}_{i,s_{i}} \geqslant \mu _{i} +c_{t,s_{i}}\)</span></li>
+<li class="fragment"><span class="math inline">\(\mu ^{*} &lt; \mu _{i} +2c_{t,s_{i}}\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<ul>
+<li class="fragment"><p>We bound the probability of the first two events using the Chernoff-Hoeffding bound as shown in <a href="#/sec-Chernoff-Hoeffding-Bound" class="quarto-xref">Section&nbsp;19</a>.</p></li>
+<li class="fragment"><p><span class="math inline">\(P(\overline{X}_{s}^{*} +c_{t,s} \leqslant \ \mu ^{*} -c_{t,s}) \leq e^{-2c_{t,s}^{2}s} = e^{-4\ln t} = t^{-4}\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\(P(\overline{X}_{i,s_{i}} \geqslant \mu _{i} +c_{t,s_{i}}) \leq e^{-2c_{t,s_{i}}^{2}s_{i}} = e^{-4\ln t} = t^{-4}\)</span></p></li>
+<li class="fragment"><p>For <span class="math inline">\(\mathscr{l} =\left\lceil \frac{8\ \ln n}{\Delta _{i}^{2}}\right\rceil\)</span>, the third event is impossible. In fact</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math inline">\(\mu ^{*} - \mu _{i} - 2c_{t,s_{i}} = \mu ^{*} - \mu _{i} - 2\sqrt{\frac{2\ln t}{s_{i}}} \geq \mu ^{*} - \mu _{i} - \Delta _{i} = \Delta _{i} - \Delta _{i} = 0\)</span></p>
+</div>
+<div class="fragment">
+<p>for <span class="math inline">\(s_i \geq \frac{8\ln n}{\Delta_i^2}\)</span>. So we get</p>
+</div>
+<div class="fragment">
+<span class="math display">\[\begin{array}{ c c l }
+\mathbb{E}[ T_{i}( n)] &amp; \leqslant  &amp;  \begin{array}{l}
+\left\lceil \frac{8\ \ln n}{\Delta _{i}^{2}}\right\rceil +\sum\limits _{t=1}^{\infty }\sum\limits _{s=1}^{t-1}\sum\limits _{s_{i} =\left\lceil \frac{8\ \ln n}{\Delta _{i}^{2}}\right\rceil }^{t-1}\\
+\times \ \left( P\left\{\overline{X}_{s}^{*} \leqslant \mu ^{*} -c_{t,s}\right\} +P\{\overline{X}_{i,s_{i}} \geqslant \mu _{i} +c_{t,s_{i}}\}\right)
+\end{array}\\
+&amp; \leqslant  &amp; \left\lceil \frac{8\ \ln n}{\Delta _{i}^{2}}\right\rceil +\sum\limits _{t=1}^{\infty }\sum\limits _{s=1}^{t}\sum\limits _{s_{i} =1}^{t} 2t^{-4}\\
+&amp; \leqslant  &amp; \frac{8\ \ln n}{\Delta _{i}^{2}} +1+\frac{\pi ^{2}}{3}
+\end{array}\]</span>
+</div>
+<div class="fragment">
+<p>which concludes the proof.</p>
+</div>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
-</div>
 </div>
 </div>
 </section>
