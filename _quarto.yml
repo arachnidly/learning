@@ -5,6 +5,7 @@ project:
     port: 4200
 
 website:
+  site-url: arachnidly.github.io/learning/
   title: Learning :)
   sidebar:
     collapse-level: 2
@@ -23,18 +24,13 @@ website:
       - section: "Reinforcement Learning"
         contents:
           - href: pages/RL/Multi-armed-bandits.qmd
-          #   text: Multi-armed Bandits
-          # - href: pages/RL/MABs-and-UCB1-revealjs.qmd
-          #   text: Slides on Multi-armed Bandits and Upper Confidence Bounds
-          # - href: pages/RL/PAC-bounds-for-MABs-revealjs.qmd
-          #   text: Slides on PAC Bounds for Multi-armed Bandits
+            text: Multi-armed Bandits
       - section: "Statistics"
         contents:
           - href: pages/Stats/Probability-Basics.qmd
             text: Basic Concepts of Probability
       - href: originals/index.qmd
         text: Original Works
-  reader-mode: true
   open-graph: true
             
 format:
