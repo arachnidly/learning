@@ -152,9 +152,7 @@ $$ \equiv P \left[ \underset{j \in S_{\mathscr{l}}}{\max} q_{*}(j) \leq \underse
 
 :::
 
-::: {.fragment}
-### Proof {#sec-Lemma-1-Proof}
-:::
+## Proof {#sec-Lemma-1-Proof}
 
 ::: {.fragment}
 Without loss of generality consider $\mathscr{l}=1$. We bound the failure probability by looking at the event $E_1$,
@@ -216,16 +214,13 @@ $$ P \left [ \# bad \geq \frac{|S_\mathscr{l}|}{2} \middle| Q_{\mathscr{l}}(a_{\
 Using the union bound (@sec-Union-Bound) gives us that the probability of failure is bounded by $\delta_1$.
 :::
 
-##
-### Lemma 2 {#sec-Lemma-2-Median-Elimination}
+## Lemma 2 {#sec-Lemma-2-Median-Elimination}
 
 ::: {.fragment}
 The sample complexity of the Median Elimination $(\epsilon, \delta)$ is $O \left( \frac{n}{\epsilon^2} \log \left(\frac{1}{\delta} \right) \right)$.
 :::
 
-::: {.fragment}
-### Proof {#sec-Lemma-2-Proof}
-:::
+## Proof {#sec-Lemma-2-Proof}
 
 ::: {.fragment}
 The number of arm samples in the $\mathscr{l}$-th round is $4n_{\mathscr{l}} log  (\frac{3}{\delta_{\mathscr{l}}} ) / \epsilon_{\mathscr{l}}^2$. By definition we have that
