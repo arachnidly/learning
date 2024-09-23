@@ -193,7 +193,14 @@
     "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Median-Elimination",
     "title": "PAC bounds for Multi-armed Bandits",
     "section": "Lemma 1",
-    "text": "Lemma 1\n\nFor the Median Elimination (\\(\\epsilon, \\delta\\)) algorithm we have that for every phase \\(\\mathscr{l}\\):\n\n\n\\[ P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} p_{j} \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} p_{i} + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]\n\n\n\\[ \\equiv P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} q_{*}(j) \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} q_{*}(i) + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]\n\n\n\nProof\n\n\nWithout loss of generality consider \\(\\mathscr{l}=1\\). We bound the failure probability by looking at the event \\(E_1\\),\n\n\n\\[ E_1 = \\left\\{ \\hat{p}_1 &lt; p_1 - \\frac{\\epsilon_1}{2} \\right\\} \\equiv E_1 = \\left\\{ Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2} \\right\\} \\]\n\n\nwhich is the case that the empirical estimate of the best arm is pessimistic. Since we sample sufficiently, we have that\n\n\n\\[ P[E_1] = P\\left[Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2}\\right]\\]\n\n\nApplying the Chernoff-Hoeffding bound (Section 1.1), we have that\n\n\n\\[ P[E_1] \\leq \\exp \\left(-2 \\left( \\frac{\\epsilon_1}{2} \\right)^2 \\frac{1}{(\\epsilon_{1})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{1}} \\right) \\right) \\]\n\n\n\\[ \\implies P[E_1] \\leq \\frac{\\delta_1}{3} \\]"
+    "text": "Lemma 1\n\nFor the Median Elimination (\\(\\epsilon, \\delta\\)) algorithm we have that for every phase \\(\\mathscr{l}\\):\n\n\n\\[ P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} p_{j} \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} p_{i} + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]\n\n\n\\[ \\equiv P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} q_{*}(j) \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} q_{*}(i) + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]"
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Proof",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Proof",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Proof",
+    "text": "Proof\n\nWithout loss of generality consider \\(\\mathscr{l}=1\\). We bound the failure probability by looking at the event \\(E_1\\),\n\n\n\\[ E_1 = \\left\\{ \\hat{p}_1 &lt; p_1 - \\frac{\\epsilon_1}{2} \\right\\} \\equiv E_1 = \\left\\{ Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2} \\right\\} \\]\n\n\nwhich is the case that the empirical estimate of the best arm is pessimistic. Since we sample sufficiently, we have that\n\n\n\\[ P[E_1] = P\\left[Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2}\\right]\\]\n\n\nApplying the Chernoff-Hoeffding bound (Section 1.1), we have that\n\n\n\\[ P[E_1] \\leq \\exp \\left(-2 \\left( \\frac{\\epsilon_1}{2} \\right)^2 \\frac{1}{(\\epsilon_{1})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{1}} \\right) \\right) \\]\n\n\n\\[ \\implies P[E_1] \\leq \\frac{\\delta_1}{3} \\]"
   },
   {
     "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-2",
@@ -203,15 +210,22 @@
     "text": "In case \\(E_1\\) does not happen, we calculate the probability that an arm \\(j\\) which is not an \\(\\epsilon_1\\)-optimal arm is empirically better than the best arm.\n\n\n\\[ P \\left[ Q_{\\mathscr{l}}(j) \\geq Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) | Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{\\delta_1}{3}\\]\n\n\nLet #bad be the number of arms that are not \\(\\epsilon_1\\)-optimal but are empirically better than the best arm. We have that\n\n\n\\[ \\mathbb{E} \\left[ \\# bad \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq |S_\\mathscr{l}| \\frac{ \\delta_{1}} {3} \\]\n\n\nNext we apply Markov’s inequality (Section 1.2) to obtain\n\n\n\\[ P \\left [ \\# bad \\geq \\frac{|S_\\mathscr{l}|}{2} \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{|S_\\mathscr{l}|\\frac{\\delta_1}{3}}{\\frac{|S_\\mathscr{l}|}{2}} = \\frac{2\\delta_{1}}{3} \\]\n\n\nUsing the union bound (Section 1.3) gives us that the probability of failure is bounded by \\(\\delta_1\\)."
   },
   {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-3",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-3",
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Median-Elimination",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Median-Elimination",
     "title": "PAC bounds for Multi-armed Bandits",
-    "section": "",
-    "text": "Lemma 2\n\nThe sample complexity of the Median Elimination \\((\\epsilon, \\delta)\\) is \\(O \\left( \\frac{n}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right)\\).\n\n\n\nProof\n\n\nThe number of arm samples in the \\(\\mathscr{l}\\)-th round is \\(4n_{\\mathscr{l}} log  (\\frac{3}{\\delta_{\\mathscr{l}}} ) / \\epsilon_{\\mathscr{l}}^2\\). By definition we have that\n\n\n\\(\\delta_{1} = \\frac{\\delta}{2}\\) ; \\(\\frac{\\delta_{\\mathscr{l}-1}}{2}= \\frac{\\delta}{2^{\\mathscr{l}}}\\)\n\\(n_1 = n\\) ; \\(n_{\\mathscr{l}} = n_{\\mathscr{l}-1}/2 = n/2^{\\mathscr{l}-1}\\)\n\\(\\epsilon_{1} = \\frac{\\epsilon}{4}\\) ; \\(\\epsilon_{\\mathscr{l}} = \\frac{3}{4} \\epsilon_{\\mathscr{l}-1} = ( \\frac{3}{4} )^{\\mathscr{l}-1} \\epsilon / 4\\)"
+    "section": "Lemma 2",
+    "text": "Lemma 2\n\nThe sample complexity of the Median Elimination \\((\\epsilon, \\delta)\\) is \\(O \\left( \\frac{n}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right)\\)."
   },
   {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-4",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-4",
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Proof",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Proof",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Proof",
+    "text": "Proof\n\nThe number of arm samples in the \\(\\mathscr{l}\\)-th round is \\(4n_{\\mathscr{l}} log  (\\frac{3}{\\delta_{\\mathscr{l}}} ) / \\epsilon_{\\mathscr{l}}^2\\). By definition we have that\n\n\n\\(\\delta_{1} = \\frac{\\delta}{2}\\) ; \\(\\frac{\\delta_{\\mathscr{l}-1}}{2}= \\frac{\\delta}{2^{\\mathscr{l}}}\\)\n\\(n_1 = n\\) ; \\(n_{\\mathscr{l}} = n_{\\mathscr{l}-1}/2 = n/2^{\\mathscr{l}-1}\\)\n\\(\\epsilon_{1} = \\frac{\\epsilon}{4}\\) ; \\(\\epsilon_{\\mathscr{l}} = \\frac{3}{4} \\epsilon_{\\mathscr{l}-1} = ( \\frac{3}{4} )^{\\mathscr{l}-1} \\epsilon / 4\\)"
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-3",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-3",
     "title": "PAC bounds for Multi-armed Bandits",
     "section": "",
     "text": "Therefore we have\n\n\n\\[\\begin{aligned}\n\\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n_{\\mathscr{l} } \\log  (3 / \\delta_{\\mathscr{l} } )} {(\\epsilon_{\\mathscr{l} }/2)^2} &= 4 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n/2^{\\mathscr{l} -1} \\log (2^{\\mathscr{l} }3/ \\delta)}{((\\frac{3}{4})^{\\mathscr{l} -1} \\epsilon /4)^2} \\\\\n&= 64 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} n(\\frac{8}{9})^{\\mathscr{l} -1} (\\frac{\\log(1/\\delta)}{\\epsilon^2} + \\frac{\\log (3)}{\\epsilon^2} + \\frac{\\mathscr{l} \\log (2)}{\\epsilon^2}) \\\\\n&\\leq 64 \\frac{n \\log(1/\\delta)}{\\epsilon^2} \\sum\\limits_{\\mathscr{l} =1}^{\\infty} (\\frac{8}{9})^{\\mathscr{l} -1} (\\mathscr{l}C' + C) = O \\left( \\frac{n \\log (1/\\delta)}{\\epsilon^2} \\right)\n\\end{aligned}\\]\n\n\nwhere \\(C\\) and \\(C'\\) are constants.\n\n\nNow the Median Elimination theorem Section 5.1 can be proved by combining Lemma 1 and Lemma 2."
@@ -221,7 +235,7 @@
     "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Proof-Median-Elimination-Theorem",
     "title": "PAC bounds for Multi-armed Bandits",
     "section": "Proof of Median Elimination Theorem",
-    "text": "Proof of Median Elimination Theorem\n\nFrom Section 8.1 we have that the sample complexity is bounded by \\(O \\left( n \\log (1/\\delta) / \\epsilon^2 \\right)\\).\nBy Section 6 we have that the algorithm fails with probability _{i} in each round so that over all rounds the probability of failure is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\delta_{i} \\leq \\delta\\).\nIn each round we reduce the optimal reward of the surviving arms by at most \\(\\epsilon_{i}\\) so that the total error is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\epsilon_{i} \\leq \\epsilon\\).\n\n\n\n\nSee full page on multi-armed bandits here"
+    "text": "Proof of Median Elimination Theorem\n\nFrom Section 9 we have that the sample complexity is bounded by \\(O \\left( n \\log (1/\\delta) / \\epsilon^2 \\right)\\).\nBy Section 6 we have that the algorithm fails with probability _{i} in each round so that over all rounds the probability of failure is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\delta_{i} \\leq \\delta\\).\nIn each round we reduce the optimal reward of the surviving arms by at most \\(\\epsilon_{i}\\) so that the total error is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\epsilon_{i} \\leq \\epsilon\\).\n\n\n\n\nSee full page on multi-armed bandits here"
   },
   {
     "objectID": "pages/random/Vectors-in-alternate-basis.html",
