@@ -5,7 +5,7 @@ project:
     port: 4200
 
 website:
-  title: Learning :)
+  title: Arachnidly
   sidebar:
     collapse-level: 2
     collapsible: true
