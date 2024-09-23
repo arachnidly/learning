@@ -1,5 +1,5 @@
 ---
-title: "Multi-armed Bandits"
+title: "Multi-armed Bandits and Upper Confidence Bounds"
 format:
     revealjs:
       chalkboard: true
@@ -225,7 +225,7 @@ $$ Q_{n+1} = Q_{n} + \alpha \left[ R_{n} - Q_{n} \right] $$
 ##
 
 ::: {.fragment}
-This results in $Q_{n+1}$ being a weighted average of past rewards and the initial estimate $Q_{1}$:
+This results in $Q_{n+1}$ being a weighted average of past rewards and the initial estimate $Q_{1}$
 :::
 ::: {.fragment}
 $\begin{array}{ r c l }
@@ -258,4 +258,135 @@ Accordingly, this is sometimes called an *exponential recency-weighted average*.
 
 ## Upper-Confidence-Bound (UCB) Action Selection
 
+- Simply put, a $K$-armed bandit problem is defined by random variables $X_{i,n}$ for $1 \leq i \leq K$ and $n \geq 1$, where $i$ is the index of a gambling machine (i.e., the "arm" of the bandit).
+- Successive plays of arm $i$ yield rewards $X_{i,1}, X_{i,2}, \ldots$ that are independent and identically distributed (i.i.d.) random variables to an unknown law with unknown expectation $\mu_i$.
+- Independence also holds for rewards across different arms; i.e., $X_{i,s}$ and $X_{j,t}$ are independent (and usually not identically distributed) for each $1 \leq i < j \leq K$ and each $s, t \geq 1$.
+
+## Regret
+
+- A *policy*, or *allocation strategy*, $A$ is an algorithm that chooses the next arm to play based on the sequence of past plays and obtained rewards.
+- Let $T_{i}(n)$ be the random variable which represents the number of times arm $i$ has been played by $A$ during the first $n$ plays.
+- Then the *regret* of $A$ after $n$ plays is defined by $$\mu^* n - \mu_{j} \sum\limits_{i=1}^{K} \mathbb{E}[T_{j}(n)]$$ where $\mu^* = \underset{1\leq i \leq K}{\max} \mu_i$ and $\mathbb{E}[\cdot]$ denotes the expectation.
+- Thus the regret is the expected loss due to the fact that the policy does not always play the best arm.
+
+## UCB1 Algorithm
+
 ::: {.fragment}
+
+| **Deterministic policy**: UCB1.
+| **Initialization**: Play each arm once.
+| **Loop**:
+|             Play arm $j$ that maximizes $\bar{x}_j + \sqrt{\frac{2\ln n}{n_j}}$,
+
+where $\bar{x}_j$ is the average reward obtained from arm $j$, $n_j$ is the number of times arm $j$ has been played so far, and $n$ is the overall number of plays so far.
+
+:::
+
+::: {.fragment}
+
+**Theorem**: For all $K > 1$, if policy UCB1 is run on $K$ arms having arbitrary reward distributions $P_1,\dots,P_{K}$ with support in $[0, 1]$, then its expected regret after any number of plays $n$ is at most $$ \left[8 \sum\limits_{i:\mu_i < \mu^*} \left( \frac{\ln n}{\Delta_{i}} \right) \right] + \left(1+ \frac{\pi^2}{3}  \right) \left(\sum\limits_{j=1}^{K} \Delta_{j} \right)$$ where $\mu_1,\dots,\mu_K$ are the expected values of $P_1,\dots,P_{K}$.
+
+:::
+
+##
+::: {.fragment}
+
+- Matching the notation of the theorem from the original paper to our notation, we get:
+  - $\bar{x}_j = Q(j)$
+  - $\mu_i = \mathbb{E}[X_{i,n}] = q_*(i)$
+  - $\mu^* = q_*(a^*)$
+  - $\Delta_{i} = \mu^* - \mu_i = q_*(a^*) - q_*(i)$
+  - $\text{Regret}_{n}=\sum\limits_{i} \mathbb{E}[T_{i}(n)] \Delta_{i}$
+
+:::
+
+- To prove the theorem, we need to show that, for any suboptimal arm $j$,
+
+::: {.fragment}
+$$\mathbb{E}[T_{j}(n)] \leq \frac{8 \ln n}{\Delta_{j}^2}+c$$
+:::
+
+- We also define the r.v.'s $I_1, I_2, \ldots$ such that \$I_t denotes the arm played at time $t$. Also, $\sum_{i=1}^{K} T_{i}(n) = n$. For each $1\leq i \leq K$, and $n \geq 1$, define
+
+::: {.fragment}
+$$\bar{X}_{i,n} = \frac{1}{n} \sum\limits_{t=1}^{n} X_{i,t} $$
+:::
+
+## Chernoff-Hoeffding Bound {#sec-Chernoff-Hoeffding-Bound}
+
+::: {.fragment}
+
+Let $X_1, X_2, \ldots, X_n$ be random variables with common range $[0, 1]$ and such that $\mathbb{E}[X_t|X_1, X_2, \ldots, X_{t-1}] = \mu$. Let $S_n = \frac{X_1 + X_2 + \ldots + X_n}{n}$. Then, for all $\epsilon > 0$,
+:::
+::: {.fragment}
+$$ P(S_n \geq \mu + \epsilon) \leq e^{-2\epsilon^{2}n} \text{ and } P(S_n \leq \mu - \epsilon) \leq e^{-2\epsilon^{2}n} $$
+
+:::
+
+## Proof of UCB1 Theorem
+
+- Let $c_{t,s} = \sqrt{\frac{2\ln t}{s}}$.
+- For any arm $i$, we upper bound $T_{i}(n)$ on any sequence of plays.
+- More precisely, for each $t \geq 1$ we bound the indicator function of $I_t=i$ as follows. 
+
+::: {.fragment}
+Let $\mathscr{l}$ be an arbitrary positive integer. Note: $\displaystyle \{I_{t} =i\} =1$ if arm $i$ is played at time $t$ and $0$ otherwise.
+:::
+
+##
+
+::: {.fragment}
+
+```{=tex}
+\begin{aligned}
+T_i(n) &= 1 + \sum\limits_{t=K+1}^{n} \{I_{t} =i\} \\
+&\leq \mathscr{l} + \sum\limits_{t=K+1}^{n} \{I_{t} =i, T_{i}(t-1) \geq \mathscr{l} \} \\
+&\leq \mathscr{l} + \sum\limits_{t=K+1}^{n} \{\bar{X}_{T^{*}(t-1)}^{*} + c_{t-1,T^{*}(t-1)} \leq \bar{X}_{i,T_{i}(t-1)} + c_{t-1,T_{i}(t-1)}, T_{i}(t-1) \geq \mathscr{l} \}  \\
+&\leq \mathscr{l} + \sum\limits_{t=K+1}^{n} \{ \underset{0<s<t}{\min} \bar{X}_{s}^{*} + c_{t-1,s} \leq \underset{\mathscr{l}\ \leq s_i < t}{\max} \bar{X}_{i,s_i} + c_{t-1,s_i} \} \\
+
+&\leq \mathscr{l} + \sum\limits_{t=1}^{\infty} \sum\limits_{s=1}^{t-1} \sum\limits_{s_{i}=\mathscr{l}}^{t-1} \{ \bar{X}_{s}^{*} + c_{t,s} \leq \bar{X}_{i, s_{i}} + c_{t,s_i} \}
+\end{aligned}
+```
+:::
+
+- Now observe that $\bar{X}_{s}^{*} + c_{t,s} \leq \bar{X}_{i, s_{i}} + c_{t,s_i}$ implies that at least one of the following must hold
+  - $\overline{X}_{s}^{*} +c_{t,s} \leqslant \ \mu ^{*} -c_{t,s}$
+  - $\overline{X}_{i,s_{i}} \geqslant \mu _{i} +c_{t,s_{i}}$
+  - $\mu ^{*} < \mu _{i} +2c_{t,s_{i}}$
+
+
+##
+
+- We bound the probability of the first two events using the Chernoff-Hoeffding bound as shown in @sec-Chernoff-Hoeffding-Bound.
+
+- $P(\overline{X}_{s}^{*} +c_{t,s} \leqslant \ \mu ^{*} -c_{t,s}) \leq e^{-2c_{t,s}^{2}s} = e^{-4\ln t} = t^{-4}$
+
+- $P(\overline{X}_{i,s_{i}} \geqslant \mu _{i} +c_{t,s_{i}}) \leq e^{-2c_{t,s_{i}}^{2}s_{i}} = e^{-4\ln t} = t^{-4}$
+
+- For $\mathscr{l} =\left\lceil \frac{8\ \ln n}{\Delta _{i}^{2}}\right\rceil$, the third event is impossible. In fact
+
+::: {.fragment}
+
+$\mu ^{*} - \mu _{i} - 2c_{t,s_{i}} = \mu ^{*} - \mu _{i} - 2\sqrt{\frac{2\ln t}{s_{i}}} \geq \mu ^{*} - \mu _{i} - \Delta _{i} = \Delta _{i} - \Delta _{i} = 0$
+
+:::
+::: {.fragment}
+for $s_i \geq \frac{8\ln n}{\Delta_i^2}$. So we get
+:::
+
+::: {.fragment}
+
+```{=tex}
+\begin{array}{ c c l }
+\mathbb{E}[ T_{i}( n)] & \leqslant  &  \begin{array}{l}
+\left\lceil \frac{8\ \ln n}{\Delta _{i}^{2}}\right\rceil +\sum\limits _{t=1}^{\infty }\sum\limits _{s=1}^{t-1}\sum\limits _{s_{i} =\left\lceil \frac{8\ \ln n}{\Delta _{i}^{2}}\right\rceil }^{t-1}\\
+\times \ \left( P\left\{\overline{X}_{s}^{*} \leqslant \mu ^{*} -c_{t,s}\right\} +P\{\overline{X}_{i,s_{i}} \geqslant \mu _{i} +c_{t,s_{i}}\}\right)
+\end{array}\\
+ & \leqslant  & \left\lceil \frac{8\ \ln n}{\Delta _{i}^{2}}\right\rceil +\sum\limits _{t=1}^{\infty }\sum\limits _{s=1}^{t}\sum\limits _{s_{i} =1}^{t} 2t^{-4}\\
+ & \leqslant  & \frac{8\ \ln n}{\Delta _{i}^{2}} +1+\frac{\pi ^{2}}{3}
+\end{array}
+```
+:::
+::: {.fragment}
+which concludes the proof.
+:::

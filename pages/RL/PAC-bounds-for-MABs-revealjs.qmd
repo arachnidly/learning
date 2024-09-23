@@ -1,0 +1,265 @@
+---
+title: "PAC bounds for Multi-armed Bandits"
+format:
+    revealjs:
+      chalkboard: true
+      incremental: true
+      slideNumber: true
+      smaller: true
+      # center: true
+      scrollable: true
+html-math-method: mathjax
+---
+
+## Bounds required for PAC
+
+### Chernoff-Hoeffding Bound {#sec-Chernoff-Hoeffding-Bound}
+
+::: {.fragment}
+Let $X_1, X_2, \ldots, X_n$ be r.v. with common range $[0,1]$, such that $\mathbb{E}[X_t|X_1, X_2, \ldots, X_{t-1}] = \mu$. Let $S_{n} = \frac{X_1 + \ldots + X_n}{n}$. Then, for $\epsilon > 0$,
+:::
+
+::: {.fragment}
+$$ P(S_n \geq \mu + \epsilon) \leq \exp(-2n\epsilon^2) $$
+$$ P(S_n \leq \mu - \epsilon) \leq \exp(-2n\epsilon^2) $$
+:::
+
+### Markov's Inequality {#sec-Markov-Inequality}
+
+::: {.fragment}
+Let $X$ be a non-negative random variable. Then, for any $a > 0$,
+:::
+::: {.fragment}
+$$ P(X \geq a) \leq \frac{\mathbb{E}[X]}{a} $$
+:::
+
+
+### Union Bound {#sec-Union-Bound}
+
+::: {.fragment}
+Let $A_1, A_2, \ldots, A_n$ be events. Then,
+:::
+::: {.fragment}
+$$ P(A_1 \cup A_2 \cup \ldots \cup A_n) \leq P(A_1) + P(A_2) + \ldots + P(A_n) $$ $$ \equiv P\left( \bigcup_{i=1}^{n} A_i \right) \leq \sum_{i=1}^{n} P(A_i) $$
+:::
+
+## Naive Algorithm
+
+::: {.fragment}
+
+| **Input**: $\epsilon > 0, \delta >0$
+| **Output**: An arm
+| **foreach** Arm $a \in \mathcal{A}$ **do**
+|         Sample it $\mathscr{l} = \frac{2}{\epsilon^2} \ln (\frac{2k}{\delta})$ times;
+|         Let $\hat{p}_a$ be the average reward of arm $a$;
+| **end**
+| Output $a' = \underset{a \in \mathcal{A}}{\arg\max} \{ \hat{p}_a \}$;
+
+:::
+
+::: {.fragment}
+### Theorem {#sec-Naive-Theorem}
+:::
+
+::: {.fragment}
+The algorithm Naive($\epsilon, \delta$) is an ($\epsilon, \delta$)-PAC algorithm with arm sample complexity $O\left(\left(\frac{k}{\epsilon^2}\right) \log \left(\frac{k}{\delta}\right)\right)$.
+:::
+
+##
+### Proof {#sec-Naive-Proof}
+
+- Let $a'$ be an arm s.t. $q_*(a')<q_*(a^*)-\epsilon$
+
+- $P(Q(a')>Q(a^*)) \leq P(Q(a')>q_*(a')+ \frac{\epsilon} {2} \text{ or } Q(a^*)<q_*(a^*)- \frac{\epsilon} {2})$
+
+::: {.fragment}
+
+```{=tex}
+\begin{aligned}
+P(Q(a')>Q(a^*)) &\leq P(Q(a')>q_*(a')+ \frac{\epsilon}{2} \text{ or } Q(a^*)<q_*(a^*)- \frac{\epsilon}{2}) \\
+&\leq P(Q(a')>q_*(a')+ \frac{\epsilon}{2}) + P(Q(a^*)<q_*(a^*)- \frac{\epsilon}{2}) \\
+&\leq 2\exp(-2\left( \frac{\epsilon}{2} \right)^2 \mathscr{l})
+\end{aligned}
+```
+:::
+
+::: {.fragment}
+Substituting $\mathscr{l} = \frac{2}{\epsilon^2} \ln (\frac{2k}{\delta})$,
+:::
+::: {.fragment}
+$$P(Q(a')>Q(a^*)) \leq 2\exp(-2\left( \frac{\epsilon}{2} \right)^2 \frac{2}{\epsilon^2} \ln (\frac{2k}{\delta}))$$ $$\implies P(Q(a')>Q(a^*)) \leq 2\exp(- \frac{2}{2} \ln (\frac{2k}{\delta}))$$ $$\implies P(Q(a')>Q(a^*)) \leq 2\exp(\ln(\frac{2k}{\delta})^{-1})$$ $$\implies P(Q(a')>Q(a^*)) \leq \frac{\delta}{k}$$
+
+:::
+
+::: {.fragment}
+Summing over all $a'$, we have that
+:::
+::: {.fragment}
+$$\text{probability of failure} \leq (k-1)(\frac{\delta}{k}) < \delta$$
+
+:::
+
+## Median Elimination Algorithm
+
+::: {.fragment}
+| **Input**: $\epsilon > 0, \delta >0$
+| **Output**: An arm
+| Set $S_1=A, \epsilon_1=\frac{\epsilon}{4}, \delta_1=\frac{\delta}{2}, \mathscr{l} = 1$. **repeat**
+|         Sample every arm $a \in S_{\mathscr{l}}$ for $\frac{1}{(\epsilon_{\mathscr{l}})^2/2} \cdot \log \left( \frac{3}{\delta _{\mathscr{l}}} \right)$ times, and let $\hat{p}_a^{\mathscr{l}}$ denote its empirical value;
+|         Find the median of $\hat{p}_a^{\mathscr{l}}$, denoted by $m_{\mathscr{l}}$;
+|         $S_{\mathscr{l}+1} = S_{\mathscr{l}} \backslash \{ a : \hat{p}_a^{\mathscr{l}} < m_{\mathscr{l}} \}$;
+|         $\epsilon_{\mathscr{l}+1} = \frac{3}{4} \epsilon_{\mathscr{l}}$; $\delta_{\mathscr{l}+1} = \frac{\delta_{\mathscr{l}}}{2}$; $\mathscr{l} = \mathscr{l} + 1$;
+| **until** $\left|S_{\mathscr{l}}\right| = 1$;
+
+:::
+
+##
+::: {.fragment}
+Matching the notation used in the paper to our notation:
+
+- $\hat{p}_a^{\mathscr{l}} = Q_{\mathscr{l}}(a)$
+:::
+
+::: {.fragment}
+### Theorem {#sec-Median-Elimination-Theorem}
+:::
+
+::: {.fragment}
+The Median Elimination ($\epsilon, \delta$) algorithm is an ($\epsilon, \delta$)-PAC algorithm and its sample complexity is
+:::
+
+::: {.fragment}
+$$ O \left( \frac{k}{\epsilon^2} \log \left(\frac{1}{\delta} \right) \right) $$
+:::
+
+::: {.fragment}
+First we show that in the $\mathscr{l}$-th phase the expected reward of the best arm in $S_{\mathscr{l}}$ drops by at most $\epsilon_{\mathscr{l}}$.
+:::
+
+## Lemma 1 {#sec-Lemma-1-Median-Elimination}
+
+::: {.fragment}
+For the Median Elimination ($\epsilon, \delta$) algorithm we have that for every phase $\mathscr{l}$:
+:::
+
+::: {.fragment}
+$$ P \left[ \underset{j \in S_{\mathscr{l}}}{\max} p_{j} \leq \underset{i \in S_{\mathscr{l}+1}}{\max} p_{i} + \epsilon_{\mathscr{l}} \right] \geq 1 - \delta_{\mathscr{l}} $$
+
+:::
+
+::: {.fragment}
+$$ \equiv P \left[ \underset{j \in S_{\mathscr{l}}}{\max} q_{*}(j) \leq \underset{i \in S_{\mathscr{l}+1}}{\max} q_{*}(i) + \epsilon_{\mathscr{l}} \right] \geq 1 - \delta_{\mathscr{l}} $$
+
+:::
+
+::: {.fragment}
+### Proof {#sec-Lemma-1-Proof}
+:::
+
+::: {.fragment}
+Without loss of generality consider $\mathscr{l}=1$. We bound the failure probability by looking at the event $E_1$,
+:::
+
+::: {.fragment}
+$$ E_1 = \left\{ \hat{p}_1 < p_1 - \frac{\epsilon_1}{2} \right\} \equiv E_1 = \left\{ Q_{\mathscr{l}}(a_{\mathscr{l}}^*) < q_*(a_{\mathscr{l}}^*)- \frac{\epsilon_1}{2} \right\} $$
+
+:::
+
+::: {.fragment}
+which is the case that the empirical estimate of the best arm is pessimistic. Since we sample sufficiently, we have that
+:::
+::: {.fragment}
+$$ P[E_1] = P\left[Q_{\mathscr{l}}(a_{\mathscr{l}}^*) < q_*(a_{\mathscr{l}}^*)- \frac{\epsilon_1}{2}\right]$$
+
+:::
+::: {.fragment}
+Applying the Chernoff-Hoeffding bound (@sec-Chernoff-Hoeffding-Bound), we have that
+:::
+::: {.fragment}
+$$ P[E_1] \leq \exp \left(-2 \left( \frac{\epsilon_1}{2} \right)^2 \frac{1}{(\epsilon_{1})^2/2} \cdot \log \left( \frac{3}{\delta _{1}} \right) \right) $$
+
+:::
+::: {.fragment}
+$$ \implies P[E_1] \leq \frac{\delta_1}{3} $$
+
+:::
+
+##
+
+::: {.fragment}
+In case $E_1$ does not happen, we calculate the probability that an arm $j$ which is not an $\epsilon_1$-optimal arm is empirically better than the best arm.
+:::
+
+::: {.fragment}
+$$ P \left[ Q_{\mathscr{l}}(j) \geq Q_{\mathscr{l}}(a_{\mathscr{l}}^*) | Q_{\mathscr{l}}(a_{\mathscr{l}}^*) \geq q_{*}(a_{\mathscr{l}}^*) - \frac{\epsilon_1}{2} \right] \leq \frac{\delta_1}{3}$$
+:::
+
+::: {.fragment}
+Let #bad be the number of arms that are not $\epsilon_1$-optimal but are empirically better than the best arm. We have that
+:::
+
+::: {.fragment}
+$$ \mathbb{E} \left[ \# bad \middle| Q_{\mathscr{l}}(a_{\mathscr{l}}^*) \geq q_{*}(a_{\mathscr{l}}^*) - \frac{\epsilon_1}{2} \right] \leq |S_\mathscr{l}| \frac{ \delta_{1}} {3} $$
+
+:::
+
+::: {.fragment}
+Next we apply Markov's inequality (@sec-Markov-Inequality) to obtain
+:::
+
+::: {.fragment}
+$$ P \left [ \# bad \geq \frac{|S_\mathscr{l}|}{2} \middle| Q_{\mathscr{l}}(a_{\mathscr{l}}^*) \geq q_{*}(a_{\mathscr{l}}^*) - \frac{\epsilon_1}{2} \right] \leq \frac{|S_\mathscr{l}|\frac{\delta_1}{3}}{\frac{|S_\mathscr{l}|}{2}} = \frac{2\delta_{1}}{3} $$
+
+:::
+
+::: {.fragment}
+Using the union bound (@sec-Union-Bound) gives us that the probability of failure is bounded by $\delta_1$.
+:::
+
+##
+### Lemma 2 {#sec-Lemma-2-Median-Elimination}
+
+::: {.fragment}
+The sample complexity of the Median Elimination $(\epsilon, \delta)$ is $O \left( \frac{n}{\epsilon^2} \log \left(\frac{1}{\delta} \right) \right)$.
+:::
+
+::: {.fragment}
+### Proof {#sec-Lemma-2-Proof}
+:::
+
+::: {.fragment}
+The number of arm samples in the $\mathscr{l}$-th round is $4n_{\mathscr{l}} log  (\frac{3}{\delta_{\mathscr{l}}} ) / \epsilon_{\mathscr{l}}^2$. By definition we have that
+:::
+
+- $\delta_{1} = \frac{\delta}{2}$ ; $\frac{\delta_{\mathscr{l}-1}}{2}= \frac{\delta}{2^{\mathscr{l}}}$
+- $n_1 = n$ ; $n_{\mathscr{l}} = n_{\mathscr{l}-1}/2 = n/2^{\mathscr{l}-1}$
+- $\epsilon_{1} = \frac{\epsilon}{4}$ ; $\epsilon_{\mathscr{l}} = \frac{3}{4} \epsilon_{\mathscr{l}-1} = ( \frac{3}{4} )^{\mathscr{l}-1} \epsilon / 4$
+
+##
+
+::: {.fragment}
+Therefore we have
+:::
+
+::: {.fragment}
+```{=tex}
+\begin{aligned}
+\sum\limits_{\mathscr{l} =1}^{\log_2 n} \frac{n_{\mathscr{l} } \log  (3 / \delta_{\mathscr{l} } )} {(\epsilon_{\mathscr{l} }/2)^2} &= 4 \sum\limits_{\mathscr{l} =1}^{\log_2 n} \frac{n/2^{\mathscr{l} -1} \log (2^{\mathscr{l} }3/ \delta)}{((\frac{3}{4})^{\mathscr{l} -1} \epsilon /4)^2} \\
+&= 64 \sum\limits_{\mathscr{l} =1}^{\log_2 n} n(\frac{8}{9})^{\mathscr{l} -1} (\frac{\log(1/\delta)}{\epsilon^2} + \frac{\log (3)}{\epsilon^2} + \frac{\mathscr{l} \log (2)}{\epsilon^2}) \\
+&\leq 64 \frac{n \log(1/\delta)}{\epsilon^2} \sum\limits_{\mathscr{l} =1}^{\infty} (\frac{8}{9})^{\mathscr{l} -1} (\mathscr{l}C' + C) = O \left( \frac{n \log (1/\delta)}{\epsilon^2} \right)
+\end{aligned}
+```
+:::
+::: {.fragment}
+where $C$ and $C'$ are constants.
+:::
+
+::: {.fragment}
+Now the Median Elimination theorem @sec-Median-Elimination-Theorem can be proved by combining Lemma 1 and Lemma 2.
+:::
+
+## Proof of Median Elimination Theorem {#sec-Proof-Median-Elimination-Theorem}
+
+- From @sec-Lemma-2-Median-Elimination we have that the sample complexity is bounded by $O \left( n \log (1/\delta) / \epsilon^2 \right)$.
+- By @sec-Lemma-1-Median-Elimination we have that the algorithm fails with probability \delta_{i} in each round so that over all rounds the probability of failure is bounded by $\sum_{i=1}^{\log_2 n} \delta_{i} \leq \delta$.
+- In each round we reduce the optimal reward of the surviving arms by at most $\epsilon_{i}$ so that the total error is bounded by $\sum_{i=1}^{\log_2 n} \epsilon_{i} \leq \epsilon$.
