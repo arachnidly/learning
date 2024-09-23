@@ -2,13 +2,13 @@
 title: "Multi-armed Bandits and Upper Confidence Bounds"
 format:
     revealjs:
-      theme: dark
       chalkboard: true
       incremental: true
       slideNumber: true
       smaller: true
       scrollable: true
       footer: "See full page on multi-armed bandits [here](Multi-armed-bandits.qmd)"
+  html-math-method: MathJax
 ---
 
 ## A $k$-armed Bandit Problem
