@@ -5,10 +5,10 @@ project:
     port: 4200
 
 website:
-  title: Arachnidly
+  title: Learning :)
   sidebar:
     collapse-level: 2
-    # collapsible: true
+    collapsible: true
     style: "docked"
     search: true
     contents:
