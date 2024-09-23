@@ -1,5 +1,297 @@
 [
   {
+    "objectID": "pages/Stats/Probability-Basics.html",
+    "href": "pages/Stats/Probability-Basics.html",
+    "title": "Basic Concepts of Probability",
+    "section": "",
+    "text": "Experiment\n\nProcess or phenomenon that we wish to study statistically\n\n\n\nOutcome\n\nResult of the experiment (in as much detail as necessary)",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#experiment-and-outcome",
+    "href": "pages/Stats/Probability-Basics.html#experiment-and-outcome",
+    "title": "Basic Concepts of Probability",
+    "section": "",
+    "text": "Experiment\n\nProcess or phenomenon that we wish to study statistically\n\n\n\nOutcome\n\nResult of the experiment (in as much detail as necessary)",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#sample-space",
+    "href": "pages/Stats/Probability-Basics.html#sample-space",
+    "title": "Basic Concepts of Probability",
+    "section": "Sample Space",
+    "text": "Sample Space\nDefinition: A sample space S is a set that contains all possible outcomes of an experiment.\n\nSample space is a set, typically denoted S\nExamples:\n\nFlipping a coin: S = \\{\\text{Heads}, \\text{Tails}\\}\nRolling a die: S = \\{1, 2, 3, 4, 5, 6\\}",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#event",
+    "href": "pages/Stats/Probability-Basics.html#event",
+    "title": "Basic Concepts of Probability",
+    "section": "Event",
+    "text": "Event\nDefinition: An event is a subset of the sample space.\n\nExamples:\n\nToss a coin: S = \\{\\text{Heads}, \\text{Tails}\\}\n\nEvents: \\emptyset, \\{\\text{Heads}\\}, \\{\\text{Tails}\\}, \\{\\text{Heads}, \\text{Tails}\\}\n4 events\n\nThrow a die: S = \\{1, 2, 3, 4, 5, 6\\}\n\nEvents: \\emptyset, \\{1\\}, \\{2\\}, \\{3\\}, \\{4\\}, \\{5\\}, \\{6\\}, \\{1, 2\\}, \\{1, 3\\}, \\ldots, \\{1, 2, 3, 4, 5, 6\\}\n64 events\n\n\nAn event is said to have “occurred” if the actual outcome of the experiment belongs to the event.\nEvents are sets\n\nAll set theory notions apply to events\n\nOne event can be contained in another, i.e. A \\subseteq B\n\nThrow a die: A = \\{2, 6\\}, B = \\text{Even number}\nIf A occured, B has also occured\nIf B occured, A may or may not have occured\n\nComplement of an event A, denoted A^c = \\{\\text{outcomes in } S \\text{ not in } A\\} = (S \\setminus A)\n\nThrow a die: A = \\{2, 4, 6\\} (even), A^c = \\{1, 3, 5\\} (odd)\nIf A occured, A^c did not occur\nIf A^c occured, A did not occur\n\n\n\nCombining events to create new events\n\nUnion of events A and B, denoted A \\cup B = \\{x: x \\in A \\text{ or } x \\in B\\}\n\nThrow a die: A = \\{1, 2, 3\\}, B = \\{3, 4, 5\\}, A \\cup B = \\{1, 2, 3, 4, 5\\}\n\nIntersection of events A and B, denoted A \\cap B = \\{x: x \\in A \\text{ and } x \\in B\\}\n\nThrow a die: A = \\{1, 2, 3\\}, B = \\{3, 4, 5\\}, A \\cap B = \\{3\\}\n\n\n\n\nDisjoint events\n\nTwo events with an empty intersection are said to be disjoint or mutually exclusive events\n\nThrow a die: even number, odd number are disjoint\n\nSuppose A and B are disjoint events\n\nIf A occured, B did not occur\nIf B occured, A did not occur\n\nEvent and its complement\n\nA and A^c are disjoint, i.e. A \\cap A^c = \\emptyset\nTogether, they cover the entire sample space, i.e. A \\cup A^c = S\n\nEither A or A^c must occur\n\nA and A^c are an example of a partition of the sample space\n\nPartition: Collection of disjoint sets that together cover the entire sample space\n\n\nMultiple events: E_1, E_2, \\ldots, E_n are disjoint if, for any i \\neq j, E_i \\cap E_j = \\emptyset",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#probability",
+    "href": "pages/Stats/Probability-Basics.html#probability",
+    "title": "Basic Concepts of Probability",
+    "section": "Probability",
+    "text": "Probability\nDefinition: “Probability” is a function P that assigns to each event a real number between 0 and 1. The entire probability space (sample space, events and probability function) should satisfy the following two axioms:\n\nP(S) = 1 (probability of the entire sample space equals 1)\nIf E_1, E_2, E_3, \\ldots are disjoint events (how many events? Could be infinitely many), P(E_1 \\cup E_2 \\cup E_3 \\cup \\ldots) = P(E_1) + P(E_2) + P(E_3) + \\ldots",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#basic-properties-of-probability",
+    "href": "pages/Stats/Probability-Basics.html#basic-properties-of-probability",
+    "title": "Basic Concepts of Probability",
+    "section": "Basic Properties of Probability",
+    "text": "Basic Properties of Probability\n\nTheorem 1 (Basic Properties of Probability) Let P be a probability on a sample space S. Then,\n\nP(\\emptyset) = 0\nLet E^c be the complement of Event E. Then, \\newline P(E^c) = 1 - P(E)\nIf Event E is a subset of Event F, i.e. E \\subseteq F, then \\newline P(F) = P(E) + P(F \\setminus E)\\text{,} which implies that P(E) \\leq P(F)\n3.a. If E and F are events, then P(E) = P(E \\cap F) + P(E \\setminus F) \\text{,} P(F) = P(E \\cap F) + P(F \\setminus E)\nIf E and F are events, then P(E \\cup F) = P(E) + P(F) - P(E \\cap F)\n\n\n\nProof. \n\n\n\\emptyset^c = S and \\emptyset, S are disjoint and \\emptyset \\cup S = S.\nBy Axiom 2, P(\\emptyset \\cup S) = P(\\emptyset) + P(S) or P(S) = P(\\emptyset) + P(S) or P(\\emptyset) = 0.\n\n\nE and E^c are disjoint and E \\cup E^c = S.\nBy Axiom 2, P(E \\cup E^c) = P(E) + P(E^c) or P(S) = P(E) + P(E^c)\nBy Axiom 1, 1 = P(S) = P(E) + P(E^c)\nSo, P(E^c) = 1 - P(E)\n\n\nF \\setminus E = F \\cap E^c (outside of E and inside of F)\nE and F \\setminus E are disjoint and E \\cup (F \\setminus E) = F\nBy Axiom 2, P(E \\cup (F \\setminus E)) = P(E) + P(F \\setminus E) or P(F) = P(E) + P(F \\setminus E)\n\n3.a.\n\nE \\cap F is a subset of E\nBy subset property, P(E) = P(E \\cap F) + P(E \\setminus (E \\cap F))\nNow, E \\setminus (E \\cap F) = E \\setminus F\nSo, P(E) = P(E \\cap F) + P(E \\setminus F)\n\n\nE \\cup F = (E \\setminus F) \\cup (E \\cap F) \\cup (F \\setminus E) and the 3 events on RHS are disjoint\nP(E \\cup F) = P(E \\setminus F) + P(E \\cap F) + P(F \\setminus E)\nUse P(E \\setminus F) = P(E) - P(E \\cap F) and P(F \\setminus E) = P(F) - P(E \\cap F)",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#conditional-probability-space",
+    "href": "pages/Stats/Probability-Basics.html#conditional-probability-space",
+    "title": "Basic Concepts of Probability",
+    "section": "Conditional Probability Space",
+    "text": "Conditional Probability Space\nDefinition: Consider a probability space: Sample space S, collection of events, and a probability function P. Let B be an event with P(B) &gt; 0.\n\\newlineSample space: B \\newlineEvents: A \\cap B for every event A in the original space\n\\text{Probability function: } \\frac{P(A \\cap B)}{P(B)}\n\\newline(denoted P(A|B) and called conditional probability of A given B)\nFor any event A in the original space, P(A \\cap B) = P(B) \\cdot P(A|B)",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#law-of-total-probability",
+    "href": "pages/Stats/Probability-Basics.html#law-of-total-probability",
+    "title": "Basic Concepts of Probability",
+    "section": "Law of Total Probability",
+    "text": "Law of Total Probability\n\nTheorem 2 (Law of Total Probability) B_1, B_2, \\ldots \\text{ : Partition of } S  P(A) = P(A \\cap B_1) + P(A \\cap B_2) + \\ldots = P(A|B_1) P(B_1) + P(A|B_2) P(B_2) + \\ldots\n\n\nProof. \n\nA: disjoint union of A \\cap B_1, A \\cap B_2, \\ldots\nBy Axiom 2, P(A) = P(A \\cap B_1) + P(A \\cap B_2) + \\ldots\nUsing conditional probability on each term above, we get the result",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#bayes-theorem",
+    "href": "pages/Stats/Probability-Basics.html#bayes-theorem",
+    "title": "Basic Concepts of Probability",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\nTheorem 3 (Bayes’ Theorem)  A,B \\text{: Events with } P(A) &gt; 0 \\text{, } P(B) &gt; 0 P(A \\cap B) = P(B)P(A|B) = P(A)P(B|A) P(A|B) = \\frac{P(B|A)P(A)}{P(B)}\n\n\nProof. \n\nBayes’ Theorem may be derived from the definition of conditional probability: P(A|B) = \\frac{P(A \\cap B)}{P(B)} \\text{, if } P(B) \\neq 0,\nwhere P(A \\cap B) is the probability of both A and B being true. Similarly, P(B|A) = \\frac{P(A \\cap B)}{P(A)} \\text{, if } P(A) \\neq 0.\nSolving for P(A \\cap B) and substituting into the above expression for P(A|B) yields Bayes’ Theorem: P(A|B) = \\frac{P(B|A)P(A)}{P(B)} \\text{, if } P(B) \\neq 0.",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#independence-of-events",
+    "href": "pages/Stats/Probability-Basics.html#independence-of-events",
+    "title": "Basic Concepts of Probability",
+    "section": "Independence of Events",
+    "text": "Independence of Events\nDefinition: Two events A and B are independent if P(A \\cap B) = P(A)P(B)\n\nIf P(B) &gt; 0, P(A|B) = P(A)\nDisjoint events are never independent\nFor events to be independent, they should have a non-empty intersection",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#mutual-independence-of-multiple-events",
+    "href": "pages/Stats/Probability-Basics.html#mutual-independence-of-multiple-events",
+    "title": "Basic Concepts of Probability",
+    "section": "Mutual independence of multiple events",
+    "text": "Mutual independence of multiple events\nDefinition: Events A_1, A_2, \\ldots, A_n are mutually independent if, for all i_1, i_2, \\ldots, i_k, P(A_{i_1} \\cap A_{i_2} \\cap \\ldots \\cap A_{i_k}) = P(A_{i_1})P(A_{i_2}) \\ldots P(A_{i_k})\n\nA and B are independent \\implies A and B^c are independent\n\nP(A \\cap B^c) = P(A \\setminus B) = P(A) - P(A \\cap B) = P(A)(1 - P(B)) = P(A)P(B^c)\nIntuitive: B does not affect A \\implies B^c does not affect A\nTwo events are independent \\implies Complement of one event is independent of the other\n\nUsing the above twice: A and B are independent \\implies A^c and B^c are independent\nExtension: n events are mutually independent \\implies any subset with or without complementing are independent as well",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html",
+    "href": "pages/RL/Multi-armed-bandits.html",
+    "title": "Multi-armed Bandits",
+    "section": "",
+    "text": "Slides\n\n\n\n\n\nSlides for this content are available here: Multi-armed Bandits and Upper Confidence Bounds and PAC bounds for Multi-Armed Bandits.",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#a-k-armed-bandit-problem",
+    "href": "pages/RL/Multi-armed-bandits.html#a-k-armed-bandit-problem",
+    "title": "Multi-armed Bandits",
+    "section": "1 A \\(k\\)-armed Bandit Problem",
+    "text": "1 A \\(k\\)-armed Bandit Problem\nYou are faced repeatedly with a choice among \\(k\\) different actions. After each choice, you receive a numerical reward chosen from a stationary probability distribution that depends on the action you selected. Your objective is to maximize the expected total reward over some time period, for example, over \\(1000\\) action selections, or time steps.",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#value-of-an-action",
+    "href": "pages/RL/Multi-armed-bandits.html#value-of-an-action",
+    "title": "Multi-armed Bandits",
+    "section": "2 Value of an Action",
+    "text": "2 Value of an Action\nThe set of all actions is denoted by \\(\\mathcal{A}\\), \\(\\left| \\mathcal{A} \\right| = k\\). Each of the \\(k\\) actions has an expected reward given the action is selected - the value of the action. The action selected on time step \\(t\\) is \\(A_t\\). The corresponding reward is \\(R_t\\). The value of an arbitrary action \\(a\\), denoted \\(q_*(a)\\), is the expected reward given that \\(a\\) is selected: \\[ q_*(a) = \\mathbb{E}[R_t | A_t = a] \\]",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#the-problem",
+    "href": "pages/RL/Multi-armed-bandits.html#the-problem",
+    "title": "Multi-armed Bandits",
+    "section": "3 The Problem",
+    "text": "3 The Problem\nThe value of an action is unknown and must be estimated. We denote the estimated value of action \\(a\\) at time step \\(t\\) as \\(Q_t(a)\\). We would like \\(Q_t(a)\\) to be close to \\(q_*(a)\\). Should we select the action with the highest estimated value or should we explore other actions? This is the exploration-exploitation dilemma/trade-off.",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#possible-solutions",
+    "href": "pages/RL/Multi-armed-bandits.html#possible-solutions",
+    "title": "Multi-armed Bandits",
+    "section": "4 Possible solutions",
+    "text": "4 Possible solutions\n\nAsymptotic correctness \\[Q_t(a) \\rightarrow q_*(a) \\text{ as } t \\rightarrow \\infty\\]\nRegret optimality \\[\\lim_{t \\rightarrow \\infty} \\frac{1}{t} \\sum_{i=1}^{t} (q_*(a^*) - q_*(A_t)) = 0\\]\nPAC (Probably (\\(\\delta\\)) Approximately (\\(\\epsilon\\)) Correct) optimality \\[P(q_*(A_t) \\geq q_*(a^*) - \\epsilon) \\geq (1-\\delta)\\]",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#action-value-methods",
+    "href": "pages/RL/Multi-armed-bandits.html#action-value-methods",
+    "title": "Multi-armed Bandits",
+    "section": "5 Action-value Methods",
+    "text": "5 Action-value Methods\nThe true value of an action is the mean reward when that action is selected. One natural way to estimate this is by averaging the rewards actually received: \\[ Q_t(a) = \\frac{\\text{sum of rewards when } a \\text{ taken prior to } t}{\\text{number of times } a \\text{ taken prior to } t} = \\frac{\\sum\\limits_{i=1}^{t-1}R_{i}\\cdot\\mathbb{1}_{A_{i}=a}}{\\sum\\limits_{i=1}^{t-1}\\mathbb{1}_{A_{i}=a}} \\] where \\(\\mathbb{1}_{\\text{predicate}}\\) denotes the random variable that is \\(1\\) if the predicate is true and \\(0\\) otherwise.\nIf the denominator is \\(0\\), we define \\(Q_t(a)\\) to be some default value, such as \\(0\\). By the law of large numbers, as \\(\\sum\\limits_{i=1}^{t-1}\\mathbb{1}_{A_{i}=a} \\rightarrow \\infty\\), \\(Q_t(a) \\rightarrow q_*(a)\\). This is known as the sample-average method for estimating action values because each estimate is an average of the sample of relevant rewards.\nThe simplest action selection rule is to select one of the actions with the highest estimated value, that is, one of the greedy actions. If there is more than one greedy action, then a selection is made among them in some arbitrary way, perhaps randomly. We write this greedy action selection method as \\[ A_{t} \\doteq \\underset{a}{\\arg\\max}\\ Q_{t}( a) \\]\nGreedy action selection always exploits current knowledge to maximize immediate reward; it spends no time at all sampling apparently inferior actions to see if they might really be better.",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#epsilon-greedy-methods",
+    "href": "pages/RL/Multi-armed-bandits.html#epsilon-greedy-methods",
+    "title": "Multi-armed Bandits",
+    "section": "6 \\(\\epsilon\\)-Greedy Methods",
+    "text": "6 \\(\\epsilon\\)-Greedy Methods\nA simple alternative to allow for some exploration is to behave greedily most of the time, but every once in a while, say with small probability \\(\\epsilon\\), instead select randomly from among all the \\(k = \\left| \\mathcal{A} \\right|\\) actions with equal probability, independently of the action-value estimates. We call methods using this near-greedy action selection rule \\(\\epsilon\\)-greedy methods. The \\(\\epsilon\\)-greedy action selection method is defined as follows:\n\nWith probability \\(1-\\epsilon\\), select \\(A_t = \\underset{a}{\\arg\\max}\\ Q_t(a)\\) (greedy action)\nWith probability \\(\\epsilon\\), select \\(A_t\\) randomly from \\(\\mathcal{A}\\)\n\nWhether choosing the greedy action directly or randomly choosing from all actions (including the greedy action), \\[ P(A_t = \\underset{a}{\\arg\\max}\\ Q_t(a)) = 1 - \\epsilon + \\frac{\\epsilon} {k} \\]",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#softmax-action-selection",
+    "href": "pages/RL/Multi-armed-bandits.html#softmax-action-selection",
+    "title": "Multi-armed Bandits",
+    "section": "7 Softmax Action Selection",
+    "text": "7 Softmax Action Selection\nThe softmax action selection rule is a “soft” version of the greedy action selection rule. In \\(\\epsilon\\)-greedy methods, the greedy action gets the most probability mass, and all the other actions have an equal probability of being selected in the exploration phase.\nIf some actions are worse than others, should try to reduce the probability of selecting them during exploration. The softmax action selection method can be denoted as \\[ P(A_t = a) = \\frac{e^{Q_t(a)/\\tau}}{\\sum_{b=1}^{k}e^{Q_t(b)/\\tau}} \\] where \\(\\tau\\) is the temperature parameter that controls the level of exploration. It can be “cooled” over time to reduce exploration.",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#incremental-implementation",
+    "href": "pages/RL/Multi-armed-bandits.html#incremental-implementation",
+    "title": "Multi-armed Bandits",
+    "section": "8 Incremental Implementation",
+    "text": "8 Incremental Implementation\nThe action-value methods discussed so far all estimate action values as sample averages of observed rewards. To simplify notation, we focus on a single action. Let \\(R_i\\) now denote the reward received after the \\(i\\)th selection of this action, and let \\(Q_n\\) denote the estimate of its action value after it has been selected \\(n-1\\) times, which we can now write simply as \\[ Q_{n} \\doteq \\frac{R_{1} + R_{2} + \\ldots + R_{n-1}}{n-1} \\] The obvious implementation would be to maintain a record of all the rewards and then perform this computation whenever the estimated value was needed. However, if all the rewards are stored, as more rewards are seen, the memory and computational requirements would keep increasing. These averages can be computed in a computationally efficient manner, in particular, with constant memory and constant per-time-step computation.\nGiven \\(Q_{n}\\) and the \\(n\\)th reward, \\(R_{n}\\), the new average of all \\(n\\) rewards can be computed by\n\\[\\begin{aligned}\nQ_{n+1} & =\\frac{1}{n} \\ \\sum\\limits_{i=1}^{n} R_{i}\\\\\n& =\\frac{1}{n} \\ \\left( R_{n} +\\sum\\limits_{i=1}^{n-1} R_{i}\\right)\\\\\n& =\\frac{1}{n} \\ \\left( R_{n} +( n-1)\\frac{1}{n-1} \\ \\sum\\limits _{i=1}^{n-1} R_{i}\\right)\\\\\n& =\\frac{1}{n} \\ ( R_{n} +( n-1) Q_{n})\\\\\n& =\\frac{1}{n} \\ ( R_{n} +nQ_{n} -Q_{n})\\\\\n& =Q_{n} +\\frac{1}{n}[ R_{n} -Q_{n}]\n\\end{aligned}\\] which holds even for \\(n=1\\), obtaining \\(Q_{2} = R_{1}\\) for arbitrary \\(Q_{1}\\).\nThis update rule has the form of a stochastic averaging equation. The general form of such an equation is \\[ NewEstimate \\leftarrow OldEstimate + StepSize \\left[ Target - OldEstimate \\right] \\]\nThe expression \\([Target - OldEstimate]\\) is an error in the estimate. It is reduced by taking a step toward the “Target”. The step-size parameter \\((StepSize)\\) used in the incremental implementation changes from time step to time step. In processing the \\(n\\)th reward for an action, the step-size parameter is \\(\\frac{1}{n}\\). It is often denoted by \\(\\alpha\\) or, more generally, by \\(\\alpha_{t}(a)\\).",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#nonstationary-problems",
+    "href": "pages/RL/Multi-armed-bandits.html#nonstationary-problems",
+    "title": "Multi-armed Bandits",
+    "section": "9 Nonstationary Problems",
+    "text": "9 Nonstationary Problems\nThe methods discussed so far are appropriate for stationary bandit problems, where the reward probabilities do not change over time. In nonstationary cases, it makes sense to give more weight to recent rewards than to long-past rewards.\nOne way to do this is to use a constant step-size parameter. The incremental update rule for updating an average \\(Q_{n}\\) of the \\(n-1\\) past rewards is modified to be \\[ Q_{n+1} = Q_{n} + \\alpha \\left[ R_{n} - Q_{n} \\right] \\] where the step-size parameter \\(\\alpha \\in (0, 1]\\) is constant.\nThis results in \\(Q_{n+1}\\) being a weighted average of past rewards and the initial estimate \\(Q_{1}\\): \\[\\begin{array}{ r c l }\nQ_{n+1} & = & Q_{n} +\\alpha [R_{n} -Q_{n} ]\\\\\n& = & \\alpha R_{n} +(1-\\alpha )Q_{n}\\\\\n& = & \\alpha R_{n} +(1-\\alpha )[\\alpha R_{n-1} +(1-\\alpha )Q_{n-1} ]\\\\\n& = & \\alpha R_{n} +(1-\\alpha )\\alpha R_{n-1} +(1-\\alpha )^{2} Q_{n-1}\\\\\n& = & \\alpha R_{n} +(1-\\alpha )\\alpha R_{n-1} +(1-\\alpha )^{2} \\alpha R_{n-2} +\\\\\n&  & \\dotsc +(1-\\alpha )^{n-1} \\alpha R_{1} +(1-\\alpha )^{n} Q_{1}\\\\\n& = & \\ (1-\\alpha )^{n} Q_{1} +\\sum\\limits _{i=1}^{n} \\alpha (1-\\alpha )^{n-i} R_{i}\n\\end{array}\\]\nWe call this a weighted average because the sum of the weights is \\((1-\\alpha )^{n} +\\sum\\limits _{i=1}^{n} \\alpha (1-\\alpha )^{n-i} = 1\\).\nNote that the weight \\(\\alpha (1-\\alpha )^{n-i}\\), given to the reward \\(R_{i}\\), depends on how many rewards ago, \\(n-i\\), it was observed. The quantity \\(1-\\alpha\\) is less than \\(1\\), so the weight given to \\(R_i\\) decreases as the number of intervening rewards increases. In fact, the weight decays exponentially according to the exponent on \\(1-\\alpha\\). If \\(1-\\alpha = 0\\), then all the weight goes on the very last reward, \\(R_n\\), because of the convention that \\(0^0 = 1\\). Accordingly, this is sometimes called an exponential recency-weighted average.",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#upper-confidence-bound-ucb-action-selection",
+    "href": "pages/RL/Multi-armed-bandits.html#upper-confidence-bound-ucb-action-selection",
+    "title": "Multi-armed Bandits",
+    "section": "10 Upper-Confidence-Bound (UCB) Action Selection",
+    "text": "10 Upper-Confidence-Bound (UCB) Action Selection\nIn its most basic formulation, a \\(K\\)-armed bandit problem is defined by random variables \\(X_{i,n}\\) for \\(1 \\leq i \\leq K\\) and \\(n \\geq 1\\), where \\(i\\) is the index of a gambling machine (i.e., the “arm” of the bandit). Successive plays of arm \\(i\\) yield rewards \\(X_{i,1}, X_{i,2}, \\ldots\\) that are independent and identically distributed (i.i.d.) random variables to an unknown law with unknown expectation \\(\\mu_i\\). Independence also holds for rewards across different arms; i.e., \\(X_{i,s}\\) and \\(X_{j,t}\\) are independent (and usually not identically distributed) for each \\(1 \\leq i &lt; j \\leq K\\) and each \\(s, t \\geq 1\\).\nA policy, or allocation strategy, \\(A\\) is an algorithm that chooses the next arm to play based on the sequence of past plays and obtained rewards. Let \\(T_{i}(n)\\) be the random variable which represents the number of times arm \\(i\\) has been played by \\(A\\) during the first \\(n\\) plays. Then the regret of \\(A\\) after \\(n\\) plays is defined by \\[\\mu^* n - \\mu_{j} \\sum\\limits_{i=1}^{K} \\mathbb{E}[T_{j}(n)]\\] where \\(\\mu^* = \\underset{1\\leq i \\leq K}{\\max} \\mu_i\\) and \\(\\mathbb{E}[\\cdot]\\) denotes the expectation. Thus the regret is the expected loss due to the fact that the policy does not always play the best arm.\n\n10.1 UCB1 Algorithm\nDeterministic policy: UCB1.\nInitialization: Play each arm once.\nLoop:\n            Play arm \\(j\\) that maximizes \\(\\bar{x}_j + \\sqrt{\\frac{2\\ln n}{n_j}}\\),\nwhere \\(\\bar{x}_j\\) is the average reward obtained from arm \\(j\\), \\(n_j\\) is the number of times arm \\(j\\) has been played so far, and \\(n\\) is the overall number of plays so far.\n\n\n10.2 Theorem\nFor all \\(K &gt; 1\\), if policy UCB1 is run on \\(K\\) arms having arbitrary reward distributions \\(P_1,\\dots,P_{K}\\) with support in \\([0, 1]\\), then its expected regret after any number of plays \\(n\\) is at most \\[ \\left[8 \\sum\\limits_{i:\\mu_i &lt; \\mu^*} \\left( \\frac{\\ln n}{\\Delta_{i}} \\right) \\right] + \\left(1+ \\frac{\\pi^2}{3}  \\right) \\left(\\sum\\limits_{j=1}^{K} \\Delta_{j} \\right)\\] where \\(\\mu_1,\\dots,\\mu_K\\) are the expected values of \\(P_1,\\dots,P_{K}\\).\nMatching the notation of the theorem from the original paper to our notation, we get:\n\n\\(\\bar{x}_j = Q(j)\\)\n\\(\\mu_i = \\mathbb{E}[X_{i,n}] = q_*(i)\\)\n\\(\\mu^* = q_*(a^*)\\)\n\\(\\Delta_{i} = \\mu^* - \\mu_i = q_*(a^*) - q_*(i)\\)\n\\(\\text{Regret}_{n}=\\sum\\limits_{i} \\mathbb{E}[T_{i}(n)] \\Delta_{i}\\)\n\nTo prove the theorem, we need to show that, for any suboptimal arm \\(j\\), \\[\\mathbb{E}[T_{j}(n)] \\leq \\frac{8 \\ln n}{\\Delta_{j}^2}+c\\]\nWe also define the r.v.’s \\(I_1, I_2, \\ldots\\) such that $I_t denotes the arm played at time \\(t\\). Also, \\(\\sum_{i=1}^{K} T_{i}(n) = n\\). For each \\(1\\leq i \\leq K\\), and \\(n \\geq 1\\), define \\[\\bar{X}_{i,n} = \\frac{1}{n} \\sum\\limits_{t=1}^{n} X_{i,t} \\]\n\n\n10.3 Chernoff-Hoeffding Bound\nLet \\(X_1, X_2, \\ldots, X_n\\) be random variables with common range \\([0, 1]\\) and such that \\(\\mathbb{E}[X_t|X_1, X_2, \\ldots, X_{t-1}] = \\mu\\). Let \\(S_n = \\frac{X_1 + X_2 + \\ldots + X_n}{n}\\). Then, for all \\(\\epsilon &gt; 0\\),\n\\[ P(S_n \\geq \\mu + \\epsilon) \\leq e^{-2\\epsilon^{2}n} \\text{ and } P(S_n \\leq \\mu - \\epsilon) \\leq e^{-2\\epsilon^{2}n} \\]\n\n\n10.4 Proof of UCB1 Theorem\nLet \\(c_{t,s} = \\sqrt{\\frac{2\\ln t}{s}}\\). For any arm \\(i\\), we upper bound \\(T_{i}(n)\\) on any sequence of plays. More precisely, for each \\(t \\geq 1\\) we bound the indicator function of \\(I_t=i\\) as follows. Let \\(\\mathscr{l}\\) be an arbitrary positive integer. Note: \\(\\displaystyle \\{I_{t} =i\\} =1\\) if arm \\(i\\) is played at time \\(t\\) and \\(0\\) otherwise.\n\\[\\begin{aligned}\nT_i(n) &= 1 + \\sum\\limits_{t=K+1}^{n} \\{I_{t} =i\\} \\\\\n&\\leq \\mathscr{l} + \\sum\\limits_{t=K+1}^{n} \\{I_{t} =i, T_{i}(t-1) \\geq \\mathscr{l} \\} \\\\\n&\\leq \\mathscr{l} + \\sum\\limits_{t=K+1}^{n} \\{\\bar{X}_{T^{*}(t-1)}^{*} + c_{t-1,T^{*}(t-1)} \\leq \\bar{X}_{i,T_{i}(t-1)} + c_{t-1,T_{i}(t-1)}, T_{i}(t-1) \\geq \\mathscr{l} \\}  \\\\\n&\\leq \\mathscr{l} + \\sum\\limits_{t=K+1}^{n} \\{ \\underset{0&lt;s&lt;t}{\\min} \\bar{X}_{s}^{*} + c_{t-1,s} \\leq \\underset{\\mathscr{l}\\ \\leq s_i &lt; t}{\\max} \\bar{X}_{i,s_i} + c_{t-1,s_i} \\} \\\\\n\n&\\leq \\mathscr{l} + \\sum\\limits_{t=1}^{\\infty} \\sum\\limits_{s=1}^{t-1} \\sum\\limits_{s_{i}=\\mathscr{l}}^{t-1} \\{ \\bar{X}_{s}^{*} + c_{t,s} \\leq \\bar{X}_{i, s_{i}} + c_{t,s_i} \\}\n\\end{aligned}\\]\nNow observe that \\(\\bar{X}_{s}^{*} + c_{t,s} \\leq \\bar{X}_{i, s_{i}} + c_{t,s_i}\\) implies that at least one of the following must hold\n\n\\(\\overline{X}_{s}^{*} +c_{t,s} \\leqslant \\ \\mu ^{*} -c_{t,s}\\)\n\\(\\overline{X}_{i,s_{i}} \\geqslant \\mu _{i} +c_{t,s_{i}}\\)\n\\(\\mu ^{*} &lt; \\mu _{i} +2c_{t,s_{i}}\\)\n\nWe bound the probability of the first two events using the Chernoff-Hoeffding bound as shown in Section 10.3.\n\\(P(\\overline{X}_{s}^{*} +c_{t,s} \\leqslant \\ \\mu ^{*} -c_{t,s}) \\leq e^{-2c_{t,s}^{2}s} = e^{-4\\ln t} = t^{-4}\\)\n\\(P(\\overline{X}_{i,s_{i}} \\geqslant \\mu _{i} +c_{t,s_{i}}) \\leq e^{-2c_{t,s_{i}}^{2}s_{i}} = e^{-4\\ln t} = t^{-4}\\)\nFor \\(\\mathscr{l} =\\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil\\), the third event is impossible. In fact\n\\(\\mu ^{*} - \\mu _{i} - 2c_{t,s_{i}} = \\mu ^{*} - \\mu _{i} - 2\\sqrt{\\frac{2\\ln t}{s_{i}}} \\geq \\mu ^{*} - \\mu _{i} - \\Delta _{i} = \\Delta _{i} - \\Delta _{i} = 0\\)\nfor \\(s_i \\geq \\frac{8\\ln n}{\\Delta_i^2}\\). So we get\n\\[\\begin{array}{ c c l }\n\\mathbb{E}[ T_{i}( n)] & \\leqslant  &  \\begin{array}{l}\n\\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil +\\sum\\limits _{t=1}^{\\infty }\\sum\\limits _{s=1}^{t-1}\\sum\\limits _{s_{i} =\\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil }^{t-1}\\\\\n\\times \\ \\left( P\\left\\{\\overline{X}_{s}^{*} \\leqslant \\mu ^{*} -c_{t,s}\\right\\} +P\\{\\overline{X}_{i,s_{i}} \\geqslant \\mu _{i} +c_{t,s_{i}}\\}\\right)\n\\end{array}\\\\\n& \\leqslant  & \\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil +\\sum\\limits _{t=1}^{\\infty }\\sum\\limits _{s=1}^{t}\\sum\\limits _{s_{i} =1}^{t} 2t^{-4}\\\\\n& \\leqslant  & \\frac{8\\ \\ln n}{\\Delta _{i}^{2}} +1+\\frac{\\pi ^{2}}{3}\n\\end{array}\\]\nwhich concludes the proof.",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/RL/Multi-armed-bandits.html#pac-bounds-for-multi-armed-bandits",
+    "href": "pages/RL/Multi-armed-bandits.html#pac-bounds-for-multi-armed-bandits",
+    "title": "Multi-armed Bandits",
+    "section": "11 PAC Bounds for Multi-armed Bandits",
+    "text": "11 PAC Bounds for Multi-armed Bandits\n\n11.1 Markov’s Inequality\nLet \\(X\\) be a non-negative random variable. Then, for any \\(a &gt; 0\\), \\[ P(X \\geq a) \\leq \\frac{\\mathbb{E}[X]}{a} \\]\n\n\n11.2 Union Bound\nLet \\(A_1, A_2, \\ldots, A_n\\) be events. Then, \\[ P(A_1 \\cup A_2 \\cup \\ldots \\cup A_n) \\leq P(A_1) + P(A_2) + \\ldots + P(A_n) \\] \\[ \\equiv P\\left( \\bigcup_{i=1}^{n} A_i \\right) \\leq \\sum_{i=1}^{n} P(A_i) \\]\n\n\n11.3 Naive Algorithm\nInput: \\(\\epsilon &gt; 0, \\delta &gt;0\\)\nOutput: An arm\nforeach Arm \\(a \\in \\mathcal{A}\\) do\n        Sample it \\(\\mathscr{l} = \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta})\\) times;\n        Let \\(\\hat{p}_a\\) be the average reward of arm \\(a\\);\nend\nOutput \\(a' = \\underset{a \\in \\mathcal{A}}{\\arg\\max} \\{ \\hat{p}_a \\}\\);\n\n\n11.4 Theorem\nThe algorithm Naive(\\(\\epsilon, \\delta\\)) is an (\\(\\epsilon, \\delta\\))-PAC algorithm with arm sample complexity \\(O((\\frac{k}{\\epsilon^2}) \\log (\\frac{k}{\\delta}))\\).\n\n\n11.5 Proof\nLet \\(a'\\) be an arm s.t. \\(q_*(a')&lt;q_*(a^*)-\\epsilon\\)\n\\(P(Q(a')&gt;Q(a^*)) \\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon} {2} \\text{ or } Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon} {2})\\)\n\\[\\begin{aligned}\nP(Q(a')&gt;Q(a^*)) &\\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon}{2} \\text{ or } Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon}{2}) \\\\\n&\\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon}{2}) + P(Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon}{2}) \\\\\n&\\leq 2\\exp(-2\\left( \\frac{\\epsilon}{2} \\right)^2 \\mathscr{l})\n\\end{aligned}\\]\nSubstituting \\(\\mathscr{l} = \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta})\\),\n\\[P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(-2\\left( \\frac{\\epsilon}{2} \\right)^2 \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta}))\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(- \\frac{2}{2} \\ln (\\frac{2k}{\\delta}))\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(\\ln(\\frac{2k}{\\delta})^{-1})\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq \\frac{\\delta}{k}\\]\nSumming over all \\(a'\\), we have that \\[\\text{probability of failure} \\leq (k-1)(\\frac{\\delta}{k}) &lt; \\delta\\]\n\n\n11.6 Median Elimination Algorithm\nInput: \\(\\epsilon &gt; 0, \\delta &gt;0\\)\nOutput: An arm\nSet \\(S_1=A, \\epsilon_1=\\frac{\\epsilon}{4}, \\delta_1=\\frac{\\delta}{2}, \\mathscr{l} = 1\\). repeat\n        Sample every arm \\(a \\in S_{\\mathscr{l}}\\) for \\(\\frac{1}{(\\epsilon_{\\mathscr{l}})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{\\mathscr{l}}} \\right)\\) times, and let \\(\\hat{p}_a^{\\mathscr{l}}\\) denote its empirical value;\n        Find the median of \\(\\hat{p}_a^{\\mathscr{l}}\\), denoted by \\(m_{\\mathscr{l}}\\);\n        \\(S_{\\mathscr{l}+1} = S_{\\mathscr{l}} \\backslash \\{ a : \\hat{p}_a^{\\mathscr{l}} &lt; m_{\\mathscr{l}} \\}\\);\n        \\(\\epsilon_{\\mathscr{l}+1} = \\frac{3}{4} \\epsilon_{\\mathscr{l}}\\); \\(\\delta_{\\mathscr{l}+1} = \\frac{\\delta_{\\mathscr{l}}}{2}\\); \\(\\mathscr{l} = \\mathscr{l} + 1\\);\nuntil \\(\\left|S_{\\mathscr{l}}\\right| = 1\\);\nMatching the notation used in the paper to our notation: \\(\\hat{p}_a^{\\mathscr{l}} = Q_{\\mathscr{l}}(a)\\)\n\n\n11.7 Theorem\nThe Median Elimination (\\(\\epsilon, \\delta\\)) algorithm is an (\\(\\epsilon, \\delta\\))-PAC algorithm and its sample complexity is\n\\[ O \\left( \\frac{k}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right) \\]\nFirst we show that in the \\(\\mathscr{l}\\)-th phase the expected reward of the best arm in \\(S_{\\mathscr{l}}\\) drops by at most \\(\\epsilon_{\\mathscr{l}}\\).\n\n\n11.8 Lemma 1\nFor the Median Elimination (\\(\\epsilon, \\delta\\)) algorithm we have that for every phase \\(\\mathscr{l}\\): \\[ P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} p_{j} \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} p_{i} + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]\n\\[ \\equiv P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} q_{*}(j) \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} q_{*}(i) + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]\n\n\n11.9 Proof\nWithout loss of generality consider \\(\\mathscr{l}=1\\). We bound the failure probability by looking at the event \\(E_1\\),\n\\[ E_1 = \\left\\{ \\hat{p}_1 &lt; p_1 - \\frac{\\epsilon_1}{2} \\right\\} \\equiv E_1 = \\left\\{ Q(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2} \\right\\} \\]\nwhich is the case that the empirical estimate of the best arm is pessimistic. Since we sample sufficiently, we have that\n\\[ P[E_1] = P\\left[Q(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2}\\right]\\]\nApplying the Chernoff-Hoeffding bound (Section 10.3), we have that\n\\[ P[E_1] \\leq \\exp \\left(-2 \\left( \\frac{\\epsilon_1}{2} \\right)^2 \\frac{1}{(\\epsilon_{1})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{1}} \\right) \\right) \\]\n\\[ \\implies P[E_1] \\leq \\frac{\\delta_1}{3} \\]\nIn case \\(E_1\\) does not happen, we calculate the probability that an arm \\(j\\) which is not an \\(\\epsilon_1\\)-optimal arm is empirically better than the best arm.\n\\[ P \\left[ Q_{\\mathscr{l}}(j) \\geq Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) | Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{\\delta_1}{3}\\]\nLet #bad be the number of arms that are not \\(\\epsilon_1\\)-optimal but are empirically better than the best arm. We have that\n\\[ \\mathbb{E} \\left[ \\# bad \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq |S_\\mathscr{l}| \\frac{ \\delta_{1}} {3} \\]\nNext we apply Markov’s inequality (Section 11.1) to obtain\n\\[ P \\left [ \\# bad \\geq \\frac{|S_\\mathscr{l}|}{2} \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{|S_\\mathscr{l}|\\frac{\\delta_1}{3}}{\\frac{|S_\\mathscr{l}|}{2}} = \\frac{2\\delta_{1}}{3} \\]\nUsing the union bound (Section 11.2) gives us that the probability of failure is bounded by \\(\\delta_1\\).\n\n\n11.10 Lemma 2\nThe sample complexity of the Median Elimination \\((\\epsilon, \\delta)\\) is \\(O \\left( \\frac{n}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right)\\).\n\n\n11.11 Proof\nThe number of arm samples in the \\(\\mathscr{l}\\)-th round is \\(4n_{\\mathscr{l}} log  (\\frac{3}{\\delta_{\\mathscr{l}}} ) / \\epsilon_{\\mathscr{l}}^2\\). By definition we have that\n\n\\(\\delta_{1} = \\frac{\\delta}{2}\\) ; \\(\\frac{\\delta_{\\mathscr{l}-1}}{2}= \\frac{\\delta}{2^{\\mathscr{l}}}\\)\n\\(n_1 = n\\) ; \\(n_{\\mathscr{l}} = n_{\\mathscr{l}-1}/2 = n/2^{\\mathscr{l}-1}\\)\n\\(\\epsilon_{1} = \\frac{\\epsilon}{4}\\) ; \\(\\epsilon_{\\mathscr{l}} = \\frac{3}{4} \\epsilon_{\\mathscr{l}-1} = ( \\frac{3}{4} )^{\\mathscr{l}-1} \\epsilon / 4\\)\n\nTherefore we have\n\\[\\begin{aligned}\n\\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n_{\\mathscr{l} } \\log  (3 / \\delta_{\\mathscr{l} } )} {(\\epsilon_{\\mathscr{l} }/2)^2} &= 4 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n/2^{\\mathscr{l} -1} \\log (2^{\\mathscr{l} }3/ \\delta)}{((\\frac{3}{4})^{\\mathscr{l} -1} \\epsilon /4)^2} \\\\\n&= 64 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} n(\\frac{8}{9})^{\\mathscr{l} -1} (\\frac{\\log(1/\\delta)}{\\epsilon^2} + \\frac{\\log (3)}{\\epsilon^2} + \\frac{\\mathscr{l} \\log (2)}{\\epsilon^2}) \\\\\n&\\leq 64 \\frac{n \\log(1/\\delta)}{\\epsilon^2} \\sum\\limits_{\\mathscr{l} =1}^{\\infty} (\\frac{8}{9})^{\\mathscr{l} -1} (\\mathscr{l}C' + C) = O \\left( \\frac{n \\log (1/\\delta)}{\\epsilon^2} \\right)\n\\end{aligned}\\]\nNow the Section 11.7 can be proved.\n\n\n11.12 Proof of Median Elimation Theorem\nFrom Section 11.10 we have that the sample complexity is bounded by \\(O \\left( n \\log (1/\\delta) / \\epsilon^2 \\right)\\). By Section 11.8 we have that the algorithm fails with probability _{i} in each round so that over all rounds the probability of failure is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\delta_{i} \\leq \\delta\\). In each round we reduce the optimal reward of the surviving arms by at most \\(\\epsilon_{i}\\) so that the total error is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\epsilon_{i} \\leq \\epsilon\\).",
+    "crumbs": [
+      "Reinforcement Learning",
+      "Multi-armed Bandits"
+    ]
+  },
+  {
+    "objectID": "pages/random/Fourier.html",
+    "href": "pages/random/Fourier.html",
+    "title": "Arachnidly",
+    "section": "",
+    "text": "Some handwritten notes on Fourier Series Representations\n\n\n\n\nReuseCC BY-NC-SA 4.0",
+    "crumbs": [
+      "Random Math",
+      "Fourier Series Representations"
+    ]
+  },
+  {
+    "objectID": "originals/articles/Etiquette-In-Indian-English/index.html",
+    "href": "originals/articles/Etiquette-In-Indian-English/index.html",
+    "title": "The Misunderstood Concept of Etiquette in Indian English",
+    "section": "",
+    "text": "Etiquette, a concept deeply embedded in the norms of polite behaviour and social conduct, generally assumes very peculiar manifestations when it gets adapted to the setting of different cultures. The way Indians have interpreted etiquette in the English language sometimes differs from traditional Western understanding. This article will draw on the specifics of this change, helping to illustrate how Indian English etiquette in and of itself is a reflection of both cultural diversity and historical influence.\nHistorical Context and Colonial Influence\nThe understanding of etiquette in India has been radically structured through its colonial history. Due to British dominion, English was cultivated as the language of administration and education, and so too were Western notions of etiquette naturalised into the culture. However, these ideas were adapted to the local context. For instance, the British would teach formal greetings and rigid table manners; Indian versions included aspects of their tradition such as foot touching to show reverence or dining as a group. These integrations of culture showed how colonial influences found ways into India’s pre-established culture, which uniquely in that process developed a version of etiquette that would be characteristically Indian (Tinkham, 1993).\nPoliteness and Hierarchical Respect\nPoliteness in Indian English is richly contributed to by the respect accorded to hierarchy and age. An elder, even informally, would always be addressed as “Sir” or “Madam.” Similarly, this kind of respect can also be seen at workplaces, where everybody from top to bottom is properly treated and maintained with a level of formality. On the other hand, Western etiquette may be more concerned with principles of equality and, at times, bluntness, which can become unresolvable conflicts when these cultural norms intersect. For example, in their research, Tinkham points out that Westernised Indians use phrases such as “thank you” and “I’m sorry” more than do the less Westernised ones. Clearly, there appears to be a need for understanding the cultural context in which language is used. It plays a very important role in communication and interactions between social beings.\nCommunication Styles\nIndian English etiquette can also be seen in communication styles. Indirectness is often preferred due to the desire not to face or cause confrontation and disharmony. Polite methods that a person might refuse include “I will try” or “Let’s see,” with such phrases expressing refusal or unverifiability. In Western society, where directness is respected, this would be considered evasiveness. This tendency towards ambiguity may give rise to misinterpretations, in which politeness in one culture seems ambiguous to others (Kurchenkova, Palashevskaya, & Kurchenkova, 2019). Understanding these differences is essential to effective cross-cultural communication, as it leads to a lack of confusion and gives room for a more respectful and empathetic interaction.\nHospitality and Guest Relations\nHospitality stands as a foundation of Indian culture, which can be mirrored by Indian English etiquette. Guests are considered with due respect and care, often with elaborate displays of hospitality. More than common polite invitations, sentences like “Please come,” and “You must have tea” reveal firm expectations. Western etiquette, on the other hand, might see such insistence as too much on the guest, which goes to show that there is a cultural difference in hosting and guest relations. This focus on hospitality really exemplifies the Indian value of treating guests as gods, a concept that dates back to the traditional saying “Atithi Devo Bhava.”\nThe Role of Apologies\nApologies in Indian English etiquette have a much more discreet role than in Western etiquette. The tradition of saying “sorry” often, even for quite small inconveniences, is a strategy to maintain social harmony and show care towards others. In Western cultures, apologies tend to be more sparing, and they are often reserved to show awareness of important mistakes. This may sometimes lead to confusion where frequent apologies indicate the weakness of a person in certain respects, not so much politeness (Bharuthram, 2003). It is for this very reason that the difference in culture with regard to behaviour such as an apology has great significance placed on context and indicates the possibility of cross-cultural misunderstanding in relation to the particular aspect of concern.\nAdapting to Global Standards\nThe more India integrates with the global community, there is an acute awareness of the need to balance traditional etiquette with global standards. This will hopefully allow for a more direct approach to workplace communication, whereby a better understanding is gained regarding the subtleties of Western manners. Equally as important are the efforts that need to be put in place to preserve those qualities of Indian etiquette that bring value and richness to interpersonal encounters and best reflect the cultural heritage of this country. It is in negotiating this fine balance that Indians who operate in a global environment ensure that they retain their cultural identity.\nConclusion\nIndian English etiquette is an interesting juxtaposition of traditional Indian values and colonial influences, adapted to contemporary life. Even as it might contrast with Western notions of politeness, there is deep respect, hospitality, and harmony in it. Understanding such differences is crucial for improving interaction and mutual respect between people in the globalising world. By appreciating unique expressions of etiquette across cultures, we are in a much better position to navigate social interactions with greater awareness.\n\n\n\nReuseCC BY-NC-SA 4.0"
+  },
+  {
+    "objectID": "originals/index.html",
+    "href": "originals/index.html",
+    "title": "Original Works",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nThe Misunderstood Concept of Etiquette in Indian English\n\n\n\n\n\n\narticle\n\n\nindian-culture\n\n\nlanguage\n\n\ncommunication\n\n\n\n\n\n\n\n\n\nAug 4, 2024\n\n\nAra C\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Original Works"
+    ]
+  },
+  {
+    "objectID": "pages/random/Vectors-in-alternate-basis.html",
+    "href": "pages/random/Vectors-in-alternate-basis.html",
+    "title": "Arachnidly",
+    "section": "",
+    "text": "ReuseCC BY-NC-SA 4.0",
+    "crumbs": [
+      "Random Math",
+      "Vectors in Alternate Basis"
+    ]
+  },
+  {
     "objectID": "pages/RL/MABs-and-UCB1-revealjs.html#a-k-armed-bandit-problem",
     "href": "pages/RL/MABs-and-UCB1-revealjs.html#a-k-armed-bandit-problem",
     "title": "Multi-armed Bandits and Upper Confidence Bounds",
@@ -222,297 +514,5 @@
     "title": "PAC bounds for Multi-armed Bandits",
     "section": "Proof of Median Elimination Theorem",
     "text": "Proof of Median Elimination Theorem\n\nFrom Section 8.1 we have that the sample complexity is bounded by \\(O \\left( n \\log (1/\\delta) / \\epsilon^2 \\right)\\).\nBy Section 6 we have that the algorithm fails with probability _{i} in each round so that over all rounds the probability of failure is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\delta_{i} \\leq \\delta\\).\nIn each round we reduce the optimal reward of the surviving arms by at most \\(\\epsilon_{i}\\) so that the total error is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\epsilon_{i} \\leq \\epsilon\\)."
-  },
-  {
-    "objectID": "pages/random/Vectors-in-alternate-basis.html",
-    "href": "pages/random/Vectors-in-alternate-basis.html",
-    "title": "Arachnidly",
-    "section": "",
-    "text": "ReuseCC BY-NC-SA 4.0",
-    "crumbs": [
-      "Random Math",
-      "Vectors in Alternate Basis"
-    ]
-  },
-  {
-    "objectID": "originals/index.html",
-    "href": "originals/index.html",
-    "title": "Original Works",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nThe Misunderstood Concept of Etiquette in Indian English\n\n\n\n\n\n\narticle\n\n\nindian-culture\n\n\nlanguage\n\n\ncommunication\n\n\n\n\n\n\n\n\n\nAug 4, 2024\n\n\nAra C\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Original Works"
-    ]
-  },
-  {
-    "objectID": "originals/articles/Etiquette-In-Indian-English/index.html",
-    "href": "originals/articles/Etiquette-In-Indian-English/index.html",
-    "title": "The Misunderstood Concept of Etiquette in Indian English",
-    "section": "",
-    "text": "Etiquette, a concept deeply embedded in the norms of polite behaviour and social conduct, generally assumes very peculiar manifestations when it gets adapted to the setting of different cultures. The way Indians have interpreted etiquette in the English language sometimes differs from traditional Western understanding. This article will draw on the specifics of this change, helping to illustrate how Indian English etiquette in and of itself is a reflection of both cultural diversity and historical influence.\nHistorical Context and Colonial Influence\nThe understanding of etiquette in India has been radically structured through its colonial history. Due to British dominion, English was cultivated as the language of administration and education, and so too were Western notions of etiquette naturalised into the culture. However, these ideas were adapted to the local context. For instance, the British would teach formal greetings and rigid table manners; Indian versions included aspects of their tradition such as foot touching to show reverence or dining as a group. These integrations of culture showed how colonial influences found ways into India’s pre-established culture, which uniquely in that process developed a version of etiquette that would be characteristically Indian (Tinkham, 1993).\nPoliteness and Hierarchical Respect\nPoliteness in Indian English is richly contributed to by the respect accorded to hierarchy and age. An elder, even informally, would always be addressed as “Sir” or “Madam.” Similarly, this kind of respect can also be seen at workplaces, where everybody from top to bottom is properly treated and maintained with a level of formality. On the other hand, Western etiquette may be more concerned with principles of equality and, at times, bluntness, which can become unresolvable conflicts when these cultural norms intersect. For example, in their research, Tinkham points out that Westernised Indians use phrases such as “thank you” and “I’m sorry” more than do the less Westernised ones. Clearly, there appears to be a need for understanding the cultural context in which language is used. It plays a very important role in communication and interactions between social beings.\nCommunication Styles\nIndian English etiquette can also be seen in communication styles. Indirectness is often preferred due to the desire not to face or cause confrontation and disharmony. Polite methods that a person might refuse include “I will try” or “Let’s see,” with such phrases expressing refusal or unverifiability. In Western society, where directness is respected, this would be considered evasiveness. This tendency towards ambiguity may give rise to misinterpretations, in which politeness in one culture seems ambiguous to others (Kurchenkova, Palashevskaya, & Kurchenkova, 2019). Understanding these differences is essential to effective cross-cultural communication, as it leads to a lack of confusion and gives room for a more respectful and empathetic interaction.\nHospitality and Guest Relations\nHospitality stands as a foundation of Indian culture, which can be mirrored by Indian English etiquette. Guests are considered with due respect and care, often with elaborate displays of hospitality. More than common polite invitations, sentences like “Please come,” and “You must have tea” reveal firm expectations. Western etiquette, on the other hand, might see such insistence as too much on the guest, which goes to show that there is a cultural difference in hosting and guest relations. This focus on hospitality really exemplifies the Indian value of treating guests as gods, a concept that dates back to the traditional saying “Atithi Devo Bhava.”\nThe Role of Apologies\nApologies in Indian English etiquette have a much more discreet role than in Western etiquette. The tradition of saying “sorry” often, even for quite small inconveniences, is a strategy to maintain social harmony and show care towards others. In Western cultures, apologies tend to be more sparing, and they are often reserved to show awareness of important mistakes. This may sometimes lead to confusion where frequent apologies indicate the weakness of a person in certain respects, not so much politeness (Bharuthram, 2003). It is for this very reason that the difference in culture with regard to behaviour such as an apology has great significance placed on context and indicates the possibility of cross-cultural misunderstanding in relation to the particular aspect of concern.\nAdapting to Global Standards\nThe more India integrates with the global community, there is an acute awareness of the need to balance traditional etiquette with global standards. This will hopefully allow for a more direct approach to workplace communication, whereby a better understanding is gained regarding the subtleties of Western manners. Equally as important are the efforts that need to be put in place to preserve those qualities of Indian etiquette that bring value and richness to interpersonal encounters and best reflect the cultural heritage of this country. It is in negotiating this fine balance that Indians who operate in a global environment ensure that they retain their cultural identity.\nConclusion\nIndian English etiquette is an interesting juxtaposition of traditional Indian values and colonial influences, adapted to contemporary life. Even as it might contrast with Western notions of politeness, there is deep respect, hospitality, and harmony in it. Understanding such differences is crucial for improving interaction and mutual respect between people in the globalising world. By appreciating unique expressions of etiquette across cultures, we are in a much better position to navigate social interactions with greater awareness.\n\n\n\nReuseCC BY-NC-SA 4.0"
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html",
-    "href": "pages/Stats/Probability-Basics.html",
-    "title": "Basic Concepts of Probability",
-    "section": "",
-    "text": "Experiment\n\nProcess or phenomenon that we wish to study statistically\n\n\n\nOutcome\n\nResult of the experiment (in as much detail as necessary)",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#experiment-and-outcome",
-    "href": "pages/Stats/Probability-Basics.html#experiment-and-outcome",
-    "title": "Basic Concepts of Probability",
-    "section": "",
-    "text": "Experiment\n\nProcess or phenomenon that we wish to study statistically\n\n\n\nOutcome\n\nResult of the experiment (in as much detail as necessary)",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#sample-space",
-    "href": "pages/Stats/Probability-Basics.html#sample-space",
-    "title": "Basic Concepts of Probability",
-    "section": "Sample Space",
-    "text": "Sample Space\nDefinition: A sample space S is a set that contains all possible outcomes of an experiment.\n\nSample space is a set, typically denoted S\nExamples:\n\nFlipping a coin: S = \\{\\text{Heads}, \\text{Tails}\\}\nRolling a die: S = \\{1, 2, 3, 4, 5, 6\\}",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#event",
-    "href": "pages/Stats/Probability-Basics.html#event",
-    "title": "Basic Concepts of Probability",
-    "section": "Event",
-    "text": "Event\nDefinition: An event is a subset of the sample space.\n\nExamples:\n\nToss a coin: S = \\{\\text{Heads}, \\text{Tails}\\}\n\nEvents: \\emptyset, \\{\\text{Heads}\\}, \\{\\text{Tails}\\}, \\{\\text{Heads}, \\text{Tails}\\}\n4 events\n\nThrow a die: S = \\{1, 2, 3, 4, 5, 6\\}\n\nEvents: \\emptyset, \\{1\\}, \\{2\\}, \\{3\\}, \\{4\\}, \\{5\\}, \\{6\\}, \\{1, 2\\}, \\{1, 3\\}, \\ldots, \\{1, 2, 3, 4, 5, 6\\}\n64 events\n\n\nAn event is said to have “occurred” if the actual outcome of the experiment belongs to the event.\nEvents are sets\n\nAll set theory notions apply to events\n\nOne event can be contained in another, i.e. A \\subseteq B\n\nThrow a die: A = \\{2, 6\\}, B = \\text{Even number}\nIf A occured, B has also occured\nIf B occured, A may or may not have occured\n\nComplement of an event A, denoted A^c = \\{\\text{outcomes in } S \\text{ not in } A\\} = (S \\setminus A)\n\nThrow a die: A = \\{2, 4, 6\\} (even), A^c = \\{1, 3, 5\\} (odd)\nIf A occured, A^c did not occur\nIf A^c occured, A did not occur\n\n\n\nCombining events to create new events\n\nUnion of events A and B, denoted A \\cup B = \\{x: x \\in A \\text{ or } x \\in B\\}\n\nThrow a die: A = \\{1, 2, 3\\}, B = \\{3, 4, 5\\}, A \\cup B = \\{1, 2, 3, 4, 5\\}\n\nIntersection of events A and B, denoted A \\cap B = \\{x: x \\in A \\text{ and } x \\in B\\}\n\nThrow a die: A = \\{1, 2, 3\\}, B = \\{3, 4, 5\\}, A \\cap B = \\{3\\}\n\n\n\n\nDisjoint events\n\nTwo events with an empty intersection are said to be disjoint or mutually exclusive events\n\nThrow a die: even number, odd number are disjoint\n\nSuppose A and B are disjoint events\n\nIf A occured, B did not occur\nIf B occured, A did not occur\n\nEvent and its complement\n\nA and A^c are disjoint, i.e. A \\cap A^c = \\emptyset\nTogether, they cover the entire sample space, i.e. A \\cup A^c = S\n\nEither A or A^c must occur\n\nA and A^c are an example of a partition of the sample space\n\nPartition: Collection of disjoint sets that together cover the entire sample space\n\n\nMultiple events: E_1, E_2, \\ldots, E_n are disjoint if, for any i \\neq j, E_i \\cap E_j = \\emptyset",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#probability",
-    "href": "pages/Stats/Probability-Basics.html#probability",
-    "title": "Basic Concepts of Probability",
-    "section": "Probability",
-    "text": "Probability\nDefinition: “Probability” is a function P that assigns to each event a real number between 0 and 1. The entire probability space (sample space, events and probability function) should satisfy the following two axioms:\n\nP(S) = 1 (probability of the entire sample space equals 1)\nIf E_1, E_2, E_3, \\ldots are disjoint events (how many events? Could be infinitely many), P(E_1 \\cup E_2 \\cup E_3 \\cup \\ldots) = P(E_1) + P(E_2) + P(E_3) + \\ldots",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#basic-properties-of-probability",
-    "href": "pages/Stats/Probability-Basics.html#basic-properties-of-probability",
-    "title": "Basic Concepts of Probability",
-    "section": "Basic Properties of Probability",
-    "text": "Basic Properties of Probability\n\nTheorem 1 (Basic Properties of Probability) Let P be a probability on a sample space S. Then,\n\nP(\\emptyset) = 0\nLet E^c be the complement of Event E. Then, \\newline P(E^c) = 1 - P(E)\nIf Event E is a subset of Event F, i.e. E \\subseteq F, then \\newline P(F) = P(E) + P(F \\setminus E)\\text{,} which implies that P(E) \\leq P(F)\n3.a. If E and F are events, then P(E) = P(E \\cap F) + P(E \\setminus F) \\text{,} P(F) = P(E \\cap F) + P(F \\setminus E)\nIf E and F are events, then P(E \\cup F) = P(E) + P(F) - P(E \\cap F)\n\n\n\nProof. \n\n\n\\emptyset^c = S and \\emptyset, S are disjoint and \\emptyset \\cup S = S.\nBy Axiom 2, P(\\emptyset \\cup S) = P(\\emptyset) + P(S) or P(S) = P(\\emptyset) + P(S) or P(\\emptyset) = 0.\n\n\nE and E^c are disjoint and E \\cup E^c = S.\nBy Axiom 2, P(E \\cup E^c) = P(E) + P(E^c) or P(S) = P(E) + P(E^c)\nBy Axiom 1, 1 = P(S) = P(E) + P(E^c)\nSo, P(E^c) = 1 - P(E)\n\n\nF \\setminus E = F \\cap E^c (outside of E and inside of F)\nE and F \\setminus E are disjoint and E \\cup (F \\setminus E) = F\nBy Axiom 2, P(E \\cup (F \\setminus E)) = P(E) + P(F \\setminus E) or P(F) = P(E) + P(F \\setminus E)\n\n3.a.\n\nE \\cap F is a subset of E\nBy subset property, P(E) = P(E \\cap F) + P(E \\setminus (E \\cap F))\nNow, E \\setminus (E \\cap F) = E \\setminus F\nSo, P(E) = P(E \\cap F) + P(E \\setminus F)\n\n\nE \\cup F = (E \\setminus F) \\cup (E \\cap F) \\cup (F \\setminus E) and the 3 events on RHS are disjoint\nP(E \\cup F) = P(E \\setminus F) + P(E \\cap F) + P(F \\setminus E)\nUse P(E \\setminus F) = P(E) - P(E \\cap F) and P(F \\setminus E) = P(F) - P(E \\cap F)",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#conditional-probability-space",
-    "href": "pages/Stats/Probability-Basics.html#conditional-probability-space",
-    "title": "Basic Concepts of Probability",
-    "section": "Conditional Probability Space",
-    "text": "Conditional Probability Space\nDefinition: Consider a probability space: Sample space S, collection of events, and a probability function P. Let B be an event with P(B) &gt; 0.\n\\newlineSample space: B \\newlineEvents: A \\cap B for every event A in the original space\n\\text{Probability function: } \\frac{P(A \\cap B)}{P(B)}\n\\newline(denoted P(A|B) and called conditional probability of A given B)\nFor any event A in the original space, P(A \\cap B) = P(B) \\cdot P(A|B)",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#law-of-total-probability",
-    "href": "pages/Stats/Probability-Basics.html#law-of-total-probability",
-    "title": "Basic Concepts of Probability",
-    "section": "Law of Total Probability",
-    "text": "Law of Total Probability\n\nTheorem 2 (Law of Total Probability) B_1, B_2, \\ldots \\text{ : Partition of } S  P(A) = P(A \\cap B_1) + P(A \\cap B_2) + \\ldots = P(A|B_1) P(B_1) + P(A|B_2) P(B_2) + \\ldots\n\n\nProof. \n\nA: disjoint union of A \\cap B_1, A \\cap B_2, \\ldots\nBy Axiom 2, P(A) = P(A \\cap B_1) + P(A \\cap B_2) + \\ldots\nUsing conditional probability on each term above, we get the result",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#bayes-theorem",
-    "href": "pages/Stats/Probability-Basics.html#bayes-theorem",
-    "title": "Basic Concepts of Probability",
-    "section": "Bayes’ Theorem",
-    "text": "Bayes’ Theorem\n\nTheorem 3 (Bayes’ Theorem)  A,B \\text{: Events with } P(A) &gt; 0 \\text{, } P(B) &gt; 0 P(A \\cap B) = P(B)P(A|B) = P(A)P(B|A) P(A|B) = \\frac{P(B|A)P(A)}{P(B)}\n\n\nProof. \n\nBayes’ Theorem may be derived from the definition of conditional probability: P(A|B) = \\frac{P(A \\cap B)}{P(B)} \\text{, if } P(B) \\neq 0,\nwhere P(A \\cap B) is the probability of both A and B being true. Similarly, P(B|A) = \\frac{P(A \\cap B)}{P(A)} \\text{, if } P(A) \\neq 0.\nSolving for P(A \\cap B) and substituting into the above expression for P(A|B) yields Bayes’ Theorem: P(A|B) = \\frac{P(B|A)P(A)}{P(B)} \\text{, if } P(B) \\neq 0.",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#independence-of-events",
-    "href": "pages/Stats/Probability-Basics.html#independence-of-events",
-    "title": "Basic Concepts of Probability",
-    "section": "Independence of Events",
-    "text": "Independence of Events\nDefinition: Two events A and B are independent if P(A \\cap B) = P(A)P(B)\n\nIf P(B) &gt; 0, P(A|B) = P(A)\nDisjoint events are never independent\nFor events to be independent, they should have a non-empty intersection",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#mutual-independence-of-multiple-events",
-    "href": "pages/Stats/Probability-Basics.html#mutual-independence-of-multiple-events",
-    "title": "Basic Concepts of Probability",
-    "section": "Mutual independence of multiple events",
-    "text": "Mutual independence of multiple events\nDefinition: Events A_1, A_2, \\ldots, A_n are mutually independent if, for all i_1, i_2, \\ldots, i_k, P(A_{i_1} \\cap A_{i_2} \\cap \\ldots \\cap A_{i_k}) = P(A_{i_1})P(A_{i_2}) \\ldots P(A_{i_k})\n\nA and B are independent \\implies A and B^c are independent\n\nP(A \\cap B^c) = P(A \\setminus B) = P(A) - P(A \\cap B) = P(A)(1 - P(B)) = P(A)P(B^c)\nIntuitive: B does not affect A \\implies B^c does not affect A\nTwo events are independent \\implies Complement of one event is independent of the other\n\nUsing the above twice: A and B are independent \\implies A^c and B^c are independent\nExtension: n events are mutually independent \\implies any subset with or without complementing are independent as well",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/random/Fourier.html",
-    "href": "pages/random/Fourier.html",
-    "title": "Arachnidly",
-    "section": "",
-    "text": "Some handwritten notes on Fourier Series Representations\n\n\n\n\nReuseCC BY-NC-SA 4.0",
-    "crumbs": [
-      "Random Math",
-      "Fourier Series Representations"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html",
-    "href": "pages/RL/Multi-armed-bandits.html",
-    "title": "Multi-armed Bandits",
-    "section": "",
-    "text": "Slides\n\n\n\n\n\nSlides for this content are available here: Multi-armed Bandits and Upper Confidence Bounds and PAC bounds for Multi-Armed Bandits.",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#a-k-armed-bandit-problem",
-    "href": "pages/RL/Multi-armed-bandits.html#a-k-armed-bandit-problem",
-    "title": "Multi-armed Bandits",
-    "section": "1 A \\(k\\)-armed Bandit Problem",
-    "text": "1 A \\(k\\)-armed Bandit Problem\nYou are faced repeatedly with a choice among \\(k\\) different actions. After each choice, you receive a numerical reward chosen from a stationary probability distribution that depends on the action you selected. Your objective is to maximize the expected total reward over some time period, for example, over \\(1000\\) action selections, or time steps.",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#value-of-an-action",
-    "href": "pages/RL/Multi-armed-bandits.html#value-of-an-action",
-    "title": "Multi-armed Bandits",
-    "section": "2 Value of an Action",
-    "text": "2 Value of an Action\nThe set of all actions is denoted by \\(\\mathcal{A}\\), \\(\\left| \\mathcal{A} \\right| = k\\). Each of the \\(k\\) actions has an expected reward given the action is selected - the value of the action. The action selected on time step \\(t\\) is \\(A_t\\). The corresponding reward is \\(R_t\\). The value of an arbitrary action \\(a\\), denoted \\(q_*(a)\\), is the expected reward given that \\(a\\) is selected: \\[ q_*(a) = \\mathbb{E}[R_t | A_t = a] \\]",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#the-problem",
-    "href": "pages/RL/Multi-armed-bandits.html#the-problem",
-    "title": "Multi-armed Bandits",
-    "section": "3 The Problem",
-    "text": "3 The Problem\nThe value of an action is unknown and must be estimated. We denote the estimated value of action \\(a\\) at time step \\(t\\) as \\(Q_t(a)\\). We would like \\(Q_t(a)\\) to be close to \\(q_*(a)\\). Should we select the action with the highest estimated value or should we explore other actions? This is the exploration-exploitation dilemma/trade-off.",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#possible-solutions",
-    "href": "pages/RL/Multi-armed-bandits.html#possible-solutions",
-    "title": "Multi-armed Bandits",
-    "section": "4 Possible solutions",
-    "text": "4 Possible solutions\n\nAsymptotic correctness \\[Q_t(a) \\rightarrow q_*(a) \\text{ as } t \\rightarrow \\infty\\]\nRegret optimality \\[\\lim_{t \\rightarrow \\infty} \\frac{1}{t} \\sum_{i=1}^{t} (q_*(a^*) - q_*(A_t)) = 0\\]\nPAC (Probably (\\(\\delta\\)) Approximately (\\(\\epsilon\\)) Correct) optimality \\[P(q_*(A_t) \\geq q_*(a^*) - \\epsilon) \\geq (1-\\delta)\\]",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#action-value-methods",
-    "href": "pages/RL/Multi-armed-bandits.html#action-value-methods",
-    "title": "Multi-armed Bandits",
-    "section": "5 Action-value Methods",
-    "text": "5 Action-value Methods\nThe true value of an action is the mean reward when that action is selected. One natural way to estimate this is by averaging the rewards actually received: \\[ Q_t(a) = \\frac{\\text{sum of rewards when } a \\text{ taken prior to } t}{\\text{number of times } a \\text{ taken prior to } t} = \\frac{\\sum\\limits_{i=1}^{t-1}R_{i}\\cdot\\mathbb{1}_{A_{i}=a}}{\\sum\\limits_{i=1}^{t-1}\\mathbb{1}_{A_{i}=a}} \\] where \\(\\mathbb{1}_{\\text{predicate}}\\) denotes the random variable that is \\(1\\) if the predicate is true and \\(0\\) otherwise.\nIf the denominator is \\(0\\), we define \\(Q_t(a)\\) to be some default value, such as \\(0\\). By the law of large numbers, as \\(\\sum\\limits_{i=1}^{t-1}\\mathbb{1}_{A_{i}=a} \\rightarrow \\infty\\), \\(Q_t(a) \\rightarrow q_*(a)\\). This is known as the sample-average method for estimating action values because each estimate is an average of the sample of relevant rewards.\nThe simplest action selection rule is to select one of the actions with the highest estimated value, that is, one of the greedy actions. If there is more than one greedy action, then a selection is made among them in some arbitrary way, perhaps randomly. We write this greedy action selection method as \\[ A_{t} \\doteq \\underset{a}{\\arg\\max}\\ Q_{t}( a) \\]\nGreedy action selection always exploits current knowledge to maximize immediate reward; it spends no time at all sampling apparently inferior actions to see if they might really be better.",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#epsilon-greedy-methods",
-    "href": "pages/RL/Multi-armed-bandits.html#epsilon-greedy-methods",
-    "title": "Multi-armed Bandits",
-    "section": "6 \\(\\epsilon\\)-Greedy Methods",
-    "text": "6 \\(\\epsilon\\)-Greedy Methods\nA simple alternative to allow for some exploration is to behave greedily most of the time, but every once in a while, say with small probability \\(\\epsilon\\), instead select randomly from among all the \\(k = \\left| \\mathcal{A} \\right|\\) actions with equal probability, independently of the action-value estimates. We call methods using this near-greedy action selection rule \\(\\epsilon\\)-greedy methods. The \\(\\epsilon\\)-greedy action selection method is defined as follows:\n\nWith probability \\(1-\\epsilon\\), select \\(A_t = \\underset{a}{\\arg\\max}\\ Q_t(a)\\) (greedy action)\nWith probability \\(\\epsilon\\), select \\(A_t\\) randomly from \\(\\mathcal{A}\\)\n\nWhether choosing the greedy action directly or randomly choosing from all actions (including the greedy action), \\[ P(A_t = \\underset{a}{\\arg\\max}\\ Q_t(a)) = 1 - \\epsilon + \\frac{\\epsilon} {k} \\]",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#softmax-action-selection",
-    "href": "pages/RL/Multi-armed-bandits.html#softmax-action-selection",
-    "title": "Multi-armed Bandits",
-    "section": "7 Softmax Action Selection",
-    "text": "7 Softmax Action Selection\nThe softmax action selection rule is a “soft” version of the greedy action selection rule. In \\(\\epsilon\\)-greedy methods, the greedy action gets the most probability mass, and all the other actions have an equal probability of being selected in the exploration phase.\nIf some actions are worse than others, should try to reduce the probability of selecting them during exploration. The softmax action selection method can be denoted as \\[ P(A_t = a) = \\frac{e^{Q_t(a)/\\tau}}{\\sum_{b=1}^{k}e^{Q_t(b)/\\tau}} \\] where \\(\\tau\\) is the temperature parameter that controls the level of exploration. It can be “cooled” over time to reduce exploration.",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#incremental-implementation",
-    "href": "pages/RL/Multi-armed-bandits.html#incremental-implementation",
-    "title": "Multi-armed Bandits",
-    "section": "8 Incremental Implementation",
-    "text": "8 Incremental Implementation\nThe action-value methods discussed so far all estimate action values as sample averages of observed rewards. To simplify notation, we focus on a single action. Let \\(R_i\\) now denote the reward received after the \\(i\\)th selection of this action, and let \\(Q_n\\) denote the estimate of its action value after it has been selected \\(n-1\\) times, which we can now write simply as \\[ Q_{n} \\doteq \\frac{R_{1} + R_{2} + \\ldots + R_{n-1}}{n-1} \\] The obvious implementation would be to maintain a record of all the rewards and then perform this computation whenever the estimated value was needed. However, if all the rewards are stored, as more rewards are seen, the memory and computational requirements would keep increasing. These averages can be computed in a computationally efficient manner, in particular, with constant memory and constant per-time-step computation.\nGiven \\(Q_{n}\\) and the \\(n\\)th reward, \\(R_{n}\\), the new average of all \\(n\\) rewards can be computed by\n\\[\\begin{aligned}\nQ_{n+1} & =\\frac{1}{n} \\ \\sum\\limits_{i=1}^{n} R_{i}\\\\\n& =\\frac{1}{n} \\ \\left( R_{n} +\\sum\\limits_{i=1}^{n-1} R_{i}\\right)\\\\\n& =\\frac{1}{n} \\ \\left( R_{n} +( n-1)\\frac{1}{n-1} \\ \\sum\\limits _{i=1}^{n-1} R_{i}\\right)\\\\\n& =\\frac{1}{n} \\ ( R_{n} +( n-1) Q_{n})\\\\\n& =\\frac{1}{n} \\ ( R_{n} +nQ_{n} -Q_{n})\\\\\n& =Q_{n} +\\frac{1}{n}[ R_{n} -Q_{n}]\n\\end{aligned}\\] which holds even for \\(n=1\\), obtaining \\(Q_{2} = R_{1}\\) for arbitrary \\(Q_{1}\\).\nThis update rule has the form of a stochastic averaging equation. The general form of such an equation is \\[ NewEstimate \\leftarrow OldEstimate + StepSize \\left[ Target - OldEstimate \\right] \\]\nThe expression \\([Target - OldEstimate]\\) is an error in the estimate. It is reduced by taking a step toward the “Target”. The step-size parameter \\((StepSize)\\) used in the incremental implementation changes from time step to time step. In processing the \\(n\\)th reward for an action, the step-size parameter is \\(\\frac{1}{n}\\). It is often denoted by \\(\\alpha\\) or, more generally, by \\(\\alpha_{t}(a)\\).",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#nonstationary-problems",
-    "href": "pages/RL/Multi-armed-bandits.html#nonstationary-problems",
-    "title": "Multi-armed Bandits",
-    "section": "9 Nonstationary Problems",
-    "text": "9 Nonstationary Problems\nThe methods discussed so far are appropriate for stationary bandit problems, where the reward probabilities do not change over time. In nonstationary cases, it makes sense to give more weight to recent rewards than to long-past rewards.\nOne way to do this is to use a constant step-size parameter. The incremental update rule for updating an average \\(Q_{n}\\) of the \\(n-1\\) past rewards is modified to be \\[ Q_{n+1} = Q_{n} + \\alpha \\left[ R_{n} - Q_{n} \\right] \\] where the step-size parameter \\(\\alpha \\in (0, 1]\\) is constant.\nThis results in \\(Q_{n+1}\\) being a weighted average of past rewards and the initial estimate \\(Q_{1}\\): \\[\\begin{array}{ r c l }\nQ_{n+1} & = & Q_{n} +\\alpha [R_{n} -Q_{n} ]\\\\\n& = & \\alpha R_{n} +(1-\\alpha )Q_{n}\\\\\n& = & \\alpha R_{n} +(1-\\alpha )[\\alpha R_{n-1} +(1-\\alpha )Q_{n-1} ]\\\\\n& = & \\alpha R_{n} +(1-\\alpha )\\alpha R_{n-1} +(1-\\alpha )^{2} Q_{n-1}\\\\\n& = & \\alpha R_{n} +(1-\\alpha )\\alpha R_{n-1} +(1-\\alpha )^{2} \\alpha R_{n-2} +\\\\\n&  & \\dotsc +(1-\\alpha )^{n-1} \\alpha R_{1} +(1-\\alpha )^{n} Q_{1}\\\\\n& = & \\ (1-\\alpha )^{n} Q_{1} +\\sum\\limits _{i=1}^{n} \\alpha (1-\\alpha )^{n-i} R_{i}\n\\end{array}\\]\nWe call this a weighted average because the sum of the weights is \\((1-\\alpha )^{n} +\\sum\\limits _{i=1}^{n} \\alpha (1-\\alpha )^{n-i} = 1\\).\nNote that the weight \\(\\alpha (1-\\alpha )^{n-i}\\), given to the reward \\(R_{i}\\), depends on how many rewards ago, \\(n-i\\), it was observed. The quantity \\(1-\\alpha\\) is less than \\(1\\), so the weight given to \\(R_i\\) decreases as the number of intervening rewards increases. In fact, the weight decays exponentially according to the exponent on \\(1-\\alpha\\). If \\(1-\\alpha = 0\\), then all the weight goes on the very last reward, \\(R_n\\), because of the convention that \\(0^0 = 1\\). Accordingly, this is sometimes called an exponential recency-weighted average.",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#upper-confidence-bound-ucb-action-selection",
-    "href": "pages/RL/Multi-armed-bandits.html#upper-confidence-bound-ucb-action-selection",
-    "title": "Multi-armed Bandits",
-    "section": "10 Upper-Confidence-Bound (UCB) Action Selection",
-    "text": "10 Upper-Confidence-Bound (UCB) Action Selection\nIn its most basic formulation, a \\(K\\)-armed bandit problem is defined by random variables \\(X_{i,n}\\) for \\(1 \\leq i \\leq K\\) and \\(n \\geq 1\\), where \\(i\\) is the index of a gambling machine (i.e., the “arm” of the bandit). Successive plays of arm \\(i\\) yield rewards \\(X_{i,1}, X_{i,2}, \\ldots\\) that are independent and identically distributed (i.i.d.) random variables to an unknown law with unknown expectation \\(\\mu_i\\). Independence also holds for rewards across different arms; i.e., \\(X_{i,s}\\) and \\(X_{j,t}\\) are independent (and usually not identically distributed) for each \\(1 \\leq i &lt; j \\leq K\\) and each \\(s, t \\geq 1\\).\nA policy, or allocation strategy, \\(A\\) is an algorithm that chooses the next arm to play based on the sequence of past plays and obtained rewards. Let \\(T_{i}(n)\\) be the random variable which represents the number of times arm \\(i\\) has been played by \\(A\\) during the first \\(n\\) plays. Then the regret of \\(A\\) after \\(n\\) plays is defined by \\[\\mu^* n - \\mu_{j} \\sum\\limits_{i=1}^{K} \\mathbb{E}[T_{j}(n)]\\] where \\(\\mu^* = \\underset{1\\leq i \\leq K}{\\max} \\mu_i\\) and \\(\\mathbb{E}[\\cdot]\\) denotes the expectation. Thus the regret is the expected loss due to the fact that the policy does not always play the best arm.\n\n10.1 UCB1 Algorithm\nDeterministic policy: UCB1.\nInitialization: Play each arm once.\nLoop:\n            Play arm \\(j\\) that maximizes \\(\\bar{x}_j + \\sqrt{\\frac{2\\ln n}{n_j}}\\),\nwhere \\(\\bar{x}_j\\) is the average reward obtained from arm \\(j\\), \\(n_j\\) is the number of times arm \\(j\\) has been played so far, and \\(n\\) is the overall number of plays so far.\n\n\n10.2 Theorem\nFor all \\(K &gt; 1\\), if policy UCB1 is run on \\(K\\) arms having arbitrary reward distributions \\(P_1,\\dots,P_{K}\\) with support in \\([0, 1]\\), then its expected regret after any number of plays \\(n\\) is at most \\[ \\left[8 \\sum\\limits_{i:\\mu_i &lt; \\mu^*} \\left( \\frac{\\ln n}{\\Delta_{i}} \\right) \\right] + \\left(1+ \\frac{\\pi^2}{3}  \\right) \\left(\\sum\\limits_{j=1}^{K} \\Delta_{j} \\right)\\] where \\(\\mu_1,\\dots,\\mu_K\\) are the expected values of \\(P_1,\\dots,P_{K}\\).\nMatching the notation of the theorem from the original paper to our notation, we get:\n\n\\(\\bar{x}_j = Q(j)\\)\n\\(\\mu_i = \\mathbb{E}[X_{i,n}] = q_*(i)\\)\n\\(\\mu^* = q_*(a^*)\\)\n\\(\\Delta_{i} = \\mu^* - \\mu_i = q_*(a^*) - q_*(i)\\)\n\\(\\text{Regret}_{n}=\\sum\\limits_{i} \\mathbb{E}[T_{i}(n)] \\Delta_{i}\\)\n\nTo prove the theorem, we need to show that, for any suboptimal arm \\(j\\), \\[\\mathbb{E}[T_{j}(n)] \\leq \\frac{8 \\ln n}{\\Delta_{j}^2}+c\\]\nWe also define the r.v.’s \\(I_1, I_2, \\ldots\\) such that $I_t denotes the arm played at time \\(t\\). Also, \\(\\sum_{i=1}^{K} T_{i}(n) = n\\). For each \\(1\\leq i \\leq K\\), and \\(n \\geq 1\\), define \\[\\bar{X}_{i,n} = \\frac{1}{n} \\sum\\limits_{t=1}^{n} X_{i,t} \\]\n\n\n10.3 Chernoff-Hoeffding Bound\nLet \\(X_1, X_2, \\ldots, X_n\\) be random variables with common range \\([0, 1]\\) and such that \\(\\mathbb{E}[X_t|X_1, X_2, \\ldots, X_{t-1}] = \\mu\\). Let \\(S_n = \\frac{X_1 + X_2 + \\ldots + X_n}{n}\\). Then, for all \\(\\epsilon &gt; 0\\),\n\\[ P(S_n \\geq \\mu + \\epsilon) \\leq e^{-2\\epsilon^{2}n} \\text{ and } P(S_n \\leq \\mu - \\epsilon) \\leq e^{-2\\epsilon^{2}n} \\]\n\n\n10.4 Proof of UCB1 Theorem\nLet \\(c_{t,s} = \\sqrt{\\frac{2\\ln t}{s}}\\). For any arm \\(i\\), we upper bound \\(T_{i}(n)\\) on any sequence of plays. More precisely, for each \\(t \\geq 1\\) we bound the indicator function of \\(I_t=i\\) as follows. Let \\(\\mathscr{l}\\) be an arbitrary positive integer. Note: \\(\\displaystyle \\{I_{t} =i\\} =1\\) if arm \\(i\\) is played at time \\(t\\) and \\(0\\) otherwise.\n\\[\\begin{aligned}\nT_i(n) &= 1 + \\sum\\limits_{t=K+1}^{n} \\{I_{t} =i\\} \\\\\n&\\leq \\mathscr{l} + \\sum\\limits_{t=K+1}^{n} \\{I_{t} =i, T_{i}(t-1) \\geq \\mathscr{l} \\} \\\\\n&\\leq \\mathscr{l} + \\sum\\limits_{t=K+1}^{n} \\{\\bar{X}_{T^{*}(t-1)}^{*} + c_{t-1,T^{*}(t-1)} \\leq \\bar{X}_{i,T_{i}(t-1)} + c_{t-1,T_{i}(t-1)}, T_{i}(t-1) \\geq \\mathscr{l} \\}  \\\\\n&\\leq \\mathscr{l} + \\sum\\limits_{t=K+1}^{n} \\{ \\underset{0&lt;s&lt;t}{\\min} \\bar{X}_{s}^{*} + c_{t-1,s} \\leq \\underset{\\mathscr{l}\\ \\leq s_i &lt; t}{\\max} \\bar{X}_{i,s_i} + c_{t-1,s_i} \\} \\\\\n\n&\\leq \\mathscr{l} + \\sum\\limits_{t=1}^{\\infty} \\sum\\limits_{s=1}^{t-1} \\sum\\limits_{s_{i}=\\mathscr{l}}^{t-1} \\{ \\bar{X}_{s}^{*} + c_{t,s} \\leq \\bar{X}_{i, s_{i}} + c_{t,s_i} \\}\n\\end{aligned}\\]\nNow observe that \\(\\bar{X}_{s}^{*} + c_{t,s} \\leq \\bar{X}_{i, s_{i}} + c_{t,s_i}\\) implies that at least one of the following must hold\n\n\\(\\overline{X}_{s}^{*} +c_{t,s} \\leqslant \\ \\mu ^{*} -c_{t,s}\\)\n\\(\\overline{X}_{i,s_{i}} \\geqslant \\mu _{i} +c_{t,s_{i}}\\)\n\\(\\mu ^{*} &lt; \\mu _{i} +2c_{t,s_{i}}\\)\n\nWe bound the probability of the first two events using the Chernoff-Hoeffding bound as shown in Section 10.3.\n\\(P(\\overline{X}_{s}^{*} +c_{t,s} \\leqslant \\ \\mu ^{*} -c_{t,s}) \\leq e^{-2c_{t,s}^{2}s} = e^{-4\\ln t} = t^{-4}\\)\n\\(P(\\overline{X}_{i,s_{i}} \\geqslant \\mu _{i} +c_{t,s_{i}}) \\leq e^{-2c_{t,s_{i}}^{2}s_{i}} = e^{-4\\ln t} = t^{-4}\\)\nFor \\(\\mathscr{l} =\\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil\\), the third event is impossible. In fact\n\\(\\mu ^{*} - \\mu _{i} - 2c_{t,s_{i}} = \\mu ^{*} - \\mu _{i} - 2\\sqrt{\\frac{2\\ln t}{s_{i}}} \\geq \\mu ^{*} - \\mu _{i} - \\Delta _{i} = \\Delta _{i} - \\Delta _{i} = 0\\)\nfor \\(s_i \\geq \\frac{8\\ln n}{\\Delta_i^2}\\). So we get\n\\[\\begin{array}{ c c l }\n\\mathbb{E}[ T_{i}( n)] & \\leqslant  &  \\begin{array}{l}\n\\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil +\\sum\\limits _{t=1}^{\\infty }\\sum\\limits _{s=1}^{t-1}\\sum\\limits _{s_{i} =\\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil }^{t-1}\\\\\n\\times \\ \\left( P\\left\\{\\overline{X}_{s}^{*} \\leqslant \\mu ^{*} -c_{t,s}\\right\\} +P\\{\\overline{X}_{i,s_{i}} \\geqslant \\mu _{i} +c_{t,s_{i}}\\}\\right)\n\\end{array}\\\\\n& \\leqslant  & \\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil +\\sum\\limits _{t=1}^{\\infty }\\sum\\limits _{s=1}^{t}\\sum\\limits _{s_{i} =1}^{t} 2t^{-4}\\\\\n& \\leqslant  & \\frac{8\\ \\ln n}{\\Delta _{i}^{2}} +1+\\frac{\\pi ^{2}}{3}\n\\end{array}\\]\nwhich concludes the proof.",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
-  },
-  {
-    "objectID": "pages/RL/Multi-armed-bandits.html#pac-bounds-for-multi-armed-bandits",
-    "href": "pages/RL/Multi-armed-bandits.html#pac-bounds-for-multi-armed-bandits",
-    "title": "Multi-armed Bandits",
-    "section": "11 PAC Bounds for Multi-armed Bandits",
-    "text": "11 PAC Bounds for Multi-armed Bandits\n\n11.1 Markov’s Inequality\nLet \\(X\\) be a non-negative random variable. Then, for any \\(a &gt; 0\\), \\[ P(X \\geq a) \\leq \\frac{\\mathbb{E}[X]}{a} \\]\n\n\n11.2 Union Bound\nLet \\(A_1, A_2, \\ldots, A_n\\) be events. Then, \\[ P(A_1 \\cup A_2 \\cup \\ldots \\cup A_n) \\leq P(A_1) + P(A_2) + \\ldots + P(A_n) \\] \\[ \\equiv P\\left( \\bigcup_{i=1}^{n} A_i \\right) \\leq \\sum_{i=1}^{n} P(A_i) \\]\n\n\n11.3 Naive Algorithm\nInput: \\(\\epsilon &gt; 0, \\delta &gt;0\\)\nOutput: An arm\nforeach Arm \\(a \\in \\mathcal{A}\\) do\n        Sample it \\(\\mathscr{l} = \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta})\\) times;\n        Let \\(\\hat{p}_a\\) be the average reward of arm \\(a\\);\nend\nOutput \\(a' = \\underset{a \\in \\mathcal{A}}{\\arg\\max} \\{ \\hat{p}_a \\}\\);\n\n\n11.4 Theorem\nThe algorithm Naive(\\(\\epsilon, \\delta\\)) is an (\\(\\epsilon, \\delta\\))-PAC algorithm with arm sample complexity \\(O((\\frac{k}{\\epsilon^2}) \\log (\\frac{k}{\\delta}))\\).\n\n\n11.5 Proof\nLet \\(a'\\) be an arm s.t. \\(q_*(a')&lt;q_*(a^*)-\\epsilon\\)\n\\(P(Q(a')&gt;Q(a^*)) \\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon} {2} \\text{ or } Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon} {2})\\)\n\\[\\begin{aligned}\nP(Q(a')&gt;Q(a^*)) &\\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon}{2} \\text{ or } Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon}{2}) \\\\\n&\\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon}{2}) + P(Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon}{2}) \\\\\n&\\leq 2\\exp(-2\\left( \\frac{\\epsilon}{2} \\right)^2 \\mathscr{l})\n\\end{aligned}\\]\nSubstituting \\(\\mathscr{l} = \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta})\\),\n\\[P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(-2\\left( \\frac{\\epsilon}{2} \\right)^2 \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta}))\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(- \\frac{2}{2} \\ln (\\frac{2k}{\\delta}))\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(\\ln(\\frac{2k}{\\delta})^{-1})\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq \\frac{\\delta}{k}\\]\nSumming over all \\(a'\\), we have that \\[\\text{probability of failure} \\leq (k-1)(\\frac{\\delta}{k}) &lt; \\delta\\]\n\n\n11.6 Median Elimination Algorithm\nInput: \\(\\epsilon &gt; 0, \\delta &gt;0\\)\nOutput: An arm\nSet \\(S_1=A, \\epsilon_1=\\frac{\\epsilon}{4}, \\delta_1=\\frac{\\delta}{2}, \\mathscr{l} = 1\\). repeat\n        Sample every arm \\(a \\in S_{\\mathscr{l}}\\) for \\(\\frac{1}{(\\epsilon_{\\mathscr{l}})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{\\mathscr{l}}} \\right)\\) times, and let \\(\\hat{p}_a^{\\mathscr{l}}\\) denote its empirical value;\n        Find the median of \\(\\hat{p}_a^{\\mathscr{l}}\\), denoted by \\(m_{\\mathscr{l}}\\);\n        \\(S_{\\mathscr{l}+1} = S_{\\mathscr{l}} \\backslash \\{ a : \\hat{p}_a^{\\mathscr{l}} &lt; m_{\\mathscr{l}} \\}\\);\n        \\(\\epsilon_{\\mathscr{l}+1} = \\frac{3}{4} \\epsilon_{\\mathscr{l}}\\); \\(\\delta_{\\mathscr{l}+1} = \\frac{\\delta_{\\mathscr{l}}}{2}\\); \\(\\mathscr{l} = \\mathscr{l} + 1\\);\nuntil \\(\\left|S_{\\mathscr{l}}\\right| = 1\\);\nMatching the notation used in the paper to our notation: \\(\\hat{p}_a^{\\mathscr{l}} = Q_{\\mathscr{l}}(a)\\)\n\n\n11.7 Theorem\nThe Median Elimination (\\(\\epsilon, \\delta\\)) algorithm is an (\\(\\epsilon, \\delta\\))-PAC algorithm and its sample complexity is\n\\[ O \\left( \\frac{k}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right) \\]\nFirst we show that in the \\(\\mathscr{l}\\)-th phase the expected reward of the best arm in \\(S_{\\mathscr{l}}\\) drops by at most \\(\\epsilon_{\\mathscr{l}}\\).\n\n\n11.8 Lemma 1\nFor the Median Elimination (\\(\\epsilon, \\delta\\)) algorithm we have that for every phase \\(\\mathscr{l}\\): \\[ P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} p_{j} \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} p_{i} + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]\n\\[ \\equiv P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} q_{*}(j) \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} q_{*}(i) + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]\n\n\n11.9 Proof\nWithout loss of generality consider \\(\\mathscr{l}=1\\). We bound the failure probability by looking at the event \\(E_1\\),\n\\[ E_1 = \\left\\{ \\hat{p}_1 &lt; p_1 - \\frac{\\epsilon_1}{2} \\right\\} \\equiv E_1 = \\left\\{ Q(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2} \\right\\} \\]\nwhich is the case that the empirical estimate of the best arm is pessimistic. Since we sample sufficiently, we have that\n\\[ P[E_1] = P\\left[Q(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2}\\right]\\]\nApplying the Chernoff-Hoeffding bound (Section 10.3), we have that\n\\[ P[E_1] \\leq \\exp \\left(-2 \\left( \\frac{\\epsilon_1}{2} \\right)^2 \\frac{1}{(\\epsilon_{1})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{1}} \\right) \\right) \\]\n\\[ \\implies P[E_1] \\leq \\frac{\\delta_1}{3} \\]\nIn case \\(E_1\\) does not happen, we calculate the probability that an arm \\(j\\) which is not an \\(\\epsilon_1\\)-optimal arm is empirically better than the best arm.\n\\[ P \\left[ Q_{\\mathscr{l}}(j) \\geq Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) | Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{\\delta_1}{3}\\]\nLet #bad be the number of arms that are not \\(\\epsilon_1\\)-optimal but are empirically better than the best arm. We have that\n\\[ \\mathbb{E} \\left[ \\# bad \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq |S_\\mathscr{l}| \\frac{ \\delta_{1}} {3} \\]\nNext we apply Markov’s inequality (Section 11.1) to obtain\n\\[ P \\left [ \\# bad \\geq \\frac{|S_\\mathscr{l}|}{2} \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{|S_\\mathscr{l}|\\frac{\\delta_1}{3}}{\\frac{|S_\\mathscr{l}|}{2}} = \\frac{2\\delta_{1}}{3} \\]\nUsing the union bound (Section 11.2) gives us that the probability of failure is bounded by \\(\\delta_1\\).\n\n\n11.10 Lemma 2\nThe sample complexity of the Median Elimination \\((\\epsilon, \\delta)\\) is \\(O \\left( \\frac{n}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right)\\).\n\n\n11.11 Proof\nThe number of arm samples in the \\(\\mathscr{l}\\)-th round is \\(4n_{\\mathscr{l}} log  (\\frac{3}{\\delta_{\\mathscr{l}}} ) / \\epsilon_{\\mathscr{l}}^2\\). By definition we have that\n\n\\(\\delta_{1} = \\frac{\\delta}{2}\\) ; \\(\\frac{\\delta_{\\mathscr{l}-1}}{2}= \\frac{\\delta}{2^{\\mathscr{l}}}\\)\n\\(n_1 = n\\) ; \\(n_{\\mathscr{l}} = n_{\\mathscr{l}-1}/2 = n/2^{\\mathscr{l}-1}\\)\n\\(\\epsilon_{1} = \\frac{\\epsilon}{4}\\) ; \\(\\epsilon_{\\mathscr{l}} = \\frac{3}{4} \\epsilon_{\\mathscr{l}-1} = ( \\frac{3}{4} )^{\\mathscr{l}-1} \\epsilon / 4\\)\n\nTherefore we have\n\\[\\begin{aligned}\n\\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n_{\\mathscr{l} } \\log  (3 / \\delta_{\\mathscr{l} } )} {(\\epsilon_{\\mathscr{l} }/2)^2} &= 4 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n/2^{\\mathscr{l} -1} \\log (2^{\\mathscr{l} }3/ \\delta)}{((\\frac{3}{4})^{\\mathscr{l} -1} \\epsilon /4)^2} \\\\\n&= 64 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} n(\\frac{8}{9})^{\\mathscr{l} -1} (\\frac{\\log(1/\\delta)}{\\epsilon^2} + \\frac{\\log (3)}{\\epsilon^2} + \\frac{\\mathscr{l} \\log (2)}{\\epsilon^2}) \\\\\n&\\leq 64 \\frac{n \\log(1/\\delta)}{\\epsilon^2} \\sum\\limits_{\\mathscr{l} =1}^{\\infty} (\\frac{8}{9})^{\\mathscr{l} -1} (\\mathscr{l}C' + C) = O \\left( \\frac{n \\log (1/\\delta)}{\\epsilon^2} \\right)\n\\end{aligned}\\]\nNow the Section 11.7 can be proved.\n\n\n11.12 Proof of Median Elimation Theorem\nFrom Section 11.10 we have that the sample complexity is bounded by \\(O \\left( n \\log (1/\\delta) / \\epsilon^2 \\right)\\). By Section 11.8 we have that the algorithm fails with probability _{i} in each round so that over all rounds the probability of failure is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\delta_{i} \\leq \\delta\\). In each round we reduce the optimal reward of the surviving arms by at most \\(\\epsilon_{i}\\) so that the total error is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\epsilon_{i} \\leq \\epsilon\\).",
-    "crumbs": [
-      "Reinforcement Learning",
-      "Multi-armed Bandits"
-    ]
   }
 ]
