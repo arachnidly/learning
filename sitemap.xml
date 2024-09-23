@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>arachnidly.github.io/learning/pages/Stats/Probability-Basics.html</loc>
-    <lastmod>2024-08-22T06:05:20.318Z</lastmod>
-  </url>
-  <url>
-    <loc>arachnidly.github.io/learning/pages/RL/Multi-armed-bandits.html</loc>
-    <lastmod>2024-09-23T21:37:58.543Z</lastmod>
-  </url>
-  <url>
-    <loc>arachnidly.github.io/learning/pages/random/Fourier.html</loc>
-    <lastmod>2024-08-22T05:27:17.265Z</lastmod>
-  </url>
-  <url>
-    <loc>arachnidly.github.io/learning/index.html</loc>
-    <lastmod>2024-09-23T22:03:21.292Z</lastmod>
-  </url>
-  <url>
-    <loc>arachnidly.github.io/learning/originals/articles/Etiquette-In-Indian-English/index.html</loc>
-    <lastmod>2024-08-22T07:02:34.695Z</lastmod>
-  </url>
-  <url>
-    <loc>arachnidly.github.io/learning/originals/index.html</loc>
-    <lastmod>2024-08-22T07:26:34.323Z</lastmod>
-  </url>
-  <url>
-    <loc>arachnidly.github.io/learning/pages/random/Vectors-in-alternate-basis.html</loc>
-    <lastmod>2024-08-22T05:28:44.013Z</lastmod>
-  </url>
-  <url>
     <loc>arachnidly.github.io/learning/pages/RL/MABs-and-UCB1-revealjs.html</loc>
-    <lastmod>2024-09-23T22:28:54.245Z</lastmod>
+    <lastmod>2024-09-23T22:30:15.991Z</lastmod>
   </url>
   <url>
     <loc>arachnidly.github.io/learning/pages/RL/PAC-bounds-for-MABs-revealjs.html</loc>
-    <lastmod>2024-09-23T22:28:45.954Z</lastmod>
+    <lastmod>2024-09-23T22:30:15.991Z</lastmod>
+  </url>
+  <url>
+    <loc>arachnidly.github.io/learning/pages/random/Vectors-in-alternate-basis.html</loc>
+    <lastmod>2024-09-23T22:30:15.999Z</lastmod>
+  </url>
+  <url>
+    <loc>arachnidly.github.io/learning/originals/index.html</loc>
+    <lastmod>2024-09-23T22:30:15.990Z</lastmod>
+  </url>
+  <url>
+    <loc>arachnidly.github.io/learning/index.html</loc>
+    <lastmod>2024-09-23T22:30:15.990Z</lastmod>
+  </url>
+  <url>
+    <loc>arachnidly.github.io/learning/originals/articles/Etiquette-In-Indian-English/index.html</loc>
+    <lastmod>2024-09-23T22:30:15.990Z</lastmod>
+  </url>
+  <url>
+    <loc>arachnidly.github.io/learning/pages/Stats/Probability-Basics.html</loc>
+    <lastmod>2024-09-23T22:30:15.991Z</lastmod>
+  </url>
+  <url>
+    <loc>arachnidly.github.io/learning/pages/random/Fourier.html</loc>
+    <lastmod>2024-09-23T22:30:15.998Z</lastmod>
+  </url>
+  <url>
+    <loc>arachnidly.github.io/learning/pages/RL/Multi-armed-bandits.html</loc>
+    <lastmod>2024-09-23T22:30:15.991Z</lastmod>
   </url>
 </urlset>
