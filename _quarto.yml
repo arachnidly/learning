@@ -5,7 +5,6 @@ project:
     port: 4200
 
 website:
-  site-url: arachnidly.github.io/learning/
   title: Learning :)
   sidebar:
     collapse-level: 2
@@ -29,8 +28,6 @@ website:
         contents:
           - href: pages/Stats/Probability-Basics.qmd
             text: Basic Concepts of Probability
-      - href: originals/index.qmd
-        text: Original Works
   open-graph: true
             
 format:
