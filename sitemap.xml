@@ -1,39 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>arachnidly.github.io/learning/pages/RL/MABs-and-UCB1-revealjs.html</loc>
-    <lastmod>2024-09-23T23:29:50.908Z</lastmod>
+    <loc>https://arachnidly.github.io/learning/pages/RL/MABs-and-UCB1-revealjs.html</loc>
+    <lastmod>2024-09-30T12:02:31.638Z</lastmod>
   </url>
   <url>
-    <loc>arachnidly.github.io/learning/pages/RL/PAC-bounds-for-MABs-revealjs.html</loc>
-    <lastmod>2024-09-23T23:29:50.908Z</lastmod>
+    <loc>https://arachnidly.github.io/learning/pages/RL/PAC-bounds-for-MABs-revealjs.html</loc>
+    <lastmod>2024-09-30T12:02:31.638Z</lastmod>
   </url>
   <url>
-    <loc>arachnidly.github.io/learning/pages/random/Vectors-in-alternate-basis.html</loc>
-    <lastmod>2024-09-23T23:29:50.916Z</lastmod>
+    <loc>https://arachnidly.github.io/learning/pages/random/Vectors-in-alternate-basis.html</loc>
+    <lastmod>2024-09-30T12:02:31.646Z</lastmod>
   </url>
   <url>
-    <loc>arachnidly.github.io/learning/originals/index.html</loc>
-    <lastmod>2024-09-23T23:29:50.907Z</lastmod>
+    <loc>https://arachnidly.github.io/learning/index.html</loc>
+    <lastmod>2024-09-30T12:02:31.637Z</lastmod>
   </url>
   <url>
-    <loc>arachnidly.github.io/learning/index.html</loc>
-    <lastmod>2024-09-23T23:29:50.907Z</lastmod>
+    <loc>https://arachnidly.github.io/learning/pages/Stats/Probability-Basics.html</loc>
+    <lastmod>2024-09-30T12:02:31.638Z</lastmod>
   </url>
   <url>
-    <loc>arachnidly.github.io/learning/originals/articles/Etiquette-In-Indian-English/index.html</loc>
-    <lastmod>2024-09-23T23:29:50.907Z</lastmod>
+    <loc>https://arachnidly.github.io/learning/pages/random/Fourier.html</loc>
+    <lastmod>2024-09-30T12:02:31.645Z</lastmod>
   </url>
   <url>
-    <loc>arachnidly.github.io/learning/pages/Stats/Probability-Basics.html</loc>
-    <lastmod>2024-09-23T23:29:50.908Z</lastmod>
-  </url>
-  <url>
-    <loc>arachnidly.github.io/learning/pages/random/Fourier.html</loc>
-    <lastmod>2024-09-23T23:29:50.915Z</lastmod>
-  </url>
-  <url>
-    <loc>arachnidly.github.io/learning/pages/RL/Multi-armed-bandits.html</loc>
-    <lastmod>2024-09-23T23:29:50.908Z</lastmod>
+    <loc>https://arachnidly.github.io/learning/pages/RL/Multi-armed-bandits.html</loc>
+    <lastmod>2024-09-30T12:02:31.638Z</lastmod>
   </url>
 </urlset>

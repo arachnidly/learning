@@ -205,12 +205,6 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../originals/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Original Works</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -308,9 +302,20 @@ Slides
 <section id="possible-solutions" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="possible-solutions"><span class="header-section-number">4</span> Possible solutions</h2>
 <ul>
-<li><p>Asymptotic correctness <span class="math display">\[Q_t(a) \rightarrow q_*(a) \text{ as } t \rightarrow \infty\]</span></p></li>
-<li><p>Regret optimality <span class="math display">\[\lim_{t \rightarrow \infty} \frac{1}{t} \sum_{i=1}^{t} (q_*(a^*) - q_*(A_t)) = 0\]</span></p></li>
-<li><p>PAC (Probably (<span class="math inline">\(\delta\)</span>) Approximately (<span class="math inline">\(\epsilon\)</span>) Correct) optimality <span class="math display">\[P(q_*(A_t) \geq q_*(a^*) - \epsilon) \geq (1-\delta)\]</span></p></li>
+<li>Identify the <em>correct</em> arm eventually
+<ul>
+<li>Asymptotic correctness <span class="math display">\[Q_t(a) \rightarrow q_*(a) \text{ as } t \rightarrow \infty\]</span></li>
+</ul></li>
+<li>Maximise the total rewards obtained. Minimize regret (loss) while learning
+<ul>
+<li>Regret optimality <span class="math display">\[\lim_{t \rightarrow \infty} \frac{1}{t} \sum_{i=1}^{t} (q_*(a^*) - q_*(A_t)) = 0\]</span></li>
+</ul></li>
+<li>Probably Approximately Correct (PAC) frameworks
+<ul>
+<li>Identification of an <span class="math inline">\(\epsilon\)</span>-optimal arm with probability <span class="math inline">\(1-\delta\)</span></li>
+<li><span class="math inline">\(\epsilon\)</span>-Optimal: Mean of the selected arm satisfies <span class="math display">\[\mu &gt; \mu^* - \epsilon\]</span></li>
+<li>Minimize sample complexity: Order of samples required for such an arm identification</li>
+</ul></li>
 </ul>
 </section>
 <section id="action-value-methods" class="level2 smaller" data-number="5">
@@ -772,7 +777,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("arachnidly\.github\.io\/learning\/");
+      var filterRegex = new RegExp("https:\/\/arachnidly\.github\.io\/learning\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

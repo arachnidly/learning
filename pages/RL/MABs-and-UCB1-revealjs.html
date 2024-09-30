@@ -1016,7 +1016,7 @@ T_i(n) &amp;= 1 + \sum\limits_{t=K+1}^{n} \{I_{t} =i\} \\
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("arachnidly\.github\.io\/learning\/");
+          var filterRegex = new RegExp("https:\/\/arachnidly\.github\.io\/learning\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }

@@ -1,1 +1,1 @@
-Sitemap: arachnidly.github.io/learning/sitemap.xml
+Sitemap: https://arachnidly.github.io/learning/sitemap.xml

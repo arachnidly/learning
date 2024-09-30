@@ -852,7 +852,7 @@ Set <span class="math inline">\(S_1=A, \epsilon_1=\frac{\epsilon}{4}, \delta_1=\
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("arachnidly\.github\.io\/learning\/");
+          var filterRegex = new RegExp("https:\/\/arachnidly\.github\.io\/learning\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
