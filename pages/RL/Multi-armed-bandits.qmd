@@ -27,11 +27,16 @@ The value of an action is unknown and must be estimated. We denote the estimated
 
 ## Possible solutions
 
--   Asymptotic correctness $$Q_t(a) \rightarrow q_*(a) \text{ as } t \rightarrow \infty$$
+- Identify the *correct* arm eventually
+  - Asymptotic correctness $$Q_t(a) \rightarrow q_*(a) \text{ as } t \rightarrow \infty$$
 
--   Regret optimality $$\lim_{t \rightarrow \infty} \frac{1}{t} \sum_{i=1}^{t} (q_*(a^*) - q_*(A_t)) = 0$$
+- Maximise the total rewards obtained. Minimize regret (loss) while learning
+  - Regret optimality $$\lim_{t \rightarrow \infty} \frac{1}{t} \sum_{i=1}^{t} (q_*(a^*) - q_*(A_t)) = 0$$
 
--   PAC (Probably ($\delta$) Approximately ($\epsilon$) Correct) optimality $$P(q_*(A_t) \geq q_*(a^*) - \epsilon) \geq (1-\delta)$$
+- Probably Approximately Correct (PAC) frameworks
+  - Identification of an $\epsilon$-optimal arm with probability $1-\delta$
+  - $\epsilon$-Optimal: Mean of the selected arm satisfies $$\mu > \mu^* - \epsilon$$
+  - Minimize sample complexity: Order of samples required for such an arm identification
 
 ## Action-value Methods {.smaller}
 
