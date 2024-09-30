@@ -6,12 +6,30 @@ format:
     toc_depth: 2
     smooth-scroll: true
     number-sections: true
+    crossrefs-hover: true
+    html-table-processing: none
 ---
 
 ::: {.callout-tip collapse="true"}
 ## Slides
+
 Slides for this content are available here: [Multi-armed Bandits and Upper Confidence Bounds](MABs-and-UCB1-revealjs.qmd) and [PAC bounds for Multi-Armed Bandits](PAC-bounds-for-MABs-revealjs.qmd).
 :::
+
+## Summary of Notation
+
+In a multi-arm bandit problem:
+
+$\begin{array}{ l l l }
+k &  & \text{number of actions (arms)}\\
+t &  & \text{discrete time step or play number}\\
+q_{*}( a) &  & \text{true value (expected reward) of action} \ a\\
+Q_{t}( a) &  & \text{estimate at time} \ t\ \text{of} \ q_{*}( a)\\
+N_{t}( a) &  & \text{number of times action} \ a\ \text{has been selected up prior to time} \ t\\
+H_{t}( a) &  & \text{learned preference for selecting action} \ a\ \text{at time} \ t\\
+\pi _{t}( a) &  & \text{probability of selecting action} \ a\ \text{at time} \ t\\
+\overline{R}_{t} &  & \text{estimate at time} \ t\ \text{of expected reward given} \ \pi _{t}
+\end{array}$
 
 ## A $k$-armed Bandit Problem
 
@@ -27,16 +45,14 @@ The value of an action is unknown and must be estimated. We denote the estimated
 
 ## Possible solutions
 
-- Identify the *correct* arm eventually
-  - Asymptotic correctness $$Q_t(a) \rightarrow q_*(a) \text{ as } t \rightarrow \infty$$
-
-- Maximise the total rewards obtained. Minimize regret (loss) while learning
-  - Regret optimality $$\lim_{t \rightarrow \infty} \frac{1}{t} \sum_{i=1}^{t} (q_*(a^*) - q_*(A_t)) = 0$$
-
-- Probably Approximately Correct (PAC) frameworks
-  - Identification of an $\epsilon$-optimal arm with probability $1-\delta$
-  - $\epsilon$-Optimal: Mean of the selected arm satisfies $$\mu > \mu^* - \epsilon$$
-  - Minimize sample complexity: Order of samples required for such an arm identification
+-   Identify the *correct* arm eventually
+    -   Asymptotic correctness $$Q_t(a) \rightarrow q_*(a) \text{ as } t \rightarrow \infty$$
+-   Maximise the total rewards obtained. Minimize regret (loss) while learning
+    -   Regret optimality $$\lim_{t \rightarrow \infty} \frac{1}{t} \sum_{i=1}^{t} (q_*(a^*) - q_*(A_t)) = 0$$
+-   Probably Approximately Correct (PAC) frameworks
+    -   Identification of an $\epsilon$-optimal arm with probability $1-\delta$
+    -   $\epsilon$-Optimal: Mean of the selected arm satisfies $$\mu > \mu^* - \epsilon$$
+    -   Minimize sample complexity: Order of samples required for such an arm identification
 
 ## Action-value Methods {.smaller}
 
@@ -124,7 +140,7 @@ For all $K > 1$, if policy UCB1 is run on $K$ arms having arbitrary reward distr
 
 Matching the notation of the theorem from the original paper to our notation, we get:
 
--   $\bar{x}_j = Q(j)$
+-   $\bar{x}_j = Q_t(j)$
 -   $\mu_i = \mathbb{E}[X_{i,n}] = q_*(i)$
 -   $\mu^* = q_*(a^*)$
 -   $\Delta_{i} = \mu^* - \mu_i = q_*(a^*) - q_*(i)$
@@ -292,9 +308,9 @@ The sample complexity of the Median Elimination $(\epsilon, \delta)$ is $O \left
 
 The number of arm samples in the $\mathscr{l}$-th round is $4n_{\mathscr{l}} log  (\frac{3}{\delta_{\mathscr{l}}} ) / \epsilon_{\mathscr{l}}^2$. By definition we have that
 
-1. $\delta_{1} = \frac{\delta}{2}$ ; $\frac{\delta_{\mathscr{l}-1}}{2}= \frac{\delta}{2^{\mathscr{l}}}$
-2. $n_1 = n$ ; $n_{\mathscr{l}} = n_{\mathscr{l}-1}/2 = n/2^{\mathscr{l}-1}$
-3. $\epsilon_{1} = \frac{\epsilon}{4}$ ; $\epsilon_{\mathscr{l}} = \frac{3}{4} \epsilon_{\mathscr{l}-1} = ( \frac{3}{4} )^{\mathscr{l}-1} \epsilon / 4$
+1.  $\delta_{1} = \frac{\delta}{2}$ ; $\frac{\delta_{\mathscr{l}-1}}{2}= \frac{\delta}{2^{\mathscr{l}}}$
+2.  $n_1 = n$ ; $n_{\mathscr{l}} = n_{\mathscr{l}-1}/2 = n/2^{\mathscr{l}-1}$
+3.  $\epsilon_{1} = \frac{\epsilon}{4}$ ; $\epsilon_{\mathscr{l}} = \frac{3}{4} \epsilon_{\mathscr{l}-1} = ( \frac{3}{4} )^{\mathscr{l}-1} \epsilon / 4$
 
 Therefore we have
 
@@ -309,4 +325,8 @@ Now the @sec-Median-Elimination-Theorem can be proved.
 
 ### Proof of Median Elimation Theorem {#sec-Median-Elimination-Theorem-proof}
 
-From @sec-lemma-2-Median-Elimination we have that the sample complexity is bounded by $O \left( n \log (1/\delta) / \epsilon^2 \right)$. By @sec-lemma-1-Median-Elimination we have that the algorithm fails with probability \delta_{i} in each round so that over all rounds the probability of failure is bounded by $\sum_{i=1}^{\log_2 n} \delta_{i} \leq \delta$. In each round we reduce the optimal reward of the surviving arms by at most $\epsilon_{i}$ so that the total error is bounded by $\sum_{i=1}^{\log_2 n} \epsilon_{i} \leq \epsilon$.
+From @sec-lemma-2-Median-Elimination we have that the sample complexity is bounded by $O \left( n \log (1/\delta) / \epsilon^2 \right)$. By @sec-lemma-1-Median-Elimination we have that the algorithm fails with probability \delta\_{i} in each round so that over all rounds the probability of failure is bounded by $\sum_{i=1}^{\log_2 n} \delta_{i} \leq \delta$. In each round we reduce the optimal reward of the surviving arms by at most $\epsilon_{i}$ so that the total error is bounded by $\sum_{i=1}^{\log_2 n} \epsilon_{i} \leq \epsilon$.
+
+### Thompson Sampling
+
+Update computations can be very complex, but for certain distributions (called *conjugate priors*) they are easy. One possibility is to select actions at each step according to their posterior probability of being the best action. This method, sometimes called *posterior sampling* or *Thompson sampling*, often performs similarly to the bets of the distribution-free methods.

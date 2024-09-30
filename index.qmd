@@ -1,1 +1,3 @@
-Learning requires effort and energy and enthusiasm (to some extent), but never money. Not here, not in this world, not in this universe, not in this life, not in this time, not in this space, not in this dimension, not in this reality.
+---
+title: "Learning"
+---
