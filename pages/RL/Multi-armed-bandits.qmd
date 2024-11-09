@@ -54,7 +54,7 @@ The value of an action is unknown and must be estimated. We denote the estimated
     -   $\epsilon$-Optimal: Mean of the selected arm satisfies $$\mu > \mu^* - \epsilon$$
     -   Minimize sample complexity: Order of samples required for such an arm identification
 
-## Action-value Methods {.smaller}
+## Action-value Methods
 
 The true value of an action is the mean reward when that action is selected. One natural way to estimate this is by averaging the rewards actually received: $$ Q_t(a) = \frac{\text{sum of rewards when } a \text{ taken prior to } t}{\text{number of times } a \text{ taken prior to } t} = \frac{\sum\limits_{i=1}^{t-1}R_{i}\cdot\mathbb{1}_{A_{i}=a}}{\sum\limits_{i=1}^{t-1}\mathbb{1}_{A_{i}=a}} $$ where $\mathbb{1}_{\text{predicate}}$ denotes the random variable that is $1$ if the predicate is true and $0$ otherwise.
 
