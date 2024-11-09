@@ -1,5 +1,232 @@
 [
   {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#bounds-required-for-pac",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#bounds-required-for-pac",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Bounds required for PAC",
+    "text": "Bounds required for PAC\nChernoff-Hoeffding Bound\n\nLet \\(X_1, X_2, \\ldots, X_n\\) be r.v. with common range \\([0,1]\\), such that \\(\\mathbb{E}[X_t|X_1, X_2, \\ldots, X_{t-1}] = \\mu\\). Let \\(S_{n} = \\frac{X_1 + \\ldots + X_n}{n}\\). Then, for \\(\\epsilon &gt; 0\\),\n\n\n\\[ P(S_n \\geq \\mu + \\epsilon) \\leq \\exp(-2n\\epsilon^2) \\] \\[ P(S_n \\leq \\mu - \\epsilon) \\leq \\exp(-2n\\epsilon^2) \\]\n\nMarkov’s Inequality\n\nLet \\(X\\) be a non-negative random variable. Then, for any \\(a &gt; 0\\),\n\n\n\\[ P(X \\geq a) \\leq \\frac{\\mathbb{E}[X]}{a} \\]\n\nUnion Bound\n\nLet \\(A_1, A_2, \\ldots, A_n\\) be events. Then,\n\n\n\\[ P(A_1 \\cup A_2 \\cup \\ldots \\cup A_n) \\leq P(A_1) + P(A_2) + \\ldots + P(A_n) \\] \\[ \\equiv P\\left( \\bigcup_{i=1}^{n} A_i \\right) \\leq \\sum_{i=1}^{n} P(A_i) \\]"
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#naive-algorithm",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#naive-algorithm",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Naive Algorithm",
+    "text": "Naive Algorithm\n\nInput: \\(\\epsilon &gt; 0, \\delta &gt;0\\)\nOutput: An arm\nforeach Arm \\(a \\in \\mathcal{A}\\) do\n        Sample it \\(\\mathscr{l} = \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta})\\) times;\n        Let \\(\\hat{p}_a\\) be the average reward of arm \\(a\\);\nend\nOutput \\(a' = \\underset{a \\in \\mathcal{A}}{\\arg\\max} \\{ \\hat{p}_a \\}\\);\n\n\n\nTheorem\n\n\nThe algorithm Naive(\\(\\epsilon, \\delta\\)) is an (\\(\\epsilon, \\delta\\))-PAC algorithm with arm sample complexity \\(O\\left(\\left(\\frac{k}{\\epsilon^2}\\right) \\log \\left(\\frac{k}{\\delta}\\right)\\right)\\)."
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "",
+    "text": "Proof\n\nLet \\(a'\\) be an arm s.t. \\(q_*(a')&lt;q_*(a^*)-\\epsilon\\)\n\\(P(Q(a')&gt;Q(a^*)) \\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon} {2} \\text{ or } Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon} {2})\\)\n\n\n\\[\\begin{aligned}\nP(Q(a')&gt;Q(a^*)) &\\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon}{2} \\text{ or } Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon}{2}) \\\\\n&\\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon}{2}) + P(Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon}{2}) \\\\\n&\\leq 2\\exp(-2\\left( \\frac{\\epsilon}{2} \\right)^2 \\mathscr{l})\n\\end{aligned}\\]\n\n\nSubstituting \\(\\mathscr{l} = \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta})\\),\n\n\n\\[P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(-2\\left( \\frac{\\epsilon}{2} \\right)^2 \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta}))\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(- \\frac{2}{2} \\ln (\\frac{2k}{\\delta}))\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(\\ln(\\frac{2k}{\\delta})^{-1})\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq \\frac{\\delta}{k}\\]\n\n\nSumming over all \\(a'\\), we have that\n\n\n\\[\\text{probability of failure} \\leq (k-1)(\\frac{\\delta}{k}) &lt; \\delta\\]"
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#median-elimination-algorithm",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#median-elimination-algorithm",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Median Elimination Algorithm",
+    "text": "Median Elimination Algorithm\n\nInput: \\(\\epsilon &gt; 0, \\delta &gt;0\\)\nOutput: An arm\nSet \\(S_1=A, \\epsilon_1=\\frac{\\epsilon}{4}, \\delta_1=\\frac{\\delta}{2}, \\mathscr{l} = 1\\). repeat\n        Sample every arm \\(a \\in S_{\\mathscr{l}}\\) for \\(\\frac{1}{(\\epsilon_{\\mathscr{l}})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{\\mathscr{l}}} \\right)\\) times, and let \\(\\hat{p}_a^{\\mathscr{l}}\\) denote its empirical value;\n        Find the median of \\(\\hat{p}_a^{\\mathscr{l}}\\), denoted by \\(m_{\\mathscr{l}}\\);\n        \\(S_{\\mathscr{l}+1} = S_{\\mathscr{l}} \\backslash \\{ a : \\hat{p}_a^{\\mathscr{l}} &lt; m_{\\mathscr{l}} \\}\\);\n        \\(\\epsilon_{\\mathscr{l}+1} = \\frac{3}{4} \\epsilon_{\\mathscr{l}}\\); \\(\\delta_{\\mathscr{l}+1} = \\frac{\\delta_{\\mathscr{l}}}{2}\\); \\(\\mathscr{l} = \\mathscr{l} + 1\\);\nuntil \\(\\left|S_{\\mathscr{l}}\\right| = 1\\);"
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-1",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-1",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "",
+    "text": "Matching the notation used in the paper to our notation:\n\n\\(\\hat{p}_a^{\\mathscr{l}} = Q_{\\mathscr{l}}(a)\\)\n\n\n\n\nTheorem\n\n\nThe Median Elimination (\\(\\epsilon, \\delta\\)) algorithm is an (\\(\\epsilon, \\delta\\))-PAC algorithm and its sample complexity is\n\n\n\\[ O \\left( \\frac{k}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right) \\]\n\n\nFirst we show that in the \\(\\mathscr{l}\\)-th phase the expected reward of the best arm in \\(S_{\\mathscr{l}}\\) drops by at most \\(\\epsilon_{\\mathscr{l}}\\)."
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Median-Elimination",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Median-Elimination",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Lemma 1",
+    "text": "Lemma 1\n\nFor the Median Elimination (\\(\\epsilon, \\delta\\)) algorithm we have that for every phase \\(\\mathscr{l}\\):\n\n\n\\[ P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} p_{j} \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} p_{i} + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]\n\n\n\\[ \\equiv P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} q_{*}(j) \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} q_{*}(i) + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]"
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Proof",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Proof",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Proof",
+    "text": "Proof\n\nWithout loss of generality consider \\(\\mathscr{l}=1\\). We bound the failure probability by looking at the event \\(E_1\\),\n\n\n\\[ E_1 = \\left\\{ \\hat{p}_1 &lt; p_1 - \\frac{\\epsilon_1}{2} \\right\\} \\equiv E_1 = \\left\\{ Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2} \\right\\} \\]\n\n\nwhich is the case that the empirical estimate of the best arm is pessimistic. Since we sample sufficiently, we have that\n\n\n\\[ P[E_1] = P\\left[Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2}\\right]\\]\n\n\nApplying the Chernoff-Hoeffding bound (Section 1.1), we have that\n\n\n\\[ P[E_1] \\leq \\exp \\left(-2 \\left( \\frac{\\epsilon_1}{2} \\right)^2 \\frac{1}{(\\epsilon_{1})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{1}} \\right) \\right) \\]\n\n\n\\[ \\implies P[E_1] \\leq \\frac{\\delta_1}{3} \\]"
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-2",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-2",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "",
+    "text": "In case \\(E_1\\) does not happen, we calculate the probability that an arm \\(j\\) which is not an \\(\\epsilon_1\\)-optimal arm is empirically better than the best arm.\n\n\n\\[ P \\left[ Q_{\\mathscr{l}}(j) \\geq Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) | Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{\\delta_1}{3}\\]\n\n\nLet #bad be the number of arms that are not \\(\\epsilon_1\\)-optimal but are empirically better than the best arm. We have that\n\n\n\\[ \\mathbb{E} \\left[ \\# bad \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq |S_\\mathscr{l}| \\frac{ \\delta_{1}} {3} \\]\n\n\nNext we apply Markov’s inequality (Section 1.2) to obtain\n\n\n\\[ P \\left [ \\# bad \\geq \\frac{|S_\\mathscr{l}|}{2} \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{|S_\\mathscr{l}|\\frac{\\delta_1}{3}}{\\frac{|S_\\mathscr{l}|}{2}} = \\frac{2\\delta_{1}}{3} \\]\n\n\nUsing the union bound (Section 1.3) gives us that the probability of failure is bounded by \\(\\delta_1\\)."
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Median-Elimination",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Median-Elimination",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Lemma 2",
+    "text": "Lemma 2\n\nThe sample complexity of the Median Elimination \\((\\epsilon, \\delta)\\) is \\(O \\left( \\frac{n}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right)\\)."
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Proof",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Proof",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Proof",
+    "text": "Proof\n\nThe number of arm samples in the \\(\\mathscr{l}\\)-th round is \\(4n_{\\mathscr{l}} log  (\\frac{3}{\\delta_{\\mathscr{l}}} ) / \\epsilon_{\\mathscr{l}}^2\\). By definition we have that\n\n\n\\(\\delta_{1} = \\frac{\\delta}{2}\\) ; \\(\\frac{\\delta_{\\mathscr{l}-1}}{2}= \\frac{\\delta}{2^{\\mathscr{l}}}\\)\n\\(n_1 = n\\) ; \\(n_{\\mathscr{l}} = n_{\\mathscr{l}-1}/2 = n/2^{\\mathscr{l}-1}\\)\n\\(\\epsilon_{1} = \\frac{\\epsilon}{4}\\) ; \\(\\epsilon_{\\mathscr{l}} = \\frac{3}{4} \\epsilon_{\\mathscr{l}-1} = ( \\frac{3}{4} )^{\\mathscr{l}-1} \\epsilon / 4\\)"
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-3",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-3",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "",
+    "text": "Therefore we have\n\n\n\\[\\begin{aligned}\n\\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n_{\\mathscr{l} } \\log  (3 / \\delta_{\\mathscr{l} } )} {(\\epsilon_{\\mathscr{l} }/2)^2} &= 4 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n/2^{\\mathscr{l} -1} \\log (2^{\\mathscr{l} }3/ \\delta)}{((\\frac{3}{4})^{\\mathscr{l} -1} \\epsilon /4)^2} \\\\\n&= 64 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} n(\\frac{8}{9})^{\\mathscr{l} -1} (\\frac{\\log(1/\\delta)}{\\epsilon^2} + \\frac{\\log (3)}{\\epsilon^2} + \\frac{\\mathscr{l} \\log (2)}{\\epsilon^2}) \\\\\n&\\leq 64 \\frac{n \\log(1/\\delta)}{\\epsilon^2} \\sum\\limits_{\\mathscr{l} =1}^{\\infty} (\\frac{8}{9})^{\\mathscr{l} -1} (\\mathscr{l}C' + C) = O \\left( \\frac{n \\log (1/\\delta)}{\\epsilon^2} \\right)\n\\end{aligned}\\]\n\n\nwhere \\(C\\) and \\(C'\\) are constants.\n\n\nNow the Median Elimination theorem Section 5.1 can be proved by combining Lemma 1 and Lemma 2."
+  },
+  {
+    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Proof-Median-Elimination-Theorem",
+    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Proof-Median-Elimination-Theorem",
+    "title": "PAC bounds for Multi-armed Bandits",
+    "section": "Proof of Median Elimination Theorem",
+    "text": "Proof of Median Elimination Theorem\n\nFrom Section 9 we have that the sample complexity is bounded by \\(O \\left( n \\log (1/\\delta) / \\epsilon^2 \\right)\\).\nBy Section 6 we have that the algorithm fails with probability _{i} in each round so that over all rounds the probability of failure is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\delta_{i} \\leq \\delta\\).\nIn each round we reduce the optimal reward of the surviving arms by at most \\(\\epsilon_{i}\\) so that the total error is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\epsilon_{i} \\leq \\epsilon\\).\n\n\n\n\nSee full page on multi-armed bandits here"
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html",
+    "href": "pages/Stats/Probability-Basics.html",
+    "title": "Basic Concepts of Probability",
+    "section": "",
+    "text": "Experiment\n\nProcess or phenomenon that we wish to study statistically\n\n\n\nOutcome\n\nResult of the experiment (in as much detail as necessary)",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#experiment-and-outcome",
+    "href": "pages/Stats/Probability-Basics.html#experiment-and-outcome",
+    "title": "Basic Concepts of Probability",
+    "section": "",
+    "text": "Experiment\n\nProcess or phenomenon that we wish to study statistically\n\n\n\nOutcome\n\nResult of the experiment (in as much detail as necessary)",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#sample-space",
+    "href": "pages/Stats/Probability-Basics.html#sample-space",
+    "title": "Basic Concepts of Probability",
+    "section": "Sample Space",
+    "text": "Sample Space\nDefinition: A sample space S is a set that contains all possible outcomes of an experiment.\n\nSample space is a set, typically denoted S\nExamples:\n\nFlipping a coin: S = \\{\\text{Heads}, \\text{Tails}\\}\nRolling a die: S = \\{1, 2, 3, 4, 5, 6\\}",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#event",
+    "href": "pages/Stats/Probability-Basics.html#event",
+    "title": "Basic Concepts of Probability",
+    "section": "Event",
+    "text": "Event\nDefinition: An event is a subset of the sample space.\n\nExamples:\n\nToss a coin: S = \\{\\text{Heads}, \\text{Tails}\\}\n\nEvents: \\emptyset, \\{\\text{Heads}\\}, \\{\\text{Tails}\\}, \\{\\text{Heads}, \\text{Tails}\\}\n4 events\n\nThrow a die: S = \\{1, 2, 3, 4, 5, 6\\}\n\nEvents: \\emptyset, \\{1\\}, \\{2\\}, \\{3\\}, \\{4\\}, \\{5\\}, \\{6\\}, \\{1, 2\\}, \\{1, 3\\}, \\ldots, \\{1, 2, 3, 4, 5, 6\\}\n64 events\n\n\nAn event is said to have “occurred” if the actual outcome of the experiment belongs to the event.\nEvents are sets\n\nAll set theory notions apply to events\n\nOne event can be contained in another, i.e. A \\subseteq B\n\nThrow a die: A = \\{2, 6\\}, B = \\text{Even number}\nIf A occured, B has also occured\nIf B occured, A may or may not have occured\n\nComplement of an event A, denoted A^c = \\{\\text{outcomes in } S \\text{ not in } A\\} = (S \\setminus A)\n\nThrow a die: A = \\{2, 4, 6\\} (even), A^c = \\{1, 3, 5\\} (odd)\nIf A occured, A^c did not occur\nIf A^c occured, A did not occur\n\n\n\nCombining events to create new events\n\nUnion of events A and B, denoted A \\cup B = \\{x: x \\in A \\text{ or } x \\in B\\}\n\nThrow a die: A = \\{1, 2, 3\\}, B = \\{3, 4, 5\\}, A \\cup B = \\{1, 2, 3, 4, 5\\}\n\nIntersection of events A and B, denoted A \\cap B = \\{x: x \\in A \\text{ and } x \\in B\\}\n\nThrow a die: A = \\{1, 2, 3\\}, B = \\{3, 4, 5\\}, A \\cap B = \\{3\\}\n\n\n\n\nDisjoint events\n\nTwo events with an empty intersection are said to be disjoint or mutually exclusive events\n\nThrow a die: even number, odd number are disjoint\n\nSuppose A and B are disjoint events\n\nIf A occured, B did not occur\nIf B occured, A did not occur\n\nEvent and its complement\n\nA and A^c are disjoint, i.e. A \\cap A^c = \\emptyset\nTogether, they cover the entire sample space, i.e. A \\cup A^c = S\n\nEither A or A^c must occur\n\nA and A^c are an example of a partition of the sample space\n\nPartition: Collection of disjoint sets that together cover the entire sample space\n\n\nMultiple events: E_1, E_2, \\ldots, E_n are disjoint if, for any i \\neq j, E_i \\cap E_j = \\emptyset",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#probability",
+    "href": "pages/Stats/Probability-Basics.html#probability",
+    "title": "Basic Concepts of Probability",
+    "section": "Probability",
+    "text": "Probability\nDefinition: “Probability” is a function P that assigns to each event a real number between 0 and 1. The entire probability space (sample space, events and probability function) should satisfy the following two axioms:\n\nP(S) = 1 (probability of the entire sample space equals 1)\nIf E_1, E_2, E_3, \\ldots are disjoint events (how many events? Could be infinitely many), P(E_1 \\cup E_2 \\cup E_3 \\cup \\ldots) = P(E_1) + P(E_2) + P(E_3) + \\ldots",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#basic-properties-of-probability",
+    "href": "pages/Stats/Probability-Basics.html#basic-properties-of-probability",
+    "title": "Basic Concepts of Probability",
+    "section": "Basic Properties of Probability",
+    "text": "Basic Properties of Probability\n\nTheorem 1 (Basic Properties of Probability) Let P be a probability on a sample space S. Then,\n\nP(\\emptyset) = 0\nLet E^c be the complement of Event E. Then, \\newline P(E^c) = 1 - P(E)\nIf Event E is a subset of Event F, i.e. E \\subseteq F, then \\newline P(F) = P(E) + P(F \\setminus E)\\text{,} which implies that P(E) \\leq P(F)\n3.a. If E and F are events, then P(E) = P(E \\cap F) + P(E \\setminus F) \\text{,} P(F) = P(E \\cap F) + P(F \\setminus E)\nIf E and F are events, then P(E \\cup F) = P(E) + P(F) - P(E \\cap F)\n\n\n\nProof. \n\n\n\\emptyset^c = S and \\emptyset, S are disjoint and \\emptyset \\cup S = S.\nBy Axiom 2, P(\\emptyset \\cup S) = P(\\emptyset) + P(S) or P(S) = P(\\emptyset) + P(S) or P(\\emptyset) = 0.\n\n\nE and E^c are disjoint and E \\cup E^c = S.\nBy Axiom 2, P(E \\cup E^c) = P(E) + P(E^c) or P(S) = P(E) + P(E^c)\nBy Axiom 1, 1 = P(S) = P(E) + P(E^c)\nSo, P(E^c) = 1 - P(E)\n\n\nF \\setminus E = F \\cap E^c (outside of E and inside of F)\nE and F \\setminus E are disjoint and E \\cup (F \\setminus E) = F\nBy Axiom 2, P(E \\cup (F \\setminus E)) = P(E) + P(F \\setminus E) or P(F) = P(E) + P(F \\setminus E)\n\n3.a.\n\nE \\cap F is a subset of E\nBy subset property, P(E) = P(E \\cap F) + P(E \\setminus (E \\cap F))\nNow, E \\setminus (E \\cap F) = E \\setminus F\nSo, P(E) = P(E \\cap F) + P(E \\setminus F)\n\n\nE \\cup F = (E \\setminus F) \\cup (E \\cap F) \\cup (F \\setminus E) and the 3 events on RHS are disjoint\nP(E \\cup F) = P(E \\setminus F) + P(E \\cap F) + P(F \\setminus E)\nUse P(E \\setminus F) = P(E) - P(E \\cap F) and P(F \\setminus E) = P(F) - P(E \\cap F)",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#conditional-probability-space",
+    "href": "pages/Stats/Probability-Basics.html#conditional-probability-space",
+    "title": "Basic Concepts of Probability",
+    "section": "Conditional Probability Space",
+    "text": "Conditional Probability Space\nDefinition: Consider a probability space: Sample space S, collection of events, and a probability function P. Let B be an event with P(B) &gt; 0.\n\\newlineSample space: B \\newlineEvents: A \\cap B for every event A in the original space\n\\text{Probability function: } \\frac{P(A \\cap B)}{P(B)}\n\\newline(denoted P(A|B) and called conditional probability of A given B)\nFor any event A in the original space, P(A \\cap B) = P(B) \\cdot P(A|B)",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#law-of-total-probability",
+    "href": "pages/Stats/Probability-Basics.html#law-of-total-probability",
+    "title": "Basic Concepts of Probability",
+    "section": "Law of Total Probability",
+    "text": "Law of Total Probability\n\nTheorem 2 (Law of Total Probability) B_1, B_2, \\ldots \\text{ : Partition of } S  P(A) = P(A \\cap B_1) + P(A \\cap B_2) + \\ldots = P(A|B_1) P(B_1) + P(A|B_2) P(B_2) + \\ldots\n\n\nProof. \n\nA: disjoint union of A \\cap B_1, A \\cap B_2, \\ldots\nBy Axiom 2, P(A) = P(A \\cap B_1) + P(A \\cap B_2) + \\ldots\nUsing conditional probability on each term above, we get the result",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#bayes-theorem",
+    "href": "pages/Stats/Probability-Basics.html#bayes-theorem",
+    "title": "Basic Concepts of Probability",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\nTheorem 3 (Bayes’ Theorem)  A,B \\text{: Events with } P(A) &gt; 0 \\text{, } P(B) &gt; 0 P(A \\cap B) = P(B)P(A|B) = P(A)P(B|A) P(A|B) = \\frac{P(B|A)P(A)}{P(B)}\n\n\nProof. \n\nBayes’ Theorem may be derived from the definition of conditional probability: P(A|B) = \\frac{P(A \\cap B)}{P(B)} \\text{, if } P(B) \\neq 0,\nwhere P(A \\cap B) is the probability of both A and B being true. Similarly, P(B|A) = \\frac{P(A \\cap B)}{P(A)} \\text{, if } P(A) \\neq 0.\nSolving for P(A \\cap B) and substituting into the above expression for P(A|B) yields Bayes’ Theorem: P(A|B) = \\frac{P(B|A)P(A)}{P(B)} \\text{, if } P(B) \\neq 0.",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#independence-of-events",
+    "href": "pages/Stats/Probability-Basics.html#independence-of-events",
+    "title": "Basic Concepts of Probability",
+    "section": "Independence of Events",
+    "text": "Independence of Events\nDefinition: Two events A and B are independent if P(A \\cap B) = P(A)P(B)\n\nIf P(B) &gt; 0, P(A|B) = P(A)\nDisjoint events are never independent\nFor events to be independent, they should have a non-empty intersection",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/Stats/Probability-Basics.html#mutual-independence-of-multiple-events",
+    "href": "pages/Stats/Probability-Basics.html#mutual-independence-of-multiple-events",
+    "title": "Basic Concepts of Probability",
+    "section": "Mutual independence of multiple events",
+    "text": "Mutual independence of multiple events\nDefinition: Events A_1, A_2, \\ldots, A_n are mutually independent if, for all i_1, i_2, \\ldots, i_k, P(A_{i_1} \\cap A_{i_2} \\cap \\ldots \\cap A_{i_k}) = P(A_{i_1})P(A_{i_2}) \\ldots P(A_{i_k})\n\nA and B are independent \\implies A and B^c are independent\n\nP(A \\cap B^c) = P(A \\setminus B) = P(A) - P(A \\cap B) = P(A)(1 - P(B)) = P(A)P(B^c)\nIntuitive: B does not affect A \\implies B^c does not affect A\nTwo events are independent \\implies Complement of one event is independent of the other\n\nUsing the above twice: A and B are independent \\implies A^c and B^c are independent\nExtension: n events are mutually independent \\implies any subset with or without complementing are independent as well",
+    "crumbs": [
+      "Statistics",
+      "Basic Concepts of Probability"
+    ]
+  },
+  {
+    "objectID": "pages/random/Fourier.html",
+    "href": "pages/random/Fourier.html",
+    "title": "Learning",
+    "section": "",
+    "text": "Some handwritten notes on Fourier Series Representations\n\n\n\n\nReuseCC BY-NC-SA 4.0",
+    "crumbs": [
+      "Random Math",
+      "Fourier Series Representations"
+    ]
+  },
+  {
+    "objectID": "pages/random/Vectors-in-alternate-basis.html",
+    "href": "pages/random/Vectors-in-alternate-basis.html",
+    "title": "Learning",
+    "section": "",
+    "text": "ReuseCC BY-NC-SA 4.0",
+    "crumbs": [
+      "Random Math",
+      "Vectors in Alternate Basis"
+    ]
+  },
+  {
     "objectID": "pages/RL/MABs-and-UCB1-revealjs.html#a-k-armed-bandit-problem",
     "href": "pages/RL/MABs-and-UCB1-revealjs.html#a-k-armed-bandit-problem",
     "title": "Multi-armed Bandits and Upper Confidence Bounds",
@@ -152,233 +379,6 @@
     "title": "Multi-armed Bandits and Upper Confidence Bounds",
     "section": "",
     "text": "We bound the probability of the first two events using the Chernoff-Hoeffding bound as shown in Section 19.\n\\(P(\\overline{X}_{s}^{*} +c_{t,s} \\leqslant \\ \\mu ^{*} -c_{t,s}) \\leq e^{-2c_{t,s}^{2}s} = e^{-4\\ln t} = t^{-4}\\)\n\\(P(\\overline{X}_{i,s_{i}} \\geqslant \\mu _{i} +c_{t,s_{i}}) \\leq e^{-2c_{t,s_{i}}^{2}s_{i}} = e^{-4\\ln t} = t^{-4}\\)\nFor \\(\\mathscr{l} =\\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil\\), the third event is impossible. In fact\n\n\n\\(\\mu ^{*} - \\mu _{i} - 2c_{t,s_{i}} = \\mu ^{*} - \\mu _{i} - 2\\sqrt{\\frac{2\\ln t}{s_{i}}} \\geq \\mu ^{*} - \\mu _{i} - \\Delta _{i} = \\Delta _{i} - \\Delta _{i} = 0\\)\n\n\nfor \\(s_i \\geq \\frac{8\\ln n}{\\Delta_i^2}\\). So we get\n\n\n\\[\\begin{array}{ c c l }\n\\mathbb{E}[ T_{i}( n)] & \\leqslant  &  \\begin{array}{l}\n\\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil +\\sum\\limits _{t=1}^{\\infty }\\sum\\limits _{s=1}^{t-1}\\sum\\limits _{s_{i} =\\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil }^{t-1}\\\\\n\\times \\ \\left( P\\left\\{\\overline{X}_{s}^{*} \\leqslant \\mu ^{*} -c_{t,s}\\right\\} +P\\{\\overline{X}_{i,s_{i}} \\geqslant \\mu _{i} +c_{t,s_{i}}\\}\\right)\n\\end{array}\\\\\n& \\leqslant  & \\left\\lceil \\frac{8\\ \\ln n}{\\Delta _{i}^{2}}\\right\\rceil +\\sum\\limits _{t=1}^{\\infty }\\sum\\limits _{s=1}^{t}\\sum\\limits _{s_{i} =1}^{t} 2t^{-4}\\\\\n& \\leqslant  & \\frac{8\\ \\ln n}{\\Delta _{i}^{2}} +1+\\frac{\\pi ^{2}}{3}\n\\end{array}\\]\n\n\nwhich concludes the proof.\n\n\n\n\nSee full page on multi-armed bandits here"
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#bounds-required-for-pac",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#bounds-required-for-pac",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "Bounds required for PAC",
-    "text": "Bounds required for PAC\nChernoff-Hoeffding Bound\n\nLet \\(X_1, X_2, \\ldots, X_n\\) be r.v. with common range \\([0,1]\\), such that \\(\\mathbb{E}[X_t|X_1, X_2, \\ldots, X_{t-1}] = \\mu\\). Let \\(S_{n} = \\frac{X_1 + \\ldots + X_n}{n}\\). Then, for \\(\\epsilon &gt; 0\\),\n\n\n\\[ P(S_n \\geq \\mu + \\epsilon) \\leq \\exp(-2n\\epsilon^2) \\] \\[ P(S_n \\leq \\mu - \\epsilon) \\leq \\exp(-2n\\epsilon^2) \\]\n\nMarkov’s Inequality\n\nLet \\(X\\) be a non-negative random variable. Then, for any \\(a &gt; 0\\),\n\n\n\\[ P(X \\geq a) \\leq \\frac{\\mathbb{E}[X]}{a} \\]\n\nUnion Bound\n\nLet \\(A_1, A_2, \\ldots, A_n\\) be events. Then,\n\n\n\\[ P(A_1 \\cup A_2 \\cup \\ldots \\cup A_n) \\leq P(A_1) + P(A_2) + \\ldots + P(A_n) \\] \\[ \\equiv P\\left( \\bigcup_{i=1}^{n} A_i \\right) \\leq \\sum_{i=1}^{n} P(A_i) \\]"
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#naive-algorithm",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#naive-algorithm",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "Naive Algorithm",
-    "text": "Naive Algorithm\n\nInput: \\(\\epsilon &gt; 0, \\delta &gt;0\\)\nOutput: An arm\nforeach Arm \\(a \\in \\mathcal{A}\\) do\n        Sample it \\(\\mathscr{l} = \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta})\\) times;\n        Let \\(\\hat{p}_a\\) be the average reward of arm \\(a\\);\nend\nOutput \\(a' = \\underset{a \\in \\mathcal{A}}{\\arg\\max} \\{ \\hat{p}_a \\}\\);\n\n\n\nTheorem\n\n\nThe algorithm Naive(\\(\\epsilon, \\delta\\)) is an (\\(\\epsilon, \\delta\\))-PAC algorithm with arm sample complexity \\(O\\left(\\left(\\frac{k}{\\epsilon^2}\\right) \\log \\left(\\frac{k}{\\delta}\\right)\\right)\\)."
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "",
-    "text": "Proof\n\nLet \\(a'\\) be an arm s.t. \\(q_*(a')&lt;q_*(a^*)-\\epsilon\\)\n\\(P(Q(a')&gt;Q(a^*)) \\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon} {2} \\text{ or } Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon} {2})\\)\n\n\n\\[\\begin{aligned}\nP(Q(a')&gt;Q(a^*)) &\\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon}{2} \\text{ or } Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon}{2}) \\\\\n&\\leq P(Q(a')&gt;q_*(a')+ \\frac{\\epsilon}{2}) + P(Q(a^*)&lt;q_*(a^*)- \\frac{\\epsilon}{2}) \\\\\n&\\leq 2\\exp(-2\\left( \\frac{\\epsilon}{2} \\right)^2 \\mathscr{l})\n\\end{aligned}\\]\n\n\nSubstituting \\(\\mathscr{l} = \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta})\\),\n\n\n\\[P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(-2\\left( \\frac{\\epsilon}{2} \\right)^2 \\frac{2}{\\epsilon^2} \\ln (\\frac{2k}{\\delta}))\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(- \\frac{2}{2} \\ln (\\frac{2k}{\\delta}))\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq 2\\exp(\\ln(\\frac{2k}{\\delta})^{-1})\\] \\[\\implies P(Q(a')&gt;Q(a^*)) \\leq \\frac{\\delta}{k}\\]\n\n\nSumming over all \\(a'\\), we have that\n\n\n\\[\\text{probability of failure} \\leq (k-1)(\\frac{\\delta}{k}) &lt; \\delta\\]"
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#median-elimination-algorithm",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#median-elimination-algorithm",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "Median Elimination Algorithm",
-    "text": "Median Elimination Algorithm\n\nInput: \\(\\epsilon &gt; 0, \\delta &gt;0\\)\nOutput: An arm\nSet \\(S_1=A, \\epsilon_1=\\frac{\\epsilon}{4}, \\delta_1=\\frac{\\delta}{2}, \\mathscr{l} = 1\\). repeat\n        Sample every arm \\(a \\in S_{\\mathscr{l}}\\) for \\(\\frac{1}{(\\epsilon_{\\mathscr{l}})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{\\mathscr{l}}} \\right)\\) times, and let \\(\\hat{p}_a^{\\mathscr{l}}\\) denote its empirical value;\n        Find the median of \\(\\hat{p}_a^{\\mathscr{l}}\\), denoted by \\(m_{\\mathscr{l}}\\);\n        \\(S_{\\mathscr{l}+1} = S_{\\mathscr{l}} \\backslash \\{ a : \\hat{p}_a^{\\mathscr{l}} &lt; m_{\\mathscr{l}} \\}\\);\n        \\(\\epsilon_{\\mathscr{l}+1} = \\frac{3}{4} \\epsilon_{\\mathscr{l}}\\); \\(\\delta_{\\mathscr{l}+1} = \\frac{\\delta_{\\mathscr{l}}}{2}\\); \\(\\mathscr{l} = \\mathscr{l} + 1\\);\nuntil \\(\\left|S_{\\mathscr{l}}\\right| = 1\\);"
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-1",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-1",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "",
-    "text": "Matching the notation used in the paper to our notation:\n\n\\(\\hat{p}_a^{\\mathscr{l}} = Q_{\\mathscr{l}}(a)\\)\n\n\n\n\nTheorem\n\n\nThe Median Elimination (\\(\\epsilon, \\delta\\)) algorithm is an (\\(\\epsilon, \\delta\\))-PAC algorithm and its sample complexity is\n\n\n\\[ O \\left( \\frac{k}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right) \\]\n\n\nFirst we show that in the \\(\\mathscr{l}\\)-th phase the expected reward of the best arm in \\(S_{\\mathscr{l}}\\) drops by at most \\(\\epsilon_{\\mathscr{l}}\\)."
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Median-Elimination",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Median-Elimination",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "Lemma 1",
-    "text": "Lemma 1\n\nFor the Median Elimination (\\(\\epsilon, \\delta\\)) algorithm we have that for every phase \\(\\mathscr{l}\\):\n\n\n\\[ P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} p_{j} \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} p_{i} + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]\n\n\n\\[ \\equiv P \\left[ \\underset{j \\in S_{\\mathscr{l}}}{\\max} q_{*}(j) \\leq \\underset{i \\in S_{\\mathscr{l}+1}}{\\max} q_{*}(i) + \\epsilon_{\\mathscr{l}} \\right] \\geq 1 - \\delta_{\\mathscr{l}} \\]"
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Proof",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-1-Proof",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "Proof",
-    "text": "Proof\n\nWithout loss of generality consider \\(\\mathscr{l}=1\\). We bound the failure probability by looking at the event \\(E_1\\),\n\n\n\\[ E_1 = \\left\\{ \\hat{p}_1 &lt; p_1 - \\frac{\\epsilon_1}{2} \\right\\} \\equiv E_1 = \\left\\{ Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2} \\right\\} \\]\n\n\nwhich is the case that the empirical estimate of the best arm is pessimistic. Since we sample sufficiently, we have that\n\n\n\\[ P[E_1] = P\\left[Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) &lt; q_*(a_{\\mathscr{l}}^*)- \\frac{\\epsilon_1}{2}\\right]\\]\n\n\nApplying the Chernoff-Hoeffding bound (Section 1.1), we have that\n\n\n\\[ P[E_1] \\leq \\exp \\left(-2 \\left( \\frac{\\epsilon_1}{2} \\right)^2 \\frac{1}{(\\epsilon_{1})^2/2} \\cdot \\log \\left( \\frac{3}{\\delta _{1}} \\right) \\right) \\]\n\n\n\\[ \\implies P[E_1] \\leq \\frac{\\delta_1}{3} \\]"
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-2",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-2",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "",
-    "text": "In case \\(E_1\\) does not happen, we calculate the probability that an arm \\(j\\) which is not an \\(\\epsilon_1\\)-optimal arm is empirically better than the best arm.\n\n\n\\[ P \\left[ Q_{\\mathscr{l}}(j) \\geq Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) | Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{\\delta_1}{3}\\]\n\n\nLet #bad be the number of arms that are not \\(\\epsilon_1\\)-optimal but are empirically better than the best arm. We have that\n\n\n\\[ \\mathbb{E} \\left[ \\# bad \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq |S_\\mathscr{l}| \\frac{ \\delta_{1}} {3} \\]\n\n\nNext we apply Markov’s inequality (Section 1.2) to obtain\n\n\n\\[ P \\left [ \\# bad \\geq \\frac{|S_\\mathscr{l}|}{2} \\middle| Q_{\\mathscr{l}}(a_{\\mathscr{l}}^*) \\geq q_{*}(a_{\\mathscr{l}}^*) - \\frac{\\epsilon_1}{2} \\right] \\leq \\frac{|S_\\mathscr{l}|\\frac{\\delta_1}{3}}{\\frac{|S_\\mathscr{l}|}{2}} = \\frac{2\\delta_{1}}{3} \\]\n\n\nUsing the union bound (Section 1.3) gives us that the probability of failure is bounded by \\(\\delta_1\\)."
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Median-Elimination",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Median-Elimination",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "Lemma 2",
-    "text": "Lemma 2\n\nThe sample complexity of the Median Elimination \\((\\epsilon, \\delta)\\) is \\(O \\left( \\frac{n}{\\epsilon^2} \\log \\left(\\frac{1}{\\delta} \\right) \\right)\\)."
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Proof",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Lemma-2-Proof",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "Proof",
-    "text": "Proof\n\nThe number of arm samples in the \\(\\mathscr{l}\\)-th round is \\(4n_{\\mathscr{l}} log  (\\frac{3}{\\delta_{\\mathscr{l}}} ) / \\epsilon_{\\mathscr{l}}^2\\). By definition we have that\n\n\n\\(\\delta_{1} = \\frac{\\delta}{2}\\) ; \\(\\frac{\\delta_{\\mathscr{l}-1}}{2}= \\frac{\\delta}{2^{\\mathscr{l}}}\\)\n\\(n_1 = n\\) ; \\(n_{\\mathscr{l}} = n_{\\mathscr{l}-1}/2 = n/2^{\\mathscr{l}-1}\\)\n\\(\\epsilon_{1} = \\frac{\\epsilon}{4}\\) ; \\(\\epsilon_{\\mathscr{l}} = \\frac{3}{4} \\epsilon_{\\mathscr{l}-1} = ( \\frac{3}{4} )^{\\mathscr{l}-1} \\epsilon / 4\\)"
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-3",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#section-3",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "",
-    "text": "Therefore we have\n\n\n\\[\\begin{aligned}\n\\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n_{\\mathscr{l} } \\log  (3 / \\delta_{\\mathscr{l} } )} {(\\epsilon_{\\mathscr{l} }/2)^2} &= 4 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} \\frac{n/2^{\\mathscr{l} -1} \\log (2^{\\mathscr{l} }3/ \\delta)}{((\\frac{3}{4})^{\\mathscr{l} -1} \\epsilon /4)^2} \\\\\n&= 64 \\sum\\limits_{\\mathscr{l} =1}^{\\log_2 n} n(\\frac{8}{9})^{\\mathscr{l} -1} (\\frac{\\log(1/\\delta)}{\\epsilon^2} + \\frac{\\log (3)}{\\epsilon^2} + \\frac{\\mathscr{l} \\log (2)}{\\epsilon^2}) \\\\\n&\\leq 64 \\frac{n \\log(1/\\delta)}{\\epsilon^2} \\sum\\limits_{\\mathscr{l} =1}^{\\infty} (\\frac{8}{9})^{\\mathscr{l} -1} (\\mathscr{l}C' + C) = O \\left( \\frac{n \\log (1/\\delta)}{\\epsilon^2} \\right)\n\\end{aligned}\\]\n\n\nwhere \\(C\\) and \\(C'\\) are constants.\n\n\nNow the Median Elimination theorem Section 5.1 can be proved by combining Lemma 1 and Lemma 2."
-  },
-  {
-    "objectID": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Proof-Median-Elimination-Theorem",
-    "href": "pages/RL/PAC-bounds-for-MABs-revealjs.html#sec-Proof-Median-Elimination-Theorem",
-    "title": "PAC bounds for Multi-armed Bandits",
-    "section": "Proof of Median Elimination Theorem",
-    "text": "Proof of Median Elimination Theorem\n\nFrom Section 9 we have that the sample complexity is bounded by \\(O \\left( n \\log (1/\\delta) / \\epsilon^2 \\right)\\).\nBy Section 6 we have that the algorithm fails with probability _{i} in each round so that over all rounds the probability of failure is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\delta_{i} \\leq \\delta\\).\nIn each round we reduce the optimal reward of the surviving arms by at most \\(\\epsilon_{i}\\) so that the total error is bounded by \\(\\sum_{i=1}^{\\log_2 n} \\epsilon_{i} \\leq \\epsilon\\).\n\n\n\n\nSee full page on multi-armed bandits here"
-  },
-  {
-    "objectID": "pages/random/Vectors-in-alternate-basis.html",
-    "href": "pages/random/Vectors-in-alternate-basis.html",
-    "title": "Learning",
-    "section": "",
-    "text": "ReuseCC BY-NC-SA 4.0",
-    "crumbs": [
-      "Random Math",
-      "Vectors in Alternate Basis"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html",
-    "href": "pages/Stats/Probability-Basics.html",
-    "title": "Basic Concepts of Probability",
-    "section": "",
-    "text": "Experiment\n\nProcess or phenomenon that we wish to study statistically\n\n\n\nOutcome\n\nResult of the experiment (in as much detail as necessary)",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#experiment-and-outcome",
-    "href": "pages/Stats/Probability-Basics.html#experiment-and-outcome",
-    "title": "Basic Concepts of Probability",
-    "section": "",
-    "text": "Experiment\n\nProcess or phenomenon that we wish to study statistically\n\n\n\nOutcome\n\nResult of the experiment (in as much detail as necessary)",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#sample-space",
-    "href": "pages/Stats/Probability-Basics.html#sample-space",
-    "title": "Basic Concepts of Probability",
-    "section": "Sample Space",
-    "text": "Sample Space\nDefinition: A sample space S is a set that contains all possible outcomes of an experiment.\n\nSample space is a set, typically denoted S\nExamples:\n\nFlipping a coin: S = \\{\\text{Heads}, \\text{Tails}\\}\nRolling a die: S = \\{1, 2, 3, 4, 5, 6\\}",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#event",
-    "href": "pages/Stats/Probability-Basics.html#event",
-    "title": "Basic Concepts of Probability",
-    "section": "Event",
-    "text": "Event\nDefinition: An event is a subset of the sample space.\n\nExamples:\n\nToss a coin: S = \\{\\text{Heads}, \\text{Tails}\\}\n\nEvents: \\emptyset, \\{\\text{Heads}\\}, \\{\\text{Tails}\\}, \\{\\text{Heads}, \\text{Tails}\\}\n4 events\n\nThrow a die: S = \\{1, 2, 3, 4, 5, 6\\}\n\nEvents: \\emptyset, \\{1\\}, \\{2\\}, \\{3\\}, \\{4\\}, \\{5\\}, \\{6\\}, \\{1, 2\\}, \\{1, 3\\}, \\ldots, \\{1, 2, 3, 4, 5, 6\\}\n64 events\n\n\nAn event is said to have “occurred” if the actual outcome of the experiment belongs to the event.\nEvents are sets\n\nAll set theory notions apply to events\n\nOne event can be contained in another, i.e. A \\subseteq B\n\nThrow a die: A = \\{2, 6\\}, B = \\text{Even number}\nIf A occured, B has also occured\nIf B occured, A may or may not have occured\n\nComplement of an event A, denoted A^c = \\{\\text{outcomes in } S \\text{ not in } A\\} = (S \\setminus A)\n\nThrow a die: A = \\{2, 4, 6\\} (even), A^c = \\{1, 3, 5\\} (odd)\nIf A occured, A^c did not occur\nIf A^c occured, A did not occur\n\n\n\nCombining events to create new events\n\nUnion of events A and B, denoted A \\cup B = \\{x: x \\in A \\text{ or } x \\in B\\}\n\nThrow a die: A = \\{1, 2, 3\\}, B = \\{3, 4, 5\\}, A \\cup B = \\{1, 2, 3, 4, 5\\}\n\nIntersection of events A and B, denoted A \\cap B = \\{x: x \\in A \\text{ and } x \\in B\\}\n\nThrow a die: A = \\{1, 2, 3\\}, B = \\{3, 4, 5\\}, A \\cap B = \\{3\\}\n\n\n\n\nDisjoint events\n\nTwo events with an empty intersection are said to be disjoint or mutually exclusive events\n\nThrow a die: even number, odd number are disjoint\n\nSuppose A and B are disjoint events\n\nIf A occured, B did not occur\nIf B occured, A did not occur\n\nEvent and its complement\n\nA and A^c are disjoint, i.e. A \\cap A^c = \\emptyset\nTogether, they cover the entire sample space, i.e. A \\cup A^c = S\n\nEither A or A^c must occur\n\nA and A^c are an example of a partition of the sample space\n\nPartition: Collection of disjoint sets that together cover the entire sample space\n\n\nMultiple events: E_1, E_2, \\ldots, E_n are disjoint if, for any i \\neq j, E_i \\cap E_j = \\emptyset",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#probability",
-    "href": "pages/Stats/Probability-Basics.html#probability",
-    "title": "Basic Concepts of Probability",
-    "section": "Probability",
-    "text": "Probability\nDefinition: “Probability” is a function P that assigns to each event a real number between 0 and 1. The entire probability space (sample space, events and probability function) should satisfy the following two axioms:\n\nP(S) = 1 (probability of the entire sample space equals 1)\nIf E_1, E_2, E_3, \\ldots are disjoint events (how many events? Could be infinitely many), P(E_1 \\cup E_2 \\cup E_3 \\cup \\ldots) = P(E_1) + P(E_2) + P(E_3) + \\ldots",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#basic-properties-of-probability",
-    "href": "pages/Stats/Probability-Basics.html#basic-properties-of-probability",
-    "title": "Basic Concepts of Probability",
-    "section": "Basic Properties of Probability",
-    "text": "Basic Properties of Probability\n\nTheorem 1 (Basic Properties of Probability) Let P be a probability on a sample space S. Then,\n\nP(\\emptyset) = 0\nLet E^c be the complement of Event E. Then, \\newline P(E^c) = 1 - P(E)\nIf Event E is a subset of Event F, i.e. E \\subseteq F, then \\newline P(F) = P(E) + P(F \\setminus E)\\text{,} which implies that P(E) \\leq P(F)\n3.a. If E and F are events, then P(E) = P(E \\cap F) + P(E \\setminus F) \\text{,} P(F) = P(E \\cap F) + P(F \\setminus E)\nIf E and F are events, then P(E \\cup F) = P(E) + P(F) - P(E \\cap F)\n\n\n\nProof. \n\n\n\\emptyset^c = S and \\emptyset, S are disjoint and \\emptyset \\cup S = S.\nBy Axiom 2, P(\\emptyset \\cup S) = P(\\emptyset) + P(S) or P(S) = P(\\emptyset) + P(S) or P(\\emptyset) = 0.\n\n\nE and E^c are disjoint and E \\cup E^c = S.\nBy Axiom 2, P(E \\cup E^c) = P(E) + P(E^c) or P(S) = P(E) + P(E^c)\nBy Axiom 1, 1 = P(S) = P(E) + P(E^c)\nSo, P(E^c) = 1 - P(E)\n\n\nF \\setminus E = F \\cap E^c (outside of E and inside of F)\nE and F \\setminus E are disjoint and E \\cup (F \\setminus E) = F\nBy Axiom 2, P(E \\cup (F \\setminus E)) = P(E) + P(F \\setminus E) or P(F) = P(E) + P(F \\setminus E)\n\n3.a.\n\nE \\cap F is a subset of E\nBy subset property, P(E) = P(E \\cap F) + P(E \\setminus (E \\cap F))\nNow, E \\setminus (E \\cap F) = E \\setminus F\nSo, P(E) = P(E \\cap F) + P(E \\setminus F)\n\n\nE \\cup F = (E \\setminus F) \\cup (E \\cap F) \\cup (F \\setminus E) and the 3 events on RHS are disjoint\nP(E \\cup F) = P(E \\setminus F) + P(E \\cap F) + P(F \\setminus E)\nUse P(E \\setminus F) = P(E) - P(E \\cap F) and P(F \\setminus E) = P(F) - P(E \\cap F)",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#conditional-probability-space",
-    "href": "pages/Stats/Probability-Basics.html#conditional-probability-space",
-    "title": "Basic Concepts of Probability",
-    "section": "Conditional Probability Space",
-    "text": "Conditional Probability Space\nDefinition: Consider a probability space: Sample space S, collection of events, and a probability function P. Let B be an event with P(B) &gt; 0.\n\\newlineSample space: B \\newlineEvents: A \\cap B for every event A in the original space\n\\text{Probability function: } \\frac{P(A \\cap B)}{P(B)}\n\\newline(denoted P(A|B) and called conditional probability of A given B)\nFor any event A in the original space, P(A \\cap B) = P(B) \\cdot P(A|B)",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#law-of-total-probability",
-    "href": "pages/Stats/Probability-Basics.html#law-of-total-probability",
-    "title": "Basic Concepts of Probability",
-    "section": "Law of Total Probability",
-    "text": "Law of Total Probability\n\nTheorem 2 (Law of Total Probability) B_1, B_2, \\ldots \\text{ : Partition of } S  P(A) = P(A \\cap B_1) + P(A \\cap B_2) + \\ldots = P(A|B_1) P(B_1) + P(A|B_2) P(B_2) + \\ldots\n\n\nProof. \n\nA: disjoint union of A \\cap B_1, A \\cap B_2, \\ldots\nBy Axiom 2, P(A) = P(A \\cap B_1) + P(A \\cap B_2) + \\ldots\nUsing conditional probability on each term above, we get the result",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#bayes-theorem",
-    "href": "pages/Stats/Probability-Basics.html#bayes-theorem",
-    "title": "Basic Concepts of Probability",
-    "section": "Bayes’ Theorem",
-    "text": "Bayes’ Theorem\n\nTheorem 3 (Bayes’ Theorem)  A,B \\text{: Events with } P(A) &gt; 0 \\text{, } P(B) &gt; 0 P(A \\cap B) = P(B)P(A|B) = P(A)P(B|A) P(A|B) = \\frac{P(B|A)P(A)}{P(B)}\n\n\nProof. \n\nBayes’ Theorem may be derived from the definition of conditional probability: P(A|B) = \\frac{P(A \\cap B)}{P(B)} \\text{, if } P(B) \\neq 0,\nwhere P(A \\cap B) is the probability of both A and B being true. Similarly, P(B|A) = \\frac{P(A \\cap B)}{P(A)} \\text{, if } P(A) \\neq 0.\nSolving for P(A \\cap B) and substituting into the above expression for P(A|B) yields Bayes’ Theorem: P(A|B) = \\frac{P(B|A)P(A)}{P(B)} \\text{, if } P(B) \\neq 0.",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#independence-of-events",
-    "href": "pages/Stats/Probability-Basics.html#independence-of-events",
-    "title": "Basic Concepts of Probability",
-    "section": "Independence of Events",
-    "text": "Independence of Events\nDefinition: Two events A and B are independent if P(A \\cap B) = P(A)P(B)\n\nIf P(B) &gt; 0, P(A|B) = P(A)\nDisjoint events are never independent\nFor events to be independent, they should have a non-empty intersection",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/Stats/Probability-Basics.html#mutual-independence-of-multiple-events",
-    "href": "pages/Stats/Probability-Basics.html#mutual-independence-of-multiple-events",
-    "title": "Basic Concepts of Probability",
-    "section": "Mutual independence of multiple events",
-    "text": "Mutual independence of multiple events\nDefinition: Events A_1, A_2, \\ldots, A_n are mutually independent if, for all i_1, i_2, \\ldots, i_k, P(A_{i_1} \\cap A_{i_2} \\cap \\ldots \\cap A_{i_k}) = P(A_{i_1})P(A_{i_2}) \\ldots P(A_{i_k})\n\nA and B are independent \\implies A and B^c are independent\n\nP(A \\cap B^c) = P(A \\setminus B) = P(A) - P(A \\cap B) = P(A)(1 - P(B)) = P(A)P(B^c)\nIntuitive: B does not affect A \\implies B^c does not affect A\nTwo events are independent \\implies Complement of one event is independent of the other\n\nUsing the above twice: A and B are independent \\implies A^c and B^c are independent\nExtension: n events are mutually independent \\implies any subset with or without complementing are independent as well",
-    "crumbs": [
-      "Statistics",
-      "Basic Concepts of Probability"
-    ]
-  },
-  {
-    "objectID": "pages/random/Fourier.html",
-    "href": "pages/random/Fourier.html",
-    "title": "Learning",
-    "section": "",
-    "text": "Some handwritten notes on Fourier Series Representations\n\n\n\n\nReuseCC BY-NC-SA 4.0",
-    "crumbs": [
-      "Random Math",
-      "Fourier Series Representations"
-    ]
   },
   {
     "objectID": "pages/RL/Multi-armed-bandits.html",

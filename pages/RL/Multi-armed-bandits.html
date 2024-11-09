@@ -334,8 +334,8 @@ H_{t}( a) &amp;  &amp; \text{learned preference for selecting action} \ a\ \text
 </ul></li>
 </ul>
 </section>
-<section id="action-value-methods" class="level2 smaller" data-number="6">
-<h2 class="smaller anchored" data-number="6" data-anchor-id="action-value-methods"><span class="header-section-number">6</span> Action-value Methods</h2>
+<section id="action-value-methods" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="action-value-methods"><span class="header-section-number">6</span> Action-value Methods</h2>
 <p>The true value of an action is the mean reward when that action is selected. One natural way to estimate this is by averaging the rewards actually received: <span class="math display">\[ Q_t(a) = \frac{\text{sum of rewards when } a \text{ taken prior to } t}{\text{number of times } a \text{ taken prior to } t} = \frac{\sum\limits_{i=1}^{t-1}R_{i}\cdot\mathbb{1}_{A_{i}=a}}{\sum\limits_{i=1}^{t-1}\mathbb{1}_{A_{i}=a}} \]</span> where <span class="math inline">\(\mathbb{1}_{\text{predicate}}\)</span> denotes the random variable that is <span class="math inline">\(1\)</span> if the predicate is true and <span class="math inline">\(0\)</span> otherwise.</p>
 <p>If the denominator is <span class="math inline">\(0\)</span>, we define <span class="math inline">\(Q_t(a)\)</span> to be some default value, such as <span class="math inline">\(0\)</span>. By the law of large numbers, as <span class="math inline">\(\sum\limits_{i=1}^{t-1}\mathbb{1}_{A_{i}=a} \rightarrow \infty\)</span>, <span class="math inline">\(Q_t(a) \rightarrow q_*(a)\)</span>. This is known as the <em>sample-average</em> method for estimating action values because each estimate is an average of the sample of relevant rewards.</p>
 <p>The simplest action selection rule is to select one of the actions with the highest estimated value, that is, one of the greedy actions. If there is more than one greedy action, then a selection is made among them in some arbitrary way, perhaps randomly. We write this greedy action selection method as <span class="math display">\[ A_{t} \doteq \underset{a}{\arg\max}\ Q_{t}( a) \]</span></p>

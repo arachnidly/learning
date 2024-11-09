@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://arachnidly.github.io/learning/pages/RL/MABs-and-UCB1-revealjs.html</loc>
-    <lastmod>2024-09-30T23:59:09.594Z</lastmod>
-  </url>
-  <url>
     <loc>https://arachnidly.github.io/learning/pages/RL/PAC-bounds-for-MABs-revealjs.html</loc>
-    <lastmod>2024-09-30T23:59:09.594Z</lastmod>
-  </url>
-  <url>
-    <loc>https://arachnidly.github.io/learning/pages/random/Vectors-in-alternate-basis.html</loc>
-    <lastmod>2024-09-30T23:59:09.602Z</lastmod>
+    <lastmod>2024-11-09T15:15:22.118Z</lastmod>
   </url>
   <url>
     <loc>https://arachnidly.github.io/learning/pages/Stats/Probability-Basics.html</loc>
-    <lastmod>2024-09-30T23:59:09.594Z</lastmod>
+    <lastmod>2024-11-09T15:15:22.118Z</lastmod>
   </url>
   <url>
     <loc>https://arachnidly.github.io/learning/pages/random/Fourier.html</loc>
-    <lastmod>2024-09-30T23:59:09.601Z</lastmod>
+    <lastmod>2024-11-09T15:15:22.126Z</lastmod>
+  </url>
+  <url>
+    <loc>https://arachnidly.github.io/learning/pages/random/Vectors-in-alternate-basis.html</loc>
+    <lastmod>2024-11-09T15:15:22.130Z</lastmod>
+  </url>
+  <url>
+    <loc>https://arachnidly.github.io/learning/pages/RL/MABs-and-UCB1-revealjs.html</loc>
+    <lastmod>2024-11-09T15:15:22.118Z</lastmod>
   </url>
   <url>
     <loc>https://arachnidly.github.io/learning/pages/RL/Multi-armed-bandits.html</loc>
-    <lastmod>2024-09-30T23:59:09.594Z</lastmod>
+    <lastmod>2024-11-09T15:15:22.118Z</lastmod>
   </url>
 </urlset>
